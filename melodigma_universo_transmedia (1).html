@@ -1,0 +1,3109 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Melodigma · El Misterio de la Escuela Armonía | Estel</title>
+  <!-- Tailwind CSS -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  <!-- Tipografías Infantiles y de Cuento Musical -->
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Fredoka:wght@400;500;600;700&family=Nunito:wght@400;600;700;800&family=Playfair+Display:ital,wght@0,700;1,600&display=swap" rel="stylesheet" />
+
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          colors: {
+            crema: '#E5E8F2',
+            cremaCard: '#F7F8FC',
+            pergamino: '#9AA3C2',
+            madera: '#1E2242',
+            maderaSuave: '#48507A',
+            lupa: '#4CAF50',
+            lupaOscuro: '#388E3C',
+            dorado: '#FFD54F',
+            doradoOscuro: '#FBC02D',
+            celeste: '#4DD0E1',
+            coral: '#F48FB1',
+            terracota: '#5C54A4'
+          },
+          fontFamily: {
+            display: ['Fredoka', 'cursive', 'sans-serif'],
+            body: ['Nunito', 'sans-serif'],
+            serif: ['Playfair Display', 'serif']
+          },
+          boxShadow: {
+            card: '0 10px 24px -4px rgba(24, 28, 58, 0.16)',
+            btn: '0 4px 0px rgba(24, 28, 58, 0.30)'
+          }
+        }
+      }
+    };
+  </script>
+
+  <style>
+    body {
+      background-color: #D7DCEB;
+      background-image:
+        radial-gradient(circle at 12% 18%, rgba(76, 86, 158, 0.16) 0px, transparent 170px),
+        radial-gradient(circle at 88% 12%, rgba(99, 102, 241, 0.14) 0px, transparent 190px),
+        radial-gradient(circle at 82% 85%, rgba(77, 208, 225, 0.14) 0px, transparent 180px),
+        radial-gradient(circle at 18% 82%, rgba(76, 175, 80, 0.10) 0px, transparent 160px);
+      color: #1E2242;
+      font-family: 'Nunito', sans-serif;
+    }
+
+    h1, h2, h3, h4, .font-display {
+      font-family: 'Fredoka', cursive, sans-serif;
+    }
+
+    .storybook-plaque {
+      background: linear-gradient(180deg, #2B315E 0%, #1E2242 100%);
+      border: 3px solid #7E88B8;
+      box-shadow: 0 8px 20px rgba(20, 24, 52, 0.25);
+    }
+
+    .letter-paper {
+      background: linear-gradient(180deg, #F4F6FB 0%, #E8ECF6 100%);
+      border: 4px solid #9AA3C2;
+      box-shadow: 0 10px 24px -4px rgba(24, 28, 58, 0.16);
+    }
+
+    @keyframes floatNote {
+      0%, 100% { transform: translateY(0px) rotate(-3deg); }
+      50% { transform: translateY(-7px) rotate(3deg); }
+    }
+    .animate-float {
+      animation: floatNote 3.5s ease-in-out infinite;
+    }
+
+    @keyframes popIn {
+      0% { transform: scale(0.95); opacity: 0; }
+      100% { transform: scale(1); opacity: 1; }
+    }
+    .animate-pop {
+      animation: popIn 0.28s cubic-bezier(0.175, 0.885, 0.32, 1.275) forwards;
+    }
+
+    /* Logos flotantes transparentes con contorno luminoso y sombra neón */
+    .logo-neon-melodigma {
+      filter:
+        drop-shadow(0 0 1.5px #FFFFFF)
+        drop-shadow(0 0 6px rgba(105, 240, 174, 0.65))
+        drop-shadow(0 3px 6px rgba(10, 14, 34, 0.7));
+      transition: transform 0.2s ease, filter 0.2s ease;
+    }
+    .logo-neon-melodigma:hover {
+      filter:
+        drop-shadow(0 0 2px #FFFFFF)
+        drop-shadow(0 0 11px rgba(105, 240, 174, 0.9))
+        drop-shadow(0 4px 10px rgba(10, 14, 34, 0.8));
+    }
+    .logo-neon-estel {
+      filter:
+        drop-shadow(0 0 1.5px #FFFFFF)
+        drop-shadow(0 0 6px rgba(77, 208, 225, 0.6))
+        drop-shadow(0 3px 6px rgba(10, 14, 34, 0.7));
+      transition: transform 0.2s ease, filter 0.2s ease;
+    }
+    .logo-neon-estel:hover {
+      filter:
+        drop-shadow(0 0 2px #FFFFFF)
+        drop-shadow(0 0 11px rgba(255, 213, 79, 0.85))
+        drop-shadow(0 4px 10px rgba(10, 14, 34, 0.8));
+    }
+
+    .melodigma-select option {
+      background-color: #F7F8FC;
+      color: #1E2242;
+      font-family: 'Nunito', sans-serif;
+      font-weight: 700;
+      padding: 0.5rem;
+    }
+
+    /* Desplegable personalizado Melodigma (opciones internas con estética de misterio musical) */
+    .melodigma-dropdown {
+      position: relative;
+      width: 100%;
+    }
+    .melodigma-dropdown-btn {
+      width: 100%;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 0.5rem;
+      background-color: #F7F8FC;
+      border: 2.5px solid #9AA3C2;
+      border-radius: 1rem;
+      color: #1E2242;
+      font-family: 'Fredoka', cursive, sans-serif;
+      font-weight: 600;
+      font-size: 0.875rem;
+      padding: 0.55rem 0.95rem;
+      min-height: 2.65rem;
+      box-shadow: 0 3px 0 rgba(30, 34, 66, 0.16);
+      cursor: pointer;
+      text-align: left;
+      transition: all 0.18s ease;
+    }
+    .melodigma-dropdown-btn:hover {
+      border-color: #FBC02D;
+      background-color: #EEF1FA;
+      transform: translateY(-1px);
+    }
+    .melodigma-dropdown.open .melodigma-dropdown-btn {
+      border-color: #4CAF50;
+      background-color: #FFFFFF;
+      box-shadow: 0 0 0 3px rgba(76, 175, 80, 0.22), 0 3px 0 rgba(76, 175, 80, 0.3);
+    }
+    .melodigma-dropdown-arrow {
+      flex-shrink: 0;
+      transition: transform 0.2s ease;
+    }
+    .melodigma-dropdown.open .melodigma-dropdown-arrow {
+      transform: rotate(180deg);
+    }
+    .melodigma-dropdown-menu {
+      position: absolute;
+      top: calc(100% + 6px);
+      left: 0;
+      right: 0;
+      z-index: 60;
+      background-color: #F7F8FC;
+      border: 2.5px solid #9AA3C2;
+      border-radius: 1.1rem;
+      padding: 0.35rem;
+      box-shadow: 0 12px 28px -4px rgba(24, 28, 58, 0.24), 0 4px 0 #9AA3C2;
+      max-height: 220px;
+      overflow-y: auto;
+      display: none;
+      animation: popIn 0.18s cubic-bezier(0.175, 0.885, 0.32, 1.275) forwards;
+    }
+    .melodigma-dropdown.open .melodigma-dropdown-menu {
+      display: block;
+    }
+    .melodigma-dropdown-item {
+      width: 100%;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 0.5rem;
+      padding: 0.5rem 0.75rem;
+      border-radius: 0.75rem;
+      font-family: 'Nunito', sans-serif;
+      font-weight: 700;
+      font-size: 0.85rem;
+      color: #1E2242;
+      text-align: left;
+      cursor: pointer;
+      transition: background-color 0.14s ease, transform 0.12s ease;
+    }
+    .melodigma-dropdown-item:hover {
+      background-color: #E3E7F5;
+      color: #141730;
+      transform: translateX(2px);
+    }
+    .melodigma-dropdown-item.selected {
+      background-color: #E8F5E9;
+      color: #2E7D32;
+      font-weight: 800;
+    }
+
+    /* Scrollbar sutil */
+    ::-webkit-scrollbar {
+      width: 8px;
+      height: 8px;
+    }
+    ::-webkit-scrollbar-track {
+      background: #D7DCEB;
+    }
+    ::-webkit-scrollbar-thumb {
+      background: #8D97BA;
+      border-radius: 9999px;
+    }
+  </style>
+</head>
+<body class="min-h-screen flex flex-col overflow-x-hidden selection:bg-dorado selection:text-madera">
+
+  <!-- NOTIFICACIÓN FLOTANTE (TOAST) -->
+  <div id="toast-container" class="fixed bottom-5 right-5 z-50 flex flex-col gap-2 max-w-sm pointer-events-none"></div>
+
+  <!-- CABECERA / BARRA DE NAVEGACIÓN PRINCIPAL (AZUL VIOLÁCEO PROFUNDO) -->
+  <header class="sticky top-0 z-40 bg-[#1E2242]/95 backdrop-blur-md border-b-4 border-[#4A5388] shadow-md text-white">
+    <div class="max-w-7xl mx-auto px-3 sm:px-6 py-2.5 flex flex-wrap items-center justify-between gap-3">
+
+      <!-- Logos Flotantes Transparentes: Melodigma (Juego) y Estel (Productora) -->
+      <div class="flex items-center gap-3 sm:gap-5">
+        <button onclick="switchSection('inicio')" class="flex items-center group focus:outline-none text-left bg-transparent p-0" title="Ir al inicio de Melodigma">
+          <div id="header-logo-melodigma" class="w-36 sm:w-40 h-12 flex items-center justify-center logo-neon-melodigma group-hover:scale-105"></div>
+        </button>
+
+        <div class="hidden md:flex items-center gap-2.5 pl-4 border-l-2 border-[#4A5388]">
+          <span class="text-[11px] font-bold uppercase tracking-wider text-indigo-200">Una producción de</span>
+          <div id="header-logo-estel" class="w-20 h-11 flex items-center justify-center logo-neon-estel hover:scale-105"></div>
+        </div>
+      </div>
+
+      <!-- Botón Toggle para abrir el Menú Lateral -->
+      <button onclick="toggleSideMenu()" id="menu-toggle-btn" aria-label="Abrir menú de navegación" aria-expanded="false"
+        class="px-4 py-2.5 rounded-2xl bg-[#2E3566] hover:bg-dorado text-white hover:text-madera border-2 border-[#7E88B8] font-display font-bold text-sm sm:text-base shadow-btn transition flex items-center gap-2">
+        <svg class="w-5 h-5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.8" stroke-linecap="round" stroke-linejoin="round">
+          <line x1="3" y1="6" x2="21" y2="6"></line>
+          <line x1="3" y1="12" x2="21" y2="12"></line>
+          <line x1="3" y1="18" x2="21" y2="18"></line>
+        </svg>
+        <span>Menú</span>
+      </button>
+    </div>
+  </header>
+
+  <!-- FONDO OSCURO DEL MENÚ LATERAL -->
+  <div id="side-menu-backdrop" onclick="closeSideMenu()" class="hidden fixed inset-0 z-50 bg-[#101329]/60 backdrop-blur-xs transition-opacity"></div>
+
+  <!-- MENÚ LATERAL DESLIZABLE (SIDE DRAWER AZUL VIOLÁCEO) -->
+  <aside id="side-menu-drawer" aria-label="Menú lateral principal"
+    class="fixed top-0 right-0 z-50 h-full w-72 sm:w-80 bg-[#1E2242] border-l-4 border-[#4A5388] shadow-2xl transform translate-x-full transition-transform duration-300 ease-out flex flex-col justify-between p-5 text-white">
+    <div class="space-y-6">
+      <div class="flex items-center justify-between border-b-2 border-[#4A5388] pb-3">
+        <div class="flex items-center gap-2">
+          <span class="text-xl">🎼</span>
+          <span class="font-display font-bold text-lg text-white">Escuela Armonía</span>
+        </div>
+        <button onclick="closeSideMenu()" aria-label="Cerrar menú"
+          class="w-9 h-9 rounded-xl bg-[#2E3566] hover:bg-dorado hover:text-madera border border-[#7E88B8] flex items-center justify-center font-bold text-white transition">
+          ✕
+        </button>
+      </div>
+
+      <nav class="flex flex-col gap-2.5">
+        <button onclick="switchSection('inicio'); closeSideMenu();" id="nav-inicio" class="nav-btn w-full px-4 py-3 rounded-2xl font-display font-semibold text-base transition flex items-center gap-3 bg-lupa text-white shadow-btn text-left">
+          <span>🏫</span> <span>Inicio</span>
+        </button>
+        <button onclick="switchSection('juego'); closeSideMenu();" id="nav-juego" class="nav-btn w-full px-4 py-3 rounded-2xl font-display font-semibold text-base transition flex items-center gap-3 bg-[#FFF3DF] text-madera hover:bg-dorado/60 text-left">
+          <span>🎲</span> <span>Juega al Cluedo</span>
+        </button>
+        <button onclick="switchSection('avatar'); closeSideMenu();" id="nav-avatar" class="nav-btn w-full px-4 py-3 rounded-2xl font-display font-semibold text-base transition flex items-center gap-3 bg-[#FFF3DF] text-madera hover:bg-dorado/60 text-left">
+          <span>🎨</span> <span>Crea tu Avatar</span>
+        </button>
+        <button onclick="switchSection('transmedia'); closeSideMenu();" id="nav-transmedia" class="nav-btn w-full px-4 py-3 rounded-2xl font-display font-semibold text-base transition flex items-center gap-3 bg-[#FFF3DF] text-madera hover:bg-dorado/60 text-left">
+          <span>✨</span> <span>Universo Transmedia</span>
+        </button>
+        <button onclick="switchSection('concurso'); closeSideMenu();" id="nav-concurso" class="nav-btn w-full px-4 py-3 rounded-2xl font-display font-semibold text-base transition flex items-center gap-3 bg-[#FFF3DF] text-madera hover:bg-dorado/60 text-left">
+          <span>🖌️</span> <span>Concurso de Dibujos</span>
+        </button>
+      </nav>
+    </div>
+
+    <div class="bg-[#292F59] rounded-2xl p-3.5 border-2 border-[#4A5388] text-center space-y-1">
+      <p class="font-display font-bold text-xs text-dorado">Melodigma · Productora Estel</p>
+      <p class="text-[11px] text-indigo-200 font-semibold">El Misterio de la Escuela Armonía</p>
+    </div>
+  </aside>
+
+  <!-- CONTENIDO PRINCIPAL -->
+  <main class="flex-grow max-w-7xl w-full mx-auto px-3 sm:px-6 py-6 sm:py-8 space-y-10">
+
+    <!-- ===================================================================== -->
+    <!-- SECCIÓN 1: INICIO (PORTADA, CARTA DIRECTORA Y LOS 6 SOSPECHOSOS)      -->
+    <!-- ===================================================================== -->
+    <section id="sec-inicio" class="space-y-10 animate-pop">
+
+      <!-- HERO DE MISTERIO EN TONOS AZUL PIZARRA Y GRIS SUAVE -->
+      <div class="relative rounded-3xl bg-gradient-to-br from-[#EDEFF7] via-[#DFE4F2] to-[#CFD6EA] border-4 border-[#9AA3C2] p-6 sm:p-10 shadow-card overflow-hidden">
+        <!-- Notas musicales decorativas flotantes -->
+        <span class="hidden sm:block absolute top-5 left-8 text-3xl text-indigo-900/25 animate-float">♪</span>
+        <span class="hidden sm:block absolute top-8 right-12 text-4xl text-celeste/60 animate-float" style="animation-delay: 0.8s">♫</span>
+        <span class="hidden sm:block absolute bottom-6 left-1/2 text-3xl text-lupa/40 animate-float" style="animation-delay: 1.4s">♩</span>
+
+        <div class="grid grid-cols-1 lg:grid-cols-12 gap-8 items-center relative z-10">
+          <!-- Texto y Placa Titular -->
+          <div class="lg:col-span-7 space-y-5 flex flex-col items-center text-center">
+            <div class="inline-flex items-center gap-2 bg-[#1E2242] text-white border-2 border-dorado px-4 py-1.5 rounded-full shadow-sm">
+              <span class="text-lg">🔍</span>
+              <span class="font-display font-bold text-xs sm:text-sm text-dorado uppercase tracking-wide">
+                Juego de Deducción Musical · 7 a 12 años
+              </span>
+            </div>
+
+            <div class="storybook-plaque rounded-3xl px-6 py-5 w-full max-w-xl mx-auto">
+              <h1 class="text-3xl sm:text-5xl font-bold text-white leading-tight text-center">
+                EL MISTERIO
+                <span class="block text-lg sm:text-xl font-serif italic text-dorado my-1">— de la —</span>
+                ESCUELA ARMONÍA
+              </h1>
+            </div>
+
+            <p class="text-base sm:text-lg text-madera/90 leading-relaxed font-semibold max-w-2xl">
+              Durante los preparativos del concierto anual ha desaparecido misteriosamente el legendario violín <strong class="text-terracota">"La Aurora"</strong>. Recorre las 9 estancias de la escuela, interroga a los sospechosos internacionales, escucha pistas sonoras y descubre qué se esconde dentro del <strong>Sobre Secreto</strong>.
+            </p>
+
+            <div class="flex flex-wrap justify-center gap-3 pt-1">
+              <button onclick="switchSection('juego')" class="px-6 py-3.5 rounded-2xl bg-lupa hover:bg-lupaOscuro text-white font-display font-bold text-lg shadow-btn transition transform hover:-translate-y-0.5 flex items-center gap-2">
+                <span>🕵️‍♀️</span> ¡Jugar al Cluedo Musical!
+              </button>
+              <button onclick="switchSection('avatar')" class="px-6 py-3.5 rounded-2xl bg-dorado hover:bg-amber-400 text-madera font-display font-bold text-lg shadow-btn transition transform hover:-translate-y-0.5 flex items-center gap-2">
+                <span>🎨</span> Crear mi Detective
+              </button>
+              <button onclick="playMelody('aurora')" class="px-4 py-3.5 rounded-2xl bg-white hover:bg-celeste/20 text-madera border-2 border-celeste font-display font-semibold text-base transition flex items-center gap-2">
+                <span>🎻</span> Melodía "La Aurora"
+              </button>
+            </div>
+          </div>
+
+          <!-- Ilustración vectorial de la Escuela Armonía, libros, lupa y el Violín La Aurora -->
+          <div class="lg:col-span-5 flex flex-col items-center">
+            <div class="w-full max-w-md text-center">
+              <svg viewBox="0 0 380 250" class="w-full h-auto drop-shadow-md overflow-visible">
+                <!-- Círculos pastel estilo portada -->
+                <circle cx="85" cy="60" r="45" fill="#4DD0E1" opacity="0.25" />
+                <circle cx="295" cy="65" r="48" fill="#F48FB1" opacity="0.25" />
+                <circle cx="190" cy="48" r="40" fill="#FFD54F" opacity="0.30" />
+
+                <!-- Césped y camino -->
+                <ellipse cx="190" cy="212" rx="165" ry="26" fill="#8BC34A" />
+                <path d="M170 192 Q195 215 155 236 L225 236 Q205 215 210 192 Z" fill="#F3D9B1" />
+
+                <!-- Torres laterales de la Escuela Armonía -->
+                <rect x="78" y="96" width="38" height="96" rx="3" fill="#E8C670" stroke="#795548" stroke-width="2.5" />
+                <path d="M74 96 A23 23 0 0 1 120 96 Z" fill="#90A4AE" stroke="#546E7A" stroke-width="2.5" />
+                <rect x="264" y="96" width="38" height="96" rx="3" fill="#E8C670" stroke="#795548" stroke-width="2.5" />
+                <path d="M260 96 A23 23 0 0 1 306 96 Z" fill="#90A4AE" stroke="#546E7A" stroke-width="2.5" />
+
+                <!-- Cuerpo principal de la Escuela -->
+                <rect x="116" y="106" width="148" height="86" fill="#F6DC8C" stroke="#795548" stroke-width="2.5" />
+                <polygon points="108,106 190,62 272,106" fill="#E5BE5E" stroke="#795548" stroke-width="2.5" />
+                <circle cx="190" cy="87" r="10" fill="#FFF8EB" stroke="#795548" stroke-width="2" />
+
+                <!-- Ventanas azules -->
+                <rect x="136" y="122" width="18" height="22" rx="2" fill="#29B6F6" stroke="#5D4037" stroke-width="2" />
+                <rect x="181" y="122" width="18" height="22" rx="2" fill="#29B6F6" stroke="#5D4037" stroke-width="2" />
+                <rect x="226" y="122" width="18" height="22" rx="2" fill="#29B6F6" stroke="#5D4037" stroke-width="2" />
+
+                <!-- Puerta principal -->
+                <path d="M174 192 L174 162 A16 16 0 0 1 206 162 L206 192 Z" fill="#263238" stroke="#5D4037" stroke-width="2.5" />
+
+                <!-- Pila de libros musicales (izquierda) -->
+                <g transform="translate(22, 168)">
+                  <rect x="0" y="34" width="66" height="14" rx="4" fill="#F06292" stroke="#5C3A21" stroke-width="2" />
+                  <rect x="4" y="21" width="64" height="13" rx="4" fill="#3F51B5" stroke="#5C3A21" stroke-width="2" />
+                  <rect x="2" y="8" width="66" height="13" rx="4" fill="#FF7043" stroke="#5C3A21" stroke-width="2" />
+                  <rect x="10" y="-4" width="60" height="12" rx="4" fill="#FFD54F" stroke="#5C3A21" stroke-width="2" />
+                </g>
+
+                <!-- Lupa gigante (arriba derecha) -->
+                <g transform="translate(312, 42) rotate(-35)">
+                  <rect x="-5" y="24" width="10" height="32" rx="4" fill="#A1887F" stroke="#4E342E" stroke-width="2.5" />
+                  <circle cx="0" cy="0" r="24" fill="#B2EBF2" stroke="#E69D45" stroke-width="6" />
+                  <path d="M-11 -9 A15 15 0 0 1 4 -14" fill="none" stroke="#FFFFFF" stroke-width="3" stroke-linecap="round" />
+                </g>
+
+                <!-- Violín La Aurora en primer plano (derecha) -->
+                <g transform="translate(310, 178) rotate(22)">
+                  <ellipse cx="0" cy="24" rx="22" ry="26" fill="#BF5B2B" stroke="#4E342E" stroke-width="2.5" />
+                  <ellipse cx="0" cy="-4" rx="16" ry="20" fill="#BF5B2B" stroke="#4E342E" stroke-width="2.5" />
+                  <rect x="-4" y="-56" width="8" height="52" fill="#4E342E" />
+                  <circle cx="0" cy="-60" r="6" fill="#8D5524" stroke="#4E342E" stroke-width="2" />
+                  <line x1="-2" y1="-52" x2="-2" y2="34" stroke="#FFD54F" stroke-width="1.3" />
+                  <line x1="2" y1="-52" x2="2" y2="34" stroke="#FFD54F" stroke-width="1.3" />
+                </g>
+              </svg>
+              <!-- Logos flotantes transparentes debajo de la ilustración -->
+              <div class="flex items-center justify-center gap-5 -mt-2">
+                <div id="hero-logo-melodigma" class="w-36 h-12 logo-neon-melodigma"></div>
+                <div id="hero-logo-estel" class="w-22 h-12 logo-neon-estel"></div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- CARTA DE LA DIRECTORA DOÑA BEATRIZ VALCÁRCEL -->
+      <div class="letter-paper rounded-3xl p-6 sm:p-8 relative">
+        <div class="flex flex-col md:flex-row gap-6 items-start">
+          <div class="flex-shrink-0 mx-auto md:mx-0 text-center">
+            <!-- Retrato flotante transparente sin fondo -->
+            <div id="director-letter-portrait" class="w-32 h-40 flex items-center justify-center drop-shadow-md"></div>
+            <span class="inline-block mt-1 text-xs font-extrabold bg-pink-100 text-pink-800 px-3 py-1 rounded-full border border-pink-200">
+              Directora · 62 años
+            </span>
+          </div>
+          <div class="space-y-3 text-madera">
+            <div class="flex flex-wrap items-center justify-between gap-2 border-b-2 border-pergamino/60 pb-2">
+              <h2 class="text-2xl sm:text-3xl font-bold text-madera flex items-center gap-2">
+                <span>📜</span> Una carta de la directora
+              </h2>
+              <span class="text-xs font-bold uppercase tracking-wider text-maderaSuave">Archivo Confidencial · Escuela Armonía</span>
+            </div>
+            <p class="font-serif italic text-lg text-maderaSuave">"Queridos detectives,</p>
+            <p class="text-sm sm:text-base leading-relaxed">
+              Soy <strong>Doña Beatriz Valcárcel</strong>, directora de la Escuela de Música Armonía. Durante muchos años, nuestra escuela ha sido un lugar lleno de música, aprendizaje y talento. Por sus pasillos han pasado cientos de alumnos y profesores.
+            </p>
+            <p class="text-sm sm:text-base leading-relaxed">
+              Sin embargo, últimamente han ocurrido cosas bastante extrañas. Algunos comportamientos me hacen sospechar que no todo el mundo está siendo tan sincero como parece... Por eso, he decidido confiaros una misión muy especial: investigar lo que está sucediendo en nuestra escuela y descubrir la verdad.
+            </p>
+            <p class="text-sm sm:text-base leading-relaxed font-bold text-terracota">
+              No os dejéis engañar por las apariencias, aquí todos tienen algo que contar. ¡Que comience la investigación!"
+            </p>
+            <p class="font-serif italic font-bold text-right text-madera pt-1">— Doña Beatriz Valcárcel</p>
+          </div>
+        </div>
+      </div>
+
+      <!-- LOS 6 SOSPECHOSOS ACTUALIZADOS (ILUSTRACIONES FLOTANTES TRANSPARENTES SIN FONDO) -->
+      <div class="space-y-4">
+        <div class="flex flex-wrap items-end justify-between gap-3">
+          <div>
+            <span class="text-xs font-extrabold uppercase tracking-wider text-lupaOscuro bg-green-100 px-3 py-1 rounded-full">Reparto Internacional Oficial</span>
+            <h2 class="text-2xl sm:text-3xl font-bold text-madera mt-1">Conoce a los 6 Sospechosos de Armonía</h2>
+          </div>
+          <p class="text-sm text-maderaSuave font-semibold">
+            ✨ Haz clic en <strong>"Personalizar estilo"</strong> para editar cualquier personaje en el creador.
+          </p>
+        </div>
+
+        <div id="characters-grid" class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+          <!-- Renderizado dinámicamente en JS -->
+        </div>
+      </div>
+
+      <!-- LAS 9 ESTANCIAS DE LA ESCUELA ARMONÍA -->
+      <div class="space-y-4">
+        <div>
+          <span class="text-xs font-extrabold uppercase tracking-wider text-cyan-800 bg-cyan-100 px-3 py-1 rounded-full">El Tablero de Investigación</span>
+          <h2 class="text-2xl sm:text-3xl font-bold text-madera mt-1">Explora las 9 Estancias de la Escuela Armonía</h2>
+        </div>
+        <div id="rooms-grid" class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
+          <!-- Renderizado dinámicamente en JS -->
+        </div>
+      </div>
+    </section>
+
+    <!-- ===================================================================== -->
+    <!-- SECCIÓN 2: JUEGO CLUEDO ONLINE INTERACTIVO                            -->
+    <!-- ===================================================================== -->
+    <section id="sec-juego" class="hidden space-y-6 animate-pop">
+
+      <!-- Cabecera del Juego -->
+      <div class="bg-white rounded-3xl p-5 border-4 border-pergamino shadow-card flex flex-wrap items-center justify-between gap-4">
+        <div>
+          <h2 class="text-2xl sm:text-3xl font-bold text-madera flex items-center gap-2">
+            <span>🎲</span> Melodigma Online: El Robo en la Escuela Armonía
+          </h2>
+          <p class="text-sm text-maderaSuave font-semibold">
+            Muévete por el tablero, entra en las estancias, formula hipótesis y descubre qué hay en el <strong>Sobre Secreto</strong>.
+          </p>
+        </div>
+        <div class="flex flex-wrap items-center gap-2">
+          <button onclick="openNewGameModal()" class="px-4 py-2.5 rounded-2xl bg-dorado hover:bg-amber-400 text-madera font-display font-bold text-sm shadow-btn transition">
+            🔄 Nueva Partida
+          </button>
+          <button onclick="openAccusationModal()" id="btn-accuse" class="px-4 py-2.5 rounded-2xl bg-rose-500 hover:bg-rose-600 text-white font-display font-bold text-sm shadow-btn transition">
+            ✉️ ¡Acusación Final!
+          </button>
+        </div>
+      </div>
+
+      <!-- Panel de Selección de Personaje para Empezar -->
+      <div id="game-setup-panel" class="bg-white rounded-3xl p-6 sm:p-8 border-4 border-lupa shadow-card space-y-6">
+        <div class="text-center max-w-2xl mx-auto space-y-2">
+          <span class="inline-block bg-green-100 text-lupaOscuro font-extrabold text-xs px-3 py-1 rounded-full uppercase">Preparación del Caso</span>
+          <h3 class="text-2xl sm:text-3xl font-bold text-madera">Elige tu Detective para Investigar</h3>
+          <p class="text-sm text-maderaSuave font-semibold">
+            Se guardarán 3 cartas al azar en el <strong>Sobre Secreto</strong> (Culpable, Instrumento robado y Escondite) y las demás se repartirán entre los 4 detectives en partida.
+          </p>
+        </div>
+
+        <div class="grid grid-cols-1 sm:grid-cols-2 gap-4 max-w-2xl mx-auto">
+          <label class="flex items-center gap-3 p-3.5 rounded-2xl border-2 border-dorado bg-amber-50/70 cursor-pointer">
+            <input type="radio" name="gameMode" value="aurora" checked class="w-5 h-5 accent-lupa" />
+            <div>
+              <p class="font-display font-bold text-madera">🎻 Caso Principal: El Violín "La Aurora"</p>
+              <p class="text-xs text-maderaSuave">Investiga el robo del violín histórico y los instrumentos implicados.</p>
+            </div>
+          </label>
+          <label class="flex items-center gap-3 p-3.5 rounded-2xl border-2 border-celeste bg-cyan-50/60 cursor-pointer">
+            <input type="radio" name="gameMode" value="clasico" class="w-5 h-5 accent-lupa" />
+            <div>
+              <p class="font-display font-bold text-madera">🎼 Modo Clásico: Todos los Instrumentos</p>
+              <p class="text-xs text-maderaSuave">Cualquiera de los 7 instrumentos de la escuela puede haber desaparecido.</p>
+            </div>
+          </label>
+        </div>
+
+        <div id="setup-character-choices" class="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-6 gap-4">
+          <!-- Se rellena con los 6 detectives y el avatar personalizado si existe -->
+        </div>
+      </div>
+
+      <!-- ÁREA PRINCIPAL DEL JUEGO ACTIVO -->
+      <div id="game-active-area" class="hidden grid grid-cols-1 lg:grid-cols-12 gap-6 items-start">
+
+        <!-- COLUMNA IZQUIERDA: TABLERO DE LA ESCUELA ARMONÍA (7 cols) -->
+        <div class="lg:col-span-7 space-y-4">
+          <div class="bg-white rounded-3xl p-4 sm:p-5 border-4 border-pergamino shadow-card">
+            <!-- Barra de estado de turno -->
+            <div class="flex flex-wrap items-center justify-between gap-3 mb-4 pb-3 border-b-2 border-pergamino">
+              <div class="flex items-center gap-3">
+                <div id="turn-avatar-badge" class="w-11 h-11 rounded-2xl flex items-center justify-center font-display font-bold text-white text-lg shadow"></div>
+                <div>
+                  <p class="text-xs font-extrabold uppercase text-maderaSuave">Turno Actual</p>
+                  <p id="turn-player-name" class="font-display font-bold text-lg text-madera">Luana Pereira (Tú)</p>
+                </div>
+              </div>
+
+              <div class="flex items-center gap-2">
+                <div id="dice-display" class="flex items-center gap-1.5 bg-crema px-3 py-1.5 rounded-2xl border-2 border-pergamino font-display font-bold text-lg text-madera">
+                  <span>🎲</span> <span id="dice-values">-</span>
+                </div>
+                <button id="btn-roll-dice" onclick="rollDice()" class="px-4 py-2.5 rounded-2xl bg-lupa hover:bg-lupaOscuro text-white font-display font-bold text-sm shadow-btn transition">
+                  🎲 Tirar Dados
+                </button>
+                <button id="btn-end-turn" onclick="endPlayerTurn()" class="hidden px-4 py-2.5 rounded-2xl bg-madera hover:bg-maderaSuave text-white font-display font-bold text-sm shadow-btn transition">
+                  ⏭️ Pasar Turno
+                </button>
+              </div>
+            </div>
+
+            <!-- Instrucción dinámica de movimiento -->
+            <div id="game-instruction-banner" class="mb-3 px-4 py-2.5 rounded-2xl bg-amber-50 border-2 border-dorado text-xs sm:text-sm font-bold text-madera flex items-center justify-between gap-2">
+              <span id="instruction-text">Pulsa "Tirar Dados" para empezar a moverte por la Escuela Armonía.</span>
+              <span id="steps-remaining-badge" class="hidden px-2.5 py-0.5 rounded-full bg-lupa text-white text-xs font-extrabold whitespace-nowrap"></span>
+            </div>
+
+            <!-- TABLERO INTERACTIVO 11x11 -->
+            <div class="w-full overflow-x-auto pb-1">
+              <div id="cluedo-board-grid" class="relative grid grid-cols-11 gap-0 min-w-[340px] max-w-[580px] mx-auto bg-[#F5E9D3] p-2.5 rounded-3xl border-4 border-madera shadow-xl select-none">
+                <!-- Celdas renderizadas por JS -->
+              </div>
+            </div>
+
+            <!-- Leyenda rápida del tablero -->
+            <div class="mt-3 flex flex-wrap items-center justify-center gap-4 text-xs font-bold text-maderaSuave">
+              <span class="flex items-center gap-1.5"><span class="w-3.5 h-3.5 rounded bg-emerald-200 border-2 border-lupa inline-block"></span> Casilla accesible</span>
+              <span class="flex items-center gap-1.5"><span class="w-3.5 h-3.5 rounded bg-amber-300 border-2 border-amber-700 inline-block"></span> Carta de Ayuda</span>
+              <span class="flex items-center gap-1.5"><span class="w-3.5 h-3.5 rounded bg-[#7C4A21] border-2 border-dorado inline-block"></span> Puerta de Estancia</span>
+            </div>
+          </div>
+
+          <!-- REGISTRO DE INVESTIGACIÓN (BITÁCORA EN VIVO) -->
+          <div class="bg-white rounded-3xl p-4 sm:p-5 border-4 border-pergamino shadow-card">
+            <h4 class="font-display font-bold text-base text-madera mb-2 flex items-center gap-2">
+              <span>🗞️</span> Crónica de la Investigación
+            </h4>
+            <div id="game-log-list" class="h-36 overflow-y-auto space-y-1.5 pr-1 text-xs sm:text-sm">
+              <!-- Mensajes de partida -->
+            </div>
+          </div>
+        </div>
+
+        <!-- COLUMNA DERECHA: CARTAS DEL JUGADOR Y HOJA DE INVESTIGACIÓN (5 cols) -->
+        <div class="lg:col-span-5 space-y-4">
+
+          <!-- Mis Cartas en Mano + Cartas de Ayuda -->
+          <div class="bg-white rounded-3xl p-4 sm:p-5 border-4 border-pergamino shadow-card space-y-3">
+            <div class="flex items-center justify-between">
+              <h4 class="font-display font-bold text-lg text-madera flex items-center gap-2">
+                <span>🃏</span> Tus Cartas Secretas
+              </h4>
+              <span class="text-xs font-bold text-maderaSuave bg-crema px-2.5 py-1 rounded-full border border-pergamino">Descartadas automáticamente</span>
+            </div>
+            <div id="player-hand-cards" class="grid grid-cols-2 sm:grid-cols-3 gap-2">
+              <!-- Cartas repartidas al jugador -->
+            </div>
+
+            <!-- Cartas de Ayuda obtenidas -->
+            <div id="player-help-cards-box" class="hidden pt-2 border-t-2 border-pergamino">
+              <p class="text-xs font-extrabold uppercase text-amber-800 mb-1.5">✨ Tus Cartas de Ayuda:</p>
+              <div id="player-help-cards" class="space-y-1.5"></div>
+            </div>
+          </div>
+
+          <!-- HOJA DE INVESTIGACIÓN INTERACTIVA -->
+          <div class="letter-paper rounded-3xl p-4 sm:p-5 space-y-3">
+            <div class="flex items-center justify-between border-b-2 border-pergamino pb-2">
+              <div>
+                <h4 class="font-display font-bold text-lg text-madera flex items-center gap-1.5">
+                  <span>📋</span> Hoja de Detective
+                </h4>
+                <p class="text-[11px] text-maderaSuave font-semibold">Haz clic en cada fila para marcar: ⬜ Dudoso · ❌ Descartado · ⭐ Sospechoso</p>
+              </div>
+              <button onclick="openAccusationModal()" class="px-3 py-1.5 rounded-xl bg-rose-500 hover:bg-rose-600 text-white font-display font-bold text-xs shadow">
+                Acusar
+              </button>
+            </div>
+
+            <div id="detective-notebook" class="space-y-3 max-h-[430px] overflow-y-auto pr-1 text-xs sm:text-sm">
+              <!-- Checklist generada en JS -->
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ===================================================================== -->
+    <!-- SECCIÓN 3: GENERADOR DE AVATARES (EXPEDIENTES ARMONÍA - SIN FONDO)    -->
+    <!-- ===================================================================== -->
+    <section id="sec-avatar" class="hidden space-y-8 animate-pop">
+
+      <div class="bg-white rounded-3xl p-6 sm:p-8 border-4 border-pergamino shadow-card">
+        <div class="flex flex-wrap items-center justify-between gap-4 border-b-2 border-pergamino pb-4 mb-6">
+          <div>
+            <span class="text-xs font-extrabold uppercase tracking-wider text-purple-800 bg-purple-100 px-3 py-1 rounded-full">Expedientes Armonía · Espacio Fandom</span>
+            <h2 class="text-2xl sm:text-3xl font-bold text-madera mt-1">Creador de Avatares Cabeza Cuadrada</h2>
+            <p class="text-sm text-maderaSuave font-semibold">
+              Diseña tu propio detective o parte de uno de los 6 personajes oficiales. Guárdalo como tu <strong>Perfil de Detective</strong> para jugar con él en el Cluedo o envíalo a la galería del concurso.
+            </p>
+          </div>
+          <!-- Presets rápidos de los 6 personajes -->
+          <div class="flex flex-wrap gap-1.5">
+            <span class="text-xs font-bold text-maderaSuave w-full mb-0.5">Cargar plantilla de personaje:</span>
+            <button onclick="applyAvatarPreset('luana')" class="px-3 py-1.5 rounded-xl bg-emerald-100 hover:bg-emerald-200 text-emerald-900 font-bold text-xs">🇧🇷 Luana</button>
+            <button onclick="applyAvatarPreset('liwei')" class="px-3 py-1.5 rounded-xl bg-red-100 hover:bg-red-200 text-red-900 font-bold text-xs">🇨🇳 Li Wei</button>
+            <button onclick="applyAvatarPreset('emese')" class="px-3 py-1.5 rounded-xl bg-purple-100 hover:bg-purple-200 text-purple-900 font-bold text-xs">🇭🇺 Emese</button>
+            <button onclick="applyAvatarPreset('diego')" class="px-3 py-1.5 rounded-xl bg-amber-100 hover:bg-amber-200 text-amber-900 font-bold text-xs">🇧🇴 Diego</button>
+            <button onclick="applyAvatarPreset('arjun')" class="px-3 py-1.5 rounded-xl bg-sky-100 hover:bg-sky-200 text-sky-900 font-bold text-xs">🇮🇳 Arjun</button>
+            <button onclick="applyAvatarPreset('beatriz')" class="px-3 py-1.5 rounded-xl bg-rose-100 hover:bg-rose-200 text-rose-900 font-bold text-xs">🇪🇸 Directora</button>
+          </div>
+        </div>
+
+        <div class="grid grid-cols-1 lg:grid-cols-12 gap-8 items-start">
+          <!-- Vista Previa Flotante Sin Fondo -->
+          <div class="lg:col-span-5 flex flex-col items-center space-y-4">
+            <div class="w-full max-w-[300px] aspect-[3/4] flex items-center justify-center p-2 relative">
+              <div id="avatar-preview-svg" class="w-full h-full flex items-center justify-center drop-shadow-md"></div>
+            </div>
+
+            <div class="w-full max-w-[340px] space-y-2.5">
+              <input id="avatar-name-input" type="text" value="Detective Armonía" placeholder="Nombre de tu detective..."
+                class="w-full px-4 py-2.5 rounded-2xl border-2 border-pergamino bg-crema font-display font-bold text-center text-madera focus:outline-none focus:border-lupa" />
+
+              <button onclick="applyCustomAvatarAsProfile()" class="w-full py-3 px-5 rounded-2xl bg-lupa hover:bg-lupaOscuro text-white font-display font-bold text-base shadow-btn transition flex items-center justify-center gap-2">
+                <span>🕵️‍♀️</span> Usar como mi Perfil de Detective
+              </button>
+            </div>
+          </div>
+
+          <!-- Controles de Personalización -->
+          <div class="lg:col-span-7 space-y-4">
+            <div class="grid grid-cols-1 sm:grid-cols-2 gap-4 items-stretch">
+              <!-- Columna izquierda: todos los selectores de color (misma altura) -->
+              <div class="flex flex-col gap-4">
+                <!-- Tono de piel -->
+                <div class="bg-crema rounded-2xl p-4 border-2 border-pergamino flex-1 min-h-[108px] flex flex-col justify-between">
+                  <label class="font-display font-bold text-sm text-madera block">Tono de piel</label>
+                  <div class="flex flex-wrap items-center gap-2 pt-1" id="ctrl-skin"></div>
+                </div>
+
+                <!-- Color de pelo -->
+                <div class="bg-crema rounded-2xl p-4 border-2 border-pergamino flex-1 min-h-[108px] flex flex-col justify-between">
+                  <label class="font-display font-bold text-sm text-madera block">Color de cabello</label>
+                  <div class="flex flex-wrap items-center gap-2 pt-1" id="ctrl-haircolor"></div>
+                </div>
+
+                <!-- Color principal de ropa -->
+                <div class="bg-crema rounded-2xl p-4 border-2 border-pergamino flex-1 min-h-[108px] flex flex-col justify-between">
+                  <label class="font-display font-bold text-sm text-madera block">Color del vestuario</label>
+                  <div class="flex flex-wrap items-center gap-2 pt-1" id="ctrl-outfitcolor"></div>
+                </div>
+              </div>
+
+              <!-- Columna derecha: todos los desplegables personalizados (misma altura) -->
+              <div class="flex flex-col gap-4">
+                <!-- Peinado -->
+                <div class="bg-crema rounded-2xl p-4 border-2 border-pergamino flex-1 min-h-[108px] flex flex-col justify-between">
+                  <label class="font-display font-bold text-sm text-madera block">Peinado o Gorra</label>
+                  <div class="pt-1">
+                    <select id="ctrl-hair" onchange="updateAvatarFromControls()" class="melodigma-select w-full text-sm">
+                      <option value="curly">Melena suelta larga (Estilo Luana)</option>
+                      <option value="cap">Gorra hacia atrás (Estilo Li Wei)</option>
+                      <option value="ponytail">Coleta alta con coletero (Estilo Emese)</option>
+                      <option value="spiky">Pelo alborotado en puntas (Estilo Diego)</option>
+                      <option value="wavyshort">Pelo corto ondulado (Estilo Arjun)</option>
+                      <option value="bun">Moño alto elegante (Estilo Beatriz)</option>
+                    </select>
+                  </div>
+                </div>
+
+                <!-- Expresión / Ojos -->
+                <div class="bg-crema rounded-2xl p-4 border-2 border-pergamino flex-1 min-h-[108px] flex flex-col justify-between">
+                  <label class="font-display font-bold text-sm text-madera block">Expresión de detective</label>
+                  <div class="pt-1">
+                    <select id="ctrl-eyes" onchange="updateAvatarFromControls()" class="melodigma-select w-full text-sm">
+                      <option value="happy">😊 Sonrisa alegre</option>
+                      <option value="determined">😠 Mirada investigadora</option>
+                      <option value="calm">😑 Concentración serena</option>
+                      <option value="glasses">🤓 Gafas redondas de músico</option>
+                    </select>
+                  </div>
+                </div>
+
+                <!-- Vestuario -->
+                <div class="bg-crema rounded-2xl p-4 border-2 border-pergamino flex-1 min-h-[108px] flex flex-col justify-between">
+                  <label class="font-display font-bold text-sm text-madera block">Vestuario de la Escuela</label>
+                  <div class="pt-1">
+                    <select id="ctrl-outfit" onchange="updateAvatarFromControls()" class="melodigma-select w-full text-sm">
+                      <option value="sweater_pants">Sudadera con nota musical + Pantalón</option>
+                      <option value="uniform_skirt">Jersey con cuello + Falda plisada</option>
+                      <option value="oversized_cargo">Sudadera ancha + Pantalón cargo</option>
+                      <option value="jacket_pants">Chaqueta abierta + Pantalón recto</option>
+                      <option value="professor">Traje de profesor con corbata</option>
+                      <option value="director">Conjunto de Directora con falda larga</option>
+                    </select>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <!-- Instrumento / Accesorio -->
+            <div class="bg-crema rounded-2xl p-4 border-2 border-pergamino space-y-2">
+              <label class="font-display font-bold text-sm text-madera block">Instrumento o Herramienta de Detective</label>
+              <div class="grid grid-cols-2 sm:grid-cols-5 gap-2" id="ctrl-item"></div>
+            </div>
+
+            <!-- Postura con el instrumento -->
+            <div class="bg-crema rounded-2xl p-4 border-2 border-pergamino flex items-center justify-between gap-4">
+              <div>
+                <p class="font-display font-bold text-sm text-madera">Tocar el instrumento (Postura en acción)</p>
+                <p class="text-xs text-maderaSuave">Si está activado, el personaje sujeta y toca el instrumento; si lo desactivas, aparece colocado a su lado.</p>
+              </div>
+              <label class="relative inline-flex items-center cursor-pointer flex-shrink-0">
+                <input id="ctrl-notes" type="checkbox" checked onchange="toggleInstrumentPose(this.checked)" class="sr-only peer" />
+                <div class="w-12 h-7 bg-pergamino/70 rounded-full peer peer-checked:bg-lupa transition-colors after:content-[''] after:absolute after:top-0.5 after:left-0.5 after:bg-white after:border after:border-madera/20 after:rounded-full after:h-6 after:w-6 after:transition-all peer-checked:after:translate-x-5 shadow-inner"></div>
+              </label>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ===================================================================== -->
+    <!-- SECCIÓN 4: UNIVERSO TRANSMEDIA Y CONCURSO DE DIBUJOS FANDOM           -->
+    <!-- ===================================================================== -->
+    <section id="sec-transmedia" class="hidden space-y-8 animate-pop">
+
+      <!-- Cabecera y Pestañas del Universo Transmedia -->
+      <div class="bg-white rounded-3xl p-6 sm:p-8 border-4 border-pergamino shadow-card space-y-6">
+        <div class="flex flex-wrap items-center justify-between gap-4 border-b-2 border-pergamino pb-4">
+          <div>
+            <span class="text-xs font-extrabold uppercase tracking-wider text-terracota bg-amber-100 px-3 py-1 rounded-full">Ecosistema Narrativo · Estel</span>
+            <h2 class="text-2xl sm:text-3xl font-bold text-madera mt-1">Universo Transmedia de la Escuela Armonía</h2>
+            <p class="text-sm text-maderaSuave font-semibold">
+              Explora todas las expansiones narrativas que amplían el misterio musical de Melodigma más allá del tablero.
+            </p>
+          </div>
+        </div>
+
+        <!-- Menú de Pestañas Transmedia -->
+        <div class="flex flex-wrap gap-2">
+          <button onclick="switchTransmediaTab('mesa')" id="tm-tab-mesa" class="px-4 py-2.5 rounded-2xl font-display font-bold text-xs sm:text-sm bg-madera text-white shadow transition">
+            🎲 Juego de Mesa
+          </button>
+          <button onclick="switchTransmediaTab('webserie')" id="tm-tab-webserie" class="px-4 py-2.5 rounded-2xl font-display font-bold text-xs sm:text-sm bg-white text-madera hover:bg-dorado/40 border border-pergamino transition">
+            📺 Webserie YouTube Kids
+          </button>
+          <button onclick="switchTransmediaTab('libro')" id="tm-tab-libro" class="px-4 py-2.5 rounded-2xl font-display font-bold text-xs sm:text-sm bg-white text-madera hover:bg-dorado/40 border border-pergamino transition">
+            📖 Libro Interactivo + QR
+          </button>
+          <button onclick="switchTransmediaTab('podcast')" id="tm-tab-podcast" class="px-4 py-2.5 rounded-2xl font-display font-bold text-xs sm:text-sm bg-white text-madera hover:bg-dorado/40 border border-pergamino transition">
+            🎧 Ficción Sonora / Podcast
+          </button>
+          <button onclick="switchTransmediaTab('pelicula')" id="tm-tab-pelicula" class="px-4 py-2.5 rounded-2xl font-display font-bold text-xs sm:text-sm bg-white text-madera hover:bg-dorado/40 border border-pergamino transition">
+            🎬 Película Precuela
+          </button>
+          <button onclick="switchSection('concurso')" class="px-4 py-2.5 rounded-2xl font-display font-bold text-xs sm:text-sm bg-amber-100 text-madera hover:bg-dorado border border-dorado transition">
+            🖌️ Ir al Concurso de Dibujos
+          </button>
+        </div>
+
+        <!-- PANEL 1: JUEGO DE MESA -->
+        <div id="tm-panel-mesa" class="space-y-4">
+          <div class="bg-crema rounded-2xl p-5 border-2 border-pergamino grid grid-cols-1 md:grid-cols-3 gap-5 items-center">
+            <div class="md:col-span-2 space-y-2">
+              <span class="text-xs font-extrabold uppercase text-lupaOscuro bg-green-100 px-3 py-1 rounded-full">Experiencia Principal · Lanzamiento Campaña Navidad</span>
+              <h3 class="font-display font-bold text-2xl text-madera">Melodigma: El Misterio de la Escuela Armonía</h3>
+              <p class="text-sm text-madera/90 leading-relaxed">
+                Juego de mesa de deducción musical para <strong>6 jugadores (7 a 12 años)</strong> con partidas dinámicas de 30 a 50 minutos. Incluye tablero ilustrado de las 9 aulas, 6 figuras de personajes por colores, barajas de sospechosos, lugares e instrumentos, 12 cartas de ayuda y el <strong>Sobre Secreto</strong>.
+              </p>
+              <div class="pt-2">
+                <button onclick="switchSection('juego')" class="px-5 py-2.5 rounded-2xl bg-lupa hover:bg-lupaOscuro text-white font-display font-bold text-sm shadow-btn">
+                  🎲 Probar versión digital interactiva
+                </button>
+              </div>
+            </div>
+            <div class="bg-white rounded-2xl p-4 border-2 border-pergamino text-center space-y-1">
+              <div class="text-4xl">🎻🔍🎲</div>
+              <p class="font-display font-bold text-base text-madera">Contenido de la Caja</p>
+              <p class="text-xs text-maderaSuave font-semibold">Tablero · 6 Fichas · 21 Cartas · 12 Cartas de Ayuda · Bloc de Detective · Sobre Secreto</p>
+            </div>
+          </div>
+        </div>
+
+        <!-- PANEL 2: WEBSERIE YOUTUBE KIDS -->
+        <div id="tm-panel-webserie" class="hidden space-y-4">
+          <div class="bg-crema rounded-2xl p-5 border-2 border-pergamino space-y-4">
+            <div class="flex flex-wrap items-center justify-between gap-3">
+              <div>
+                <span class="text-xs font-extrabold uppercase text-rose-700 bg-rose-100 px-3 py-1 rounded-full">YouTube Kids · Episodios Especiales</span>
+                <h3 class="font-display font-bold text-2xl text-madera mt-1">Los Secretos de Armonía: El Armario Musical</h3>
+              </div>
+              <button onclick="playWebseriesIntro()" class="px-4 py-2.5 rounded-2xl bg-rose-500 hover:bg-rose-600 text-white font-display font-bold text-sm shadow-btn">
+                ▶️ Reproducir Cabecera Musical
+              </button>
+            </div>
+            <p class="text-sm text-madera/90 leading-relaxed">
+              Episodios breves y educativos estrenados en fechas señaladas (Navidad, Carnaval, Halloween y Pascua). Al abrir el antiguo <strong>Armario del Almacén de Instrumentos</strong>, los protagonistas viajan mágicamente al país de origen de cada compañero para descubrir su folklore e instrumentos tradicionales.
+            </p>
+            <div id="webseries-intro-player" class="hidden bg-madera text-white rounded-2xl p-4 flex items-center justify-between gap-3">
+              <span class="font-display font-bold text-sm">🎶 Sonando sintonía oficial: "La Armonía del Mundo" · Producción Estel</span>
+              <span class="text-xs bg-dorado text-madera px-3 py-1 rounded-full font-extrabold">En emisión</span>
+            </div>
+            <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-3 text-xs">
+              <div class="bg-white p-3.5 rounded-2xl border border-pergamino">
+                <p class="font-display font-bold text-sm text-madera">🎭 Ep. 1 · Carnaval en Río</p>
+                <p class="text-maderaSuave mt-1">Luana guía al equipo entre batucadas, surdos y ritmos brasileños.</p>
+              </div>
+              <div class="bg-white p-3.5 rounded-2xl border border-pergamino">
+                <p class="font-display font-bold text-sm text-madera">🏮 Ep. 2 · Año Nuevo en Pekín</p>
+                <p class="text-maderaSuave mt-1">Li Wei descubre el sonido del erhu y las escalas pentatónicas.</p>
+              </div>
+              <div class="bg-white p-3.5 rounded-2xl border border-pergamino">
+                <p class="font-display font-bold text-sm text-madera">🏔️ Ep. 3 · Fiesta en los Andes</p>
+                <p class="text-maderaSuave mt-1">Diego presenta el charango, la zampoña y los vientos bolivianos.</p>
+              </div>
+              <div class="bg-white p-3.5 rounded-2xl border border-pergamino">
+                <p class="font-display font-bold text-sm text-madera">🪔 Ep. 4 · Luces de Diwali</p>
+                <p class="text-maderaSuave mt-1">El profesor Arjun muestra el sitar y la tabla de la India.</p>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- PANEL 3: LIBRO INTERACTIVO CON CÓDIGOS QR -->
+        <div id="tm-panel-libro" class="hidden space-y-4">
+          <div class="bg-crema rounded-2xl p-5 border-2 border-pergamino space-y-4">
+            <span class="text-xs font-extrabold uppercase text-amber-800 bg-amber-100 px-3 py-1 rounded-full">Ficción y Divulgación Musical · Códigos QR Sonoros</span>
+            <h3 class="font-display font-bold text-2xl text-madera">El Atlas Sonoro de la Escuela Armonía</h3>
+            <p class="text-sm text-madera/90 leading-relaxed">
+              Un libro ilustrado donde cada capítulo transcurre en el país de uno de los personajes e incorpora <strong>códigos QR interactivos</strong> para escuchar las melodías típicas mientras lees. Prueba aquí una muestra interactiva de sus capítulos:
+            </p>
+            <div class="grid grid-cols-1 sm:grid-cols-3 lg:grid-cols-5 gap-3">
+              <button onclick="playMelody('brasil')" class="p-3 rounded-2xl bg-white hover:bg-green-50 border-2 border-pergamino text-left transition">
+                <p class="font-display font-bold text-sm text-madera">🇧🇷 Cap. 1 · Brasil</p>
+                <p class="text-[11px] text-lupaOscuro font-bold mt-1">🔊 Escuchar QR Samba</p>
+              </button>
+              <button onclick="playMelody('china')" class="p-3 rounded-2xl bg-white hover:bg-amber-50 border-2 border-pergamino text-left transition">
+                <p class="font-display font-bold text-sm text-madera">🇨🇳 Cap. 2 · China</p>
+                <p class="text-[11px] text-amber-700 font-bold mt-1">🔊 Escuchar QR Pentatónico</p>
+              </button>
+              <button onclick="playMelody('hungria')" class="p-3 rounded-2xl bg-white hover:bg-purple-50 border-2 border-pergamino text-left transition">
+                <p class="font-display font-bold text-sm text-madera">🇭🇺 Cap. 3 · Hungría</p>
+                <p class="text-[11px] text-purple-700 font-bold mt-1">🔊 Escuchar QR Czardas</p>
+              </button>
+              <button onclick="playMelody('bolivia')" class="p-3 rounded-2xl bg-white hover:bg-red-50 border-2 border-pergamino text-left transition">
+                <p class="font-display font-bold text-sm text-madera">🇧🇴 Cap. 4 · Bolivia</p>
+                <p class="text-[11px] text-red-700 font-bold mt-1">🔊 Escuchar QR Andino</p>
+              </button>
+              <button onclick="playMelody('india')" class="p-3 rounded-2xl bg-white hover:bg-blue-50 border-2 border-pergamino text-left transition">
+                <p class="font-display font-bold text-sm text-madera">🇮🇳 Cap. 5 · India</p>
+                <p class="text-[11px] text-blue-700 font-bold mt-1">🔊 Escuchar QR Raga</p>
+              </button>
+            </div>
+          </div>
+        </div>
+
+        <!-- PANEL 4: FICCIÓN SONORA / PODCAST -->
+        <div id="tm-panel-podcast" class="hidden space-y-4">
+          <div class="bg-crema rounded-2xl p-5 border-2 border-pergamino space-y-3">
+            <span class="text-xs font-extrabold uppercase text-cyan-800 bg-cyan-100 px-3 py-1 rounded-full">Podcast Infantil Divulgativo</span>
+            <h3 class="font-display font-bold text-2xl text-madera">Ondas de Armonía: Misterios al Oído</h3>
+            <p class="text-sm text-madera/90 leading-relaxed">
+              Ficción sonora vinculada al libro donde los jóvenes oyentes deben agudizar el oído para reconocer timbres, ritmos del mundo y pistas acústicas ocultas en cada grabación de la escuela.
+            </p>
+            <div class="flex flex-wrap gap-2 pt-1">
+              <button onclick="playMelody('aurora')" class="px-4 py-2 rounded-xl bg-celeste/30 hover:bg-celeste/50 text-madera font-display font-bold text-xs border border-celeste">
+                🎧 Episodio Piloto: El Eco en el Auditorio
+              </button>
+            </div>
+          </div>
+        </div>
+
+        <!-- PANEL 5: PELÍCULA PRECUELA -->
+        <div id="tm-panel-pelicula" class="hidden space-y-4">
+          <div class="bg-crema rounded-2xl p-5 border-2 border-pergamino space-y-3">
+            <span class="text-xs font-extrabold uppercase text-purple-800 bg-purple-100 px-3 py-1 rounded-full">Largometraje TV · Clan TV / Boing</span>
+            <h3 class="font-display font-bold text-2xl text-madera">Película Precuela: "La Desaparición de La Aurora"</h3>
+            <p class="text-sm text-madera/90 leading-relaxed">
+              Viaja décadas atrás para conocer a <strong>Aurora Valcárcel</strong>, fundadora de la Escuela Armonía, la construcción artesanal del legendario violín <strong>"La Aurora"</strong> y el primer gran enigma que originó su leyenda.
+            </p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ===================================================================== -->
+    <!-- SECCIÓN 5: CONCURSO OFICIAL DE DIBUJOS HECHOS A MANO (FANDOM)         -->
+    <!-- ===================================================================== -->
+    <section id="sec-concurso" class="hidden space-y-8 animate-pop">
+      <div class="bg-white rounded-3xl p-6 sm:p-8 border-4 border-pergamino shadow-card space-y-6">
+        <div class="bg-amber-50/80 rounded-2xl p-5 border-2 border-dorado space-y-2">
+          <span class="text-xs font-extrabold uppercase text-amber-900 bg-dorado/60 px-3 py-1 rounded-full">Gran Concurso Oficial Fandom</span>
+          <h2 class="font-display font-bold text-2xl sm:text-3xl text-madera">¡Dibuja tu propio personaje a mano y protagoniza la Webserie!</h2>
+          <p class="text-sm text-madera/90 leading-relaxed">
+            Dibuja en papel tu nuevo detective o músico de la Escuela Armonía, hazle una foto o escanéalo y rellena la ficha oficial. ¡El personaje ganador aparecerá animado como protagonista del próximo episodio de <strong>Los Secretos de Armonía</strong> en YouTube Kids!
+          </p>
+        </div>
+
+        <form id="drawing-contest-form" onsubmit="submitDrawingContest(event)" class="bg-crema rounded-3xl p-5 sm:p-6 border-2 border-pergamino space-y-4">
+          <h3 class="font-display font-bold text-xl text-madera">📝 Ficha de Participación (Dibujo Hecho a Mano)</h3>
+
+          <div class="grid grid-cols-1 sm:grid-cols-3 gap-4">
+            <div>
+              <label class="block text-xs font-extrabold uppercase text-maderaSuave mb-1">Nombre del niño/a *</label>
+              <input id="comp-kid-name" type="text" required placeholder="Ej. Sofía Martínez" class="w-full px-3.5 py-2.5 rounded-2xl border-2 border-pergamino bg-white text-sm font-bold text-madera focus:outline-none focus:border-lupa" />
+            </div>
+            <div>
+              <label class="block text-xs font-extrabold uppercase text-maderaSuave mb-1">Edad (5 a 14 años) *</label>
+              <input id="comp-kid-age" type="number" min="5" max="14" required placeholder="Ej. 9" class="w-full px-3.5 py-2.5 rounded-2xl border-2 border-pergamino bg-white text-sm font-bold text-madera focus:outline-none focus:border-lupa" />
+            </div>
+            <div>
+              <label class="block text-xs font-extrabold uppercase text-maderaSuave mb-1">Ciudad y País *</label>
+              <input id="comp-kid-origin" type="text" required placeholder="Ej. Salamanca, España" class="w-full px-3.5 py-2.5 rounded-2xl border-2 border-pergamino bg-white text-sm font-bold text-madera focus:outline-none focus:border-lupa" />
+            </div>
+          </div>
+
+          <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+            <div>
+              <label class="block text-xs font-extrabold uppercase text-maderaSuave mb-1">Nombre del Personaje Creado *</label>
+              <input id="comp-char-name" type="text" required placeholder="Ej. Kenji Takahashi" class="w-full px-3.5 py-2.5 rounded-2xl border-2 border-pergamino bg-white text-sm font-bold text-madera focus:outline-none focus:border-lupa" />
+            </div>
+            <div>
+              <label class="block text-xs font-extrabold uppercase text-maderaSuave mb-1">Instrumento Musical *</label>
+              <div id="dropdown-comp-char-instrument" class="melodigma-dropdown"></div>
+              <input type="hidden" id="comp-char-instrument" value="Violín" />
+            </div>
+          </div>
+
+          <div>
+            <label class="block text-xs font-extrabold uppercase text-maderaSuave mb-1">Personalidad e Historia en la Escuela Armonía *</label>
+            <textarea id="comp-char-story" rows="2" required placeholder="Cuéntanos de qué país viene tu personaje, cómo es y cuál es su talento musical..." class="w-full px-3.5 py-2.5 rounded-2xl border-2 border-pergamino bg-white text-sm font-semibold text-madera focus:outline-none focus:border-lupa"></textarea>
+          </div>
+
+          <div class="grid grid-cols-1 sm:grid-cols-2 gap-4 items-center">
+            <div>
+              <label class="block text-xs font-extrabold uppercase text-maderaSuave mb-1">Foto o escaneo del dibujo hecho a mano *</label>
+              <input id="comp-drawing-file" type="file" accept="image/*" required onchange="previewUploadedDrawing(event)" class="w-full text-xs font-bold text-madera file:mr-3 file:py-2 file:px-4 file:rounded-xl file:border-0 file:font-display file:font-bold file:bg-dorado file:text-madera hover:file:bg-amber-400 cursor-pointer" />
+            </div>
+            <div id="comp-drawing-preview-box" class="hidden flex items-center gap-3 bg-white p-2.5 rounded-2xl border border-pergamino">
+              <img id="comp-drawing-preview-img" src="" alt="Vista previa del dibujo" class="w-16 h-16 object-cover rounded-xl border border-pergamino" />
+              <span class="text-xs font-bold text-lupaOscuro">✅ Dibujo cargado y listo para publicar</span>
+            </div>
+          </div>
+
+          <div class="grid grid-cols-1 sm:grid-cols-2 gap-4 items-center pt-1">
+            <div>
+              <label class="block text-xs font-extrabold uppercase text-maderaSuave mb-1">Email del padre, madre o tutor legal *</label>
+              <input id="comp-guardian-email" type="email" required placeholder="tutor@ejemplo.com" class="w-full px-3.5 py-2.5 rounded-2xl border-2 border-pergamino bg-white text-sm font-bold text-madera focus:outline-none focus:border-lupa" />
+            </div>
+            <label class="flex items-start gap-2.5 text-xs font-bold text-madera cursor-pointer pt-3 sm:pt-5">
+              <input id="comp-consent" type="checkbox" required class="w-4 h-4 mt-0.5 accent-lupa" />
+              <span>Confirmo que el dibujo está hecho a mano y cuento con permiso de mi madre, padre o tutor legal para participar.</span>
+            </label>
+          </div>
+
+          <div class="flex flex-wrap items-center justify-between gap-3 pt-2">
+            <span class="text-xs text-maderaSuave font-bold">* Todos los campos son obligatorios para validar la candidatura oficial.</span>
+            <button type="submit" class="px-6 py-3 rounded-2xl bg-lupa hover:bg-lupaOscuro text-white font-display font-bold text-base shadow-btn transition flex items-center gap-2">
+              <span>🚀</span> Enviar Candidatura al Concurso
+            </button>
+          </div>
+        </form>
+
+        <!-- Galería de Candidaturas Enviadas -->
+        <div class="space-y-3">
+          <h3 class="font-display font-bold text-xl text-madera flex items-center gap-2">
+            <span>🌟</span> Personajes Participantes en la Galería Oficial
+          </h3>
+          <div id="avatar-gallery-grid" class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
+            <!-- Candidaturas de fans -->
+          </div>
+        </div>
+      </div>
+    </section>
+
+  </main>
+
+  <!-- MODAL DE FORMULAR HIPÓTESIS (AL ENTRAR EN UNA HABITACIÓN) -->
+  <div id="hypothesis-modal" class="hidden fixed inset-0 z-50 bg-black/60 backdrop-blur-sm flex items-center justify-center p-4">
+    <div class="bg-[#FFFDF9] rounded-3xl max-w-md w-full p-6 border-4 border-dorado shadow-2xl space-y-4 animate-pop">
+      <div class="flex items-center justify-between border-b-2 border-pergamino pb-2">
+        <h3 class="font-display font-bold text-xl text-madera flex items-center gap-2">
+          <span>🔍</span> Formular Hipótesis
+        </h3>
+        <button onclick="closeHypothesisModal()" class="text-maderaSuave hover:text-madera font-bold text-lg">✕</button>
+      </div>
+      <p class="text-xs sm:text-sm text-madera/90">
+        Has entrado en <strong id="hyp-room-name" class="text-terracota">Aula de Cuerda</strong>. Elige qué sospechoso y qué instrumento crees que están implicados en esta estancia:
+      </p>
+
+      <div class="space-y-3">
+        <div>
+          <label class="block text-xs font-extrabold uppercase text-maderaSuave mb-1">Sospechoso</label>
+          <select id="hyp-suspect-select" class="melodigma-select w-full text-sm"></select>
+        </div>
+        <div>
+          <label class="block text-xs font-extrabold uppercase text-maderaSuave mb-1">Instrumento</label>
+          <select id="hyp-instrument-select" class="melodigma-select w-full text-sm"></select>
+        </div>
+      </div>
+
+      <div class="flex gap-2 pt-2">
+        <button onclick="submitHypothesis()" class="flex-grow py-3 rounded-2xl bg-lupa hover:bg-lupaOscuro text-white font-display font-bold text-sm shadow-btn">
+          🗣️ Preguntar a los Detectives
+        </button>
+        <button onclick="closeHypothesisModal()" class="px-4 py-3 rounded-2xl bg-crema border-2 border-pergamino text-madera font-bold text-sm">
+          Cancelar
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <!-- MODAL DE ACUSACIÓN FINAL Y SOBRE SECRETO -->
+  <div id="accusation-modal" class="hidden fixed inset-0 z-50 bg-black/65 backdrop-blur-sm flex items-center justify-center p-4">
+    <div class="bg-[#FFFDF9] rounded-3xl max-w-md w-full p-6 border-4 border-rose-400 shadow-2xl space-y-4 animate-pop">
+      <div class="flex items-center justify-between border-b-2 border-pergamino pb-2">
+        <h3 class="font-display font-bold text-xl text-rose-700 flex items-center gap-2">
+          <span>✉️</span> Acusación Final · Sobre Secreto
+        </h3>
+        <button onclick="closeAccusationModal()" class="text-maderaSuave hover:text-madera font-bold text-lg">✕</button>
+      </div>
+      <p class="text-xs sm:text-sm text-madera/90 font-semibold">
+        ¡Cuidado, detective! Solo tienes una oportunidad para abrir el <strong>Sobre Secreto</strong> y comprobar si tus tres deducciones son correctas:
+      </p>
+
+      <div class="space-y-3">
+        <div>
+          <label class="block text-xs font-extrabold uppercase text-maderaSuave mb-1">1. ¿Quién ha robado el instrumento?</label>
+          <select id="acc-suspect-select" class="melodigma-select w-full text-sm"></select>
+        </div>
+        <div>
+          <label class="block text-xs font-extrabold uppercase text-maderaSuave mb-1">2. ¿Qué instrumento ha desaparecido?</label>
+          <select id="acc-instrument-select" class="melodigma-select w-full text-sm"></select>
+        </div>
+        <div>
+          <label class="block text-xs font-extrabold uppercase text-maderaSuave mb-1">3. ¿Dónde está escondido?</label>
+          <select id="acc-room-select" class="melodigma-select w-full text-sm"></select>
+        </div>
+      </div>
+
+      <div class="flex gap-2 pt-2">
+        <button onclick="submitFinalAccusation()" class="flex-grow py-3 rounded-2xl bg-rose-500 hover:bg-rose-600 text-white font-display font-bold text-sm shadow-btn">
+          🔓 Abrir el Sobre Secreto
+        </button>
+        <button onclick="closeAccusationModal()" class="px-4 py-3 rounded-2xl bg-crema border-2 border-pergamino text-madera font-bold text-sm">
+          Seguir investigando
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <!-- MODAL DE DESENLACE (VICTORIA O DERROTA) -->
+  <div id="outcome-modal" class="hidden fixed inset-0 z-50 bg-black/70 backdrop-blur-sm flex items-center justify-center p-4">
+    <div class="bg-[#FFFDF9] rounded-3xl max-w-lg w-full p-6 sm:p-8 border-4 border-dorado shadow-2xl text-center space-y-5 animate-pop">
+      <div id="outcome-emoji" class="text-6xl">🎉</div>
+      <h3 id="outcome-title" class="font-display font-bold text-2xl sm:text-3xl text-madera">¡Caso Resuelto!</h3>
+      <p id="outcome-message" class="text-sm sm:text-base text-madera/90 font-semibold"></p>
+
+      <div class="bg-crema rounded-2xl p-4 border-2 border-pergamino space-y-2">
+        <p class="text-xs font-extrabold uppercase tracking-wider text-maderaSuave">Contenido del Sobre Secreto</p>
+        <div id="outcome-secret-cards" class="grid grid-cols-3 gap-2 text-xs font-bold"></div>
+      </div>
+
+      <button onclick="closeOutcomeModal()" class="w-full py-3 rounded-2xl bg-lupa hover:bg-lupaOscuro text-white font-display font-bold text-base shadow-btn">
+        🔄 Jugar otra partida
+      </button>
+    </div>
+  </div>
+
+  <!-- PIE DE PÁGINA EN AZUL VIOLÁCEO PROFUNDO -->
+  <footer class="bg-[#1E2242] border-t-4 border-[#4A5388] mt-12 py-6 text-white">
+    <div class="max-w-7xl mx-auto px-4 flex flex-col sm:flex-row items-center justify-between gap-4">
+      <div class="flex items-center gap-4">
+        <div id="footer-logo-melodigma" class="w-36 h-12 logo-neon-melodigma"></div>
+        <div id="footer-logo-estel" class="w-20 h-12 logo-neon-estel"></div>
+      </div>
+      <div class="text-center sm:text-right text-xs text-indigo-200 space-y-1">
+        <p class="font-bold text-white">Proyecto Universitario Transmedia · "Melodigma: El Misterio de la Escuela Armonía"</p>
+        <p>Producido por <strong class="text-dorado">Estel</strong> · Universo musical e interactivo para niños de 7 a 12 años.</p>
+      </div>
+    </div>
+  </footer>
+
+  <!-- ===================================================================== -->
+  <!-- JAVASCRIPT COMPLETO: LOGOS SVG, PERSONAJES INLINE, CLUEDO Y AVATARES  -->
+  <!-- ===================================================================== -->
+  <script>
+    // =========================================================================
+    // 1. LOGOS VECTORIALES TRANSPARENTES (MELODIGMA Y PRODUCTORA ESTEL)
+    // =========================================================================
+    const SVG_LOGO_MELODIGMA = `
+      <svg viewBox="0 0 280 95" xmlns="http://www.w3.org/2000/svg" class="w-full h-full overflow-visible">
+        <defs>
+          <filter id="sticker-glow-melodigma" x="-15%" y="-15%" width="130%" height="130%">
+            <feMorphology in="SourceAlpha" operator="dilate" radius="2.2" result="dilated" />
+            <feFlood flood-color="#FFFFFF" flood-opacity="0.95" result="whiteBorder" />
+            <feComposite in="whiteBorder" in2="dilated" operator="in" result="stickerOutline" />
+            <feMerge>
+              <feMergeNode in="stickerOutline" />
+              <feMergeNode in="SourceGraphic" />
+            </feMerge>
+          </filter>
+        </defs>
+        <g filter="url(#sticker-glow-melodigma)">
+          <!-- Pentagrama ondulado -->
+          <g stroke="#1E2242" stroke-width="1.4" fill="none" opacity="0.95">
+            <path d="M42 42 Q85 65 125 32 T215 48" />
+            <path d="M44 47 Q87 70 127 37 T217 53" />
+            <path d="M46 52 Q89 75 129 42 T219 58" />
+            <path d="M48 57 Q91 80 131 47 T221 63" />
+          </g>
+          <!-- Notas musicales sobre pentagrama -->
+          <g fill="#1E2242">
+            <ellipse cx="68" cy="59" rx="4.5" ry="3.2" transform="rotate(-15 68 59)" />
+            <rect x="71.5" y="42" width="1.8" height="17" />
+            <ellipse cx="94" cy="49" rx="4.5" ry="3.2" transform="rotate(-15 94 49)" />
+            <rect x="97.5" y="33" width="1.8" height="16" />
+            <polygon points="97.5,33 111,30 111,34 97.5,37" />
+            <ellipse cx="107" cy="46" rx="4.5" ry="3.2" transform="rotate(-15 107 46)" />
+            <rect x="110.5" y="30" width="1.8" height="16" />
+            <ellipse cx="152" cy="36" rx="5.5" ry="3.8" transform="rotate(-15 152 36)" />
+            <rect x="156.5" y="16" width="2" height="20" />
+            <ellipse cx="176" cy="42" rx="5.5" ry="3.8" transform="rotate(-15 176 42)" />
+            <rect x="180.5" y="21" width="2" height="21" />
+            <polygon points="180.5,21 206,27 206,32 180.5,26" />
+            <ellipse cx="201" cy="47" rx="5.5" ry="3.8" transform="rotate(-15 201 47)" />
+            <rect x="205.5" y="27" width="2" height="20" />
+          </g>
+          <!-- Lupa Verde Melodigma -->
+          <g transform="translate(8, 6)">
+            <rect x="14" y="54" width="13" height="28" rx="5" transform="rotate(42 20 68)" fill="#4CAF50" />
+            <circle cx="52" cy="36" r="28" fill="none" stroke="#4CAF50" stroke-width="7.5" />
+            <path d="M35 23 A20 20 0 0 1 48 16" fill="none" stroke="#69F0AE" stroke-width="4.5" stroke-linecap="round" />
+            <circle cx="55" cy="16" r="2.3" fill="#69F0AE" />
+          </g>
+          <!-- Texto Melodigma -->
+          <text x="92" y="84" font-family="'Fredoka', cursive, sans-serif" font-weight="700" font-size="27" fill="#4CAF50" letter-spacing="-0.5">Melodigma</text>
+        </g>
+      </svg>
+    `;
+
+    const SVG_LOGO_ESTEL = `
+      <svg viewBox="0 0 180 105" xmlns="http://www.w3.org/2000/svg" class="w-full h-full overflow-visible">
+        <defs>
+          <filter id="sticker-glow-estel" x="-15%" y="-15%" width="130%" height="130%">
+            <feMorphology in="SourceAlpha" operator="dilate" radius="2.2" result="dilated" />
+            <feFlood flood-color="#FFFFFF" flood-opacity="0.95" result="whiteBorder" />
+            <feComposite in="whiteBorder" in2="dilated" operator="in" result="stickerOutline" />
+            <feMerge>
+              <feMergeNode in="stickerOutline" />
+              <feMergeNode in="SourceGraphic" />
+            </feMerge>
+          </filter>
+        </defs>
+        <g filter="url(#sticker-glow-estel)">
+          <!-- Cuadrado turquesa -->
+          <rect x="64" y="34" width="76" height="62" rx="4" fill="#4DD0E1" />
+          <!-- Estrella amarilla superpuesta -->
+          <polygon points="48,12 60,41 91,43 67,63 75,93 48,76 21,93 29,63 5,43 36,41" fill="#FFD54F" />
+          <!-- Texto Estel verde -->
+          <text x="72" y="28" font-family="'Fredoka', cursive, sans-serif" font-weight="700" font-size="25" fill="#66BB6A" letter-spacing="1.5">Estel</text>
+        </g>
+      </svg>
+    `;
+
+    // =========================================================================
+    // 2. DATOS DEL PROYECTO TRANSMEDIA (6 PERSONAJES ACTUALIZADOS + ESTANCIAS)
+    // =========================================================================
+    const CHARACTERS = [
+      {
+        id: 'luana',
+        name: 'Luana Pereira',
+        shortName: 'Luana',
+        age: '10 años',
+        country: 'Brasileña 🇧🇷',
+        role: 'Alumna de la Escuela Armonía',
+        traits: 'Rebelde, creativa e impulsiva',
+        desc: 'Suele actuar antes de pensar. Le encanta experimentar con la música y no tiene miedo de saltarse las normas cuando algo despierta su curiosidad.',
+        color: '#22C55E',
+        badgeBg: 'bg-green-100 text-green-900',
+        avatarConfig: {
+          skin: '#A46A44',
+          hair: 'curly',
+          hairColor: '#4A3525',
+          eyes: 'happy',
+          outfit: 'sweater_pants',
+          outfitColor: '#2E7D32',
+          item: 'none',
+          notes: false
+        }
+      },
+      {
+        id: 'liwei',
+        name: 'Li Wei',
+        shortName: 'Li Wei',
+        age: '10 años',
+        country: 'Chino 🇨🇳',
+        role: 'Alumno de la Escuela Armonía',
+        traits: 'Sensible, soñador y reservado',
+        desc: 'Prefiere observar antes que hablar y suele pasar desapercibido, aunque su capacidad para prestar atención a los pequeños detalles resulta clave en cada caso.',
+        color: '#EAB308',
+        badgeBg: 'bg-amber-100 text-amber-900',
+        avatarConfig: {
+          skin: '#8D5B3C',
+          hair: 'cap',
+          hairColor: '#212121',
+          eyes: 'calm',
+          outfit: 'oversized_cargo',
+          outfitColor: '#F6C343',
+          item: 'none',
+          notes: false
+        }
+      },
+      {
+        id: 'emese',
+        name: 'Nagy Emese',
+        shortName: 'Emese',
+        age: '11 años',
+        country: 'Húngara 🇭🇺',
+        role: 'Alumna de la Escuela Armonía',
+        traits: 'Inteligente, observadora y curiosa',
+        desc: 'Le encanta resolver enigmas, descubrir patrones musicales y encontrar explicaciones lógicas a situaciones aparentemente inexplicables.',
+        color: '#8B5CF6',
+        badgeBg: 'bg-purple-100 text-purple-900',
+        avatarConfig: {
+          skin: '#F5D2B8',
+          hair: 'ponytail',
+          hairColor: '#D6A456',
+          eyes: 'happy',
+          outfit: 'uniform_skirt',
+          outfitColor: '#7E57C2',
+          item: 'none',
+          notes: false
+        }
+      },
+      {
+        id: 'diego',
+        name: 'Diego Quispe',
+        shortName: 'Diego',
+        age: '12 años',
+        country: 'Boliviano 🇧🇴',
+        role: 'Alumno de la Escuela Armonía',
+        traits: 'Bromista, extrovertido y travieso',
+        desc: 'Siempre está buscando la manera de divertirse y gastar alguna broma. Su carácter despreocupado hace que nadie sepa cuándo habla totalmente en serio.',
+        color: '#EF4444',
+        badgeBg: 'bg-red-100 text-red-900',
+        avatarConfig: {
+          skin: '#F3C9AC',
+          hair: 'spiky',
+          hairColor: '#5D3A24',
+          eyes: 'determined',
+          outfit: 'jacket_pants',
+          outfitColor: '#B72B2B',
+          item: 'none',
+          notes: false
+        }
+      },
+      {
+        id: 'arjun',
+        name: 'Arjun Sharma',
+        shortName: 'Arjun',
+        age: '42 años',
+        country: 'Indio 🇮🇳',
+        role: 'Profesor de la Escuela Armonía',
+        traits: 'Excéntrico, curioso e intuitivo',
+        desc: 'Conoce cada pasillo, aula y leyenda de la Escuela Armonía. Su peculiar comportamiento hace que resulte difícil adivinar qué está pensando realmente.',
+        color: '#3B82F6',
+        badgeBg: 'bg-blue-100 text-blue-900',
+        avatarConfig: {
+          skin: '#8C5430',
+          hair: 'wavyshort',
+          hairColor: '#231F20',
+          eyes: 'calm',
+          outfit: 'professor',
+          outfitColor: '#254E8A',
+          item: 'clipboard',
+          notes: false
+        }
+      },
+      {
+        id: 'beatriz',
+        name: 'Doña Beatriz Valcárcel',
+        shortName: 'Directora',
+        age: '62 años',
+        country: 'Española 🇪🇸',
+        role: 'Directora de la Escuela Armonía',
+        traits: 'Seria, tradicional y misteriosa',
+        desc: 'Lleva décadas al frente de la institución y custodia la historia del violín "La Aurora". Muy estricta con las normas, parece guardar secretos del pasado.',
+        color: '#EC4899',
+        badgeBg: 'bg-pink-100 text-pink-900',
+        avatarConfig: {
+          skin: '#F5D2B8',
+          hair: 'bun',
+          hairColor: '#4E342E',
+          eyes: 'determined',
+          outfit: 'director',
+          outfitColor: '#9E2A5B',
+          item: 'folder',
+          notes: false
+        }
+      }
+    ];
+
+    const ROOMS = [
+      { id: 'cuerda', name: 'Aula de cuerda', icon: '🎻', bg: '#FFCCBC', desc: 'Espacio dedicado al aprendizaje y ensayo de violines y violonchelos.' },
+      { id: 'viento', name: 'Aula de viento', icon: '🎺', bg: '#C8E6C9', desc: 'Aquí se imparten las clases de flauta travesera, clarinete y trompeta.' },
+      { id: 'percusion', name: 'Aula de percusión', icon: '🥁', bg: '#FFF9C4', desc: 'Sala llena de tambores, xilófonos y ritmos donde ensaya Luana.' },
+      { id: 'piano', name: 'Aula de piano', icon: '🎹', bg: '#E1BEE7', desc: 'Una de las aulas principales con pianos de cola y partituras clásicas.' },
+      { id: 'auditorio', name: 'Auditorio', icon: '🎭', bg: '#B2EBF2', desc: 'El gran escenario de la Escuela Armonía donde se celebrará el concierto anual.' },
+      { id: 'biblioteca', name: 'Biblioteca musical', icon: '📚', bg: '#BBDEFB', desc: 'Estancia tranquila con libros antiguos, biografías y archivos históricos.' },
+      { id: 'despacho', name: 'Despacho del director', icon: '🗝️', bg: '#FFE0B2', desc: 'El despacho privado de Doña Beatriz Valcárcel, lleno de expedientes.' },
+      { id: 'almacen', name: 'Almacén de instrumentos', icon: '📦', bg: '#D7CCC8', desc: 'Lugar donde se guardan estuches, atriles e instrumentos de reserva.' },
+      { id: 'danza', name: 'Sala de danza', icon: '🩰', bg: '#F8BBD0', desc: 'Habitación con espejos y barra destinada a la expresión corporal y el ritmo.' }
+    ];
+
+    const INSTRUMENTS_AURORA = [
+      { id: 'violin_aurora', name: 'Violín "La Aurora"', icon: '🎻' },
+      { id: 'trompeta', name: 'Trompeta', icon: '🎺' },
+      { id: 'piano', name: 'Piano', icon: '🎹' },
+      { id: 'violonchelo', name: 'Violonchelo', icon: '🎻' },
+      { id: 'flauta', name: 'Flauta', icon: '🪈' },
+      { id: 'tambor', name: 'Tambor', icon: '🥁' }
+    ];
+
+    const INSTRUMENTS_ALL = [
+      ...INSTRUMENTS_AURORA,
+      { id: 'guitarra', name: 'Guitarra', icon: '🎸' }
+    ];
+
+    const HELP_CARDS_DECK = [
+      { title: '¡Atajo secreto!', desc: 'Avanzas +2 casillas adicionales en este movimiento.', effect: 'bonus2' },
+      { title: '¡Pasillo libre!', desc: 'Entras directamente en la estancia más cercana.', effect: 'teleport' },
+      { title: '¡Oído atento!', desc: 'Descubres automáticamente una carta que NO está en el sobre.', effect: 'reveal1' },
+      { title: '¡Mirada de detective!', desc: 'Descartas un sospechoso inocente en tu hoja.', effect: 'revealSuspect' },
+      { title: '¡Archivo secreto!', desc: 'Compruebas una estancia segura de la escuela.', effect: 'revealRoom' },
+      { title: '¡Información privilegiada!', desc: 'Un testigo te muestra una de sus cartas en secreto.', effect: 'reveal1' }
+    ];
+
+    // =========================================================================
+    // 3. MOTOR DE DIBUJO DE AVATARES CABEZA CUADRADA (SVG INLINE TRANSPARENTE)
+    // =========================================================================
+    function shiftHexColor(hex, amount) {
+      let clean = hex.replace('#', '');
+      if (clean.length === 3) clean = clean.split('').map(c => c + c).join('');
+      const num = parseInt(clean, 16);
+      if (isNaN(num)) return hex;
+      const r = Math.min(255, Math.max(0, (num >> 16) + amount));
+      const g = Math.min(255, Math.max(0, ((num >> 8) & 0x00FF) + amount));
+      const b = Math.min(255, Math.max(0, (num & 0x0000FF) + amount));
+      return `#${((1 << 24) + (r << 16) + (g << 8) + b).toString(16).slice(1)}`;
+    }
+
+    function generateSquareCharacterSVG(cfg) {
+      const outline = '#2B1B12';
+      const darkOutfit = shiftHexColor(cfg.outfitColor, -34);
+      const deeperOutfit = shiftHexColor(cfg.outfitColor, -58);
+      let backHair = '';
+      if (cfg.hair === 'curly') {
+        backHair = `
+          <path d="M126 88
+            Q104 106 112 132
+            Q100 156 110 180
+            Q102 204 118 220
+            Q150 225 180 223
+            Q210 225 242 220
+            Q258 204 250 180
+            Q260 156 248 132
+            Q256 106 234 88 Z"
+            fill="${cfg.hairColor}" stroke="${outline}" stroke-width="4.5" stroke-linejoin="round" />
+          <path d="M118 134 Q110 156 118 178 Q112 198 122 214" fill="none" stroke="${outline}" stroke-width="2.5" stroke-linecap="round" opacity="0.5" />
+          <path d="M242 134 Q250 156 242 178 Q248 198 238 214" fill="none" stroke="${outline}" stroke-width="2.5" stroke-linecap="round" opacity="0.5" />
+        `;
+      } else if (cfg.hair === 'ponytail') {
+        backHair = `
+          <path d="M222 84 Q272 76 266 144 Q263 172 244 178 Q252 155 240 135 Q234 112 222 106 Z" fill="${cfg.hairColor}" stroke="${outline}" stroke-width="4.5" stroke-linejoin="round" />
+          <circle cx="225" cy="91" r="9.5" fill="${cfg.outfitColor}" stroke="${outline}" stroke-width="4" />
+        `;
+      } else if (cfg.hair === 'bun') {
+        backHair = `<circle cx="228" cy="76" r="24" fill="${cfg.hairColor}" stroke="${outline}" stroke-width="4.5" />`;
+      }
+
+      let outfitSvg = '';
+      let armsAndHandsSvg = '';
+      let legsAndShoesSvg = '';
+
+      if (cfg.outfit === 'uniform_skirt') {
+        // Estilo Nagy Emese: Jersey + cuello lila + falda plisada + calcetines altos + zapatos
+        legsAndShoesSvg = `
+          <rect x="152" y="330" width="18" height="65" fill="${cfg.skin}" stroke="${outline}" stroke-width="4.5" />
+          <rect x="190" y="330" width="18" height="65" fill="${cfg.skin}" stroke="${outline}" stroke-width="4.5" />
+          <rect x="152" y="346" width="18" height="48" fill="#E1BEE7" stroke="${outline}" stroke-width="4" />
+          <rect x="190" y="346" width="18" height="48" fill="#E1BEE7" stroke="${outline}" stroke-width="4" />
+          <ellipse cx="156" cy="402" rx="20" ry="10" fill="${deeperOutfit}" stroke="${outline}" stroke-width="4.5" />
+          <ellipse cx="204" cy="402" rx="20" ry="10" fill="${deeperOutfit}" stroke="${outline}" stroke-width="4.5" />
+        `;
+        outfitSvg = `
+          <rect x="134" y="204" width="92" height="68" rx="12" fill="${cfg.outfitColor}" stroke="${outline}" stroke-width="4.5" />
+          <polygon points="164,204 180,224 196,204" fill="#E1BEE7" stroke="${outline}" stroke-width="3.8" stroke-linejoin="round" />
+          <polygon points="138,268 222,268 238,336 122,336" fill="${darkOutfit}" stroke="${outline}" stroke-width="4.5" stroke-linejoin="round" />
+          <line x1="162" y1="268" x2="156" y2="336" stroke="${outline}" stroke-width="3.5" />
+          <line x1="180" y1="268" x2="180" y2="336" stroke="${outline}" stroke-width="3.5" />
+          <line x1="198" y1="268" x2="204" y2="336" stroke="${outline}" stroke-width="3.5" />
+        `;
+      } else if (cfg.outfit === 'sweater_pants') {
+        // Estilo Luana Pereira: Sudadera con corchea en el pecho y pantalones
+        legsAndShoesSvg = `
+          <rect x="142" y="274" width="34" height="118" rx="6" fill="${cfg.outfitColor}" stroke="${outline}" stroke-width="4.5" />
+          <rect x="184" y="274" width="34" height="118" rx="6" fill="${cfg.outfitColor}" stroke="${outline}" stroke-width="4.5" />
+          <ellipse cx="156" cy="400" rx="21" ry="11" fill="${darkOutfit}" stroke="${outline}" stroke-width="4.5" />
+          <ellipse cx="204" cy="400" rx="21" ry="11" fill="${darkOutfit}" stroke="${outline}" stroke-width="4.5" />
+        `;
+        outfitSvg = `
+          <rect x="134" y="204" width="92" height="74" rx="14" fill="${cfg.outfitColor}" stroke="${outline}" stroke-width="4.5" />
+          <g fill="${outline}" stroke="${outline}" stroke-width="3">
+            <circle cx="173" cy="246" r="4.5" />
+            <circle cx="189" cy="243" r="4.5" />
+            <path d="M177 246 L177 226 L193 223 L193 243" fill="none" />
+          </g>
+        `;
+      } else if (cfg.outfit === 'oversized_cargo') {
+        // Estilo Li Wei: Sudadera ancha + pantalones cargo con bolsillos
+        legsAndShoesSvg = `
+          <rect x="138" y="274" width="38" height="118" rx="6" fill="${cfg.outfitColor}" stroke="${outline}" stroke-width="4.5" />
+          <rect x="184" y="274" width="38" height="118" rx="6" fill="${cfg.outfitColor}" stroke="${outline}" stroke-width="4.5" />
+          <rect x="132" y="324" width="12" height="26" rx="3" fill="${cfg.outfitColor}" stroke="${outline}" stroke-width="3.5" />
+          <rect x="216" y="324" width="12" height="26" rx="3" fill="${cfg.outfitColor}" stroke="${outline}" stroke-width="3.5" />
+          <ellipse cx="154" cy="400" rx="22" ry="11" fill="${darkOutfit}" stroke="${outline}" stroke-width="4.5" />
+          <ellipse cx="206" cy="400" rx="22" ry="11" fill="${darkOutfit}" stroke="${outline}" stroke-width="4.5" />
+        `;
+        outfitSvg = `
+          <rect x="128" y="204" width="104" height="80" rx="16" fill="${cfg.outfitColor}" stroke="${outline}" stroke-width="4.5" />
+        `;
+      } else if (cfg.outfit === 'jacket_pants') {
+        // Estilo Diego Quispe: Chaqueta abierta sobre camiseta oscura + pantalón
+        legsAndShoesSvg = `
+          <rect x="142" y="274" width="35" height="118" rx="5" fill="${darkOutfit}" stroke="${outline}" stroke-width="4.5" />
+          <rect x="183" y="274" width="35" height="118" rx="5" fill="${darkOutfit}" stroke="${outline}" stroke-width="4.5" />
+          <ellipse cx="156" cy="400" rx="21" ry="11" fill="${cfg.outfitColor}" stroke="${outline}" stroke-width="4.5" />
+          <ellipse cx="204" cy="400" rx="21" ry="11" fill="${cfg.outfitColor}" stroke="${outline}" stroke-width="4.5" />
+        `;
+        outfitSvg = `
+          <rect x="132" y="204" width="96" height="74" rx="12" fill="${cfg.outfitColor}" stroke="${outline}" stroke-width="4.5" />
+          <rect x="164" y="206" width="32" height="70" fill="${deeperOutfit}" stroke="${outline}" stroke-width="4" />
+        `;
+      } else if (cfg.outfit === 'professor') {
+        // Estilo Arjun Sharma: Traje con camisa celeste y corbata oscura
+        legsAndShoesSvg = `
+          <rect x="142" y="274" width="35" height="118" rx="5" fill="${cfg.outfitColor}" stroke="${outline}" stroke-width="4.5" />
+          <rect x="183" y="274" width="35" height="118" rx="5" fill="${cfg.outfitColor}" stroke="${outline}" stroke-width="4.5" />
+          <ellipse cx="155" cy="400" rx="22" ry="11" fill="${darkOutfit}" stroke="${outline}" stroke-width="4.5" />
+          <ellipse cx="205" cy="400" rx="22" ry="11" fill="${darkOutfit}" stroke="${outline}" stroke-width="4.5" />
+        `;
+        outfitSvg = `
+          <rect x="132" y="204" width="96" height="76" rx="10" fill="${cfg.outfitColor}" stroke="${outline}" stroke-width="4.5" />
+          <polygon points="164,204 180,254 196,204" fill="#93C5FD" stroke="${outline}" stroke-width="3.5" stroke-linejoin="round" />
+          <rect x="176" y="214" width="8" height="44" fill="#172554" />
+        `;
+      } else if (cfg.outfit === 'director') {
+        // Estilo Doña Beatriz Valcárcel: Chaqueta, camisa, acreditación y falda larga
+        legsAndShoesSvg = `
+          <ellipse cx="158" cy="396" rx="19" ry="9" fill="${deeperOutfit}" stroke="${outline}" stroke-width="4.5" />
+          <ellipse cx="202" cy="396" rx="19" ry="9" fill="${deeperOutfit}" stroke="${outline}" stroke-width="4.5" />
+        `;
+        outfitSvg = `
+          <polygon points="142,266 218,266 234,392 126,392" fill="${darkOutfit}" stroke="${outline}" stroke-width="4.5" stroke-linejoin="round" />
+          <rect x="136" y="204" width="88" height="66" rx="10" fill="${cfg.outfitColor}" stroke="${outline}" stroke-width="4.5" />
+          <polygon points="164,204 180,240 196,204" fill="#FBCFE8" stroke="${outline}" stroke-width="3.5" stroke-linejoin="round" />
+          <rect x="174" y="236" width="12" height="16" fill="#FFFFFF" stroke="${outline}" stroke-width="3" />
+        `;
+      }
+
+      // Postura de brazos y manos adaptada al instrumento o accesorio elegido
+      const useActionPose = Boolean(cfg.notes) && cfg.item !== 'none';
+      if (!useActionPose) {
+        if (cfg.outfit === 'uniform_skirt') {
+          armsAndHandsSvg = `
+            <polygon points="134,210 112,268 128,274 144,234" fill="${cfg.outfitColor}" stroke="${outline}" stroke-width="4.5" stroke-linejoin="round" />
+            <circle cx="120" cy="276" r="9.5" fill="${cfg.skin}" stroke="${outline}" stroke-width="4" />
+            <polygon points="226,210 248,268 232,274 216,234" fill="${cfg.outfitColor}" stroke="${outline}" stroke-width="4.5" stroke-linejoin="round" />
+            <circle cx="240" cy="276" r="9.5" fill="${cfg.skin}" stroke="${outline}" stroke-width="4" />
+          `;
+        } else if (cfg.outfit === 'sweater_pants') {
+          armsAndHandsSvg = `
+            <path d="M136 208 L104 246 L126 274 L138 263 L123 246 L142 224 Z" fill="${cfg.outfitColor}" stroke="${outline}" stroke-width="4.5" stroke-linejoin="round" />
+            <circle cx="134" cy="271" r="9.5" fill="${cfg.skin}" stroke="${outline}" stroke-width="4" />
+            <path d="M224 208 L256 246 L234 274 L222 263 L237 246 L218 224 Z" fill="${cfg.outfitColor}" stroke="${outline}" stroke-width="4.5" stroke-linejoin="round" />
+            <circle cx="226" cy="271" r="9.5" fill="${cfg.skin}" stroke="${outline}" stroke-width="4" />
+          `;
+        } else if (cfg.outfit === 'oversized_cargo') {
+          armsAndHandsSvg = `
+            <polygon points="130,210 108,266 128,276 140,242" fill="${cfg.outfitColor}" stroke="${outline}" stroke-width="4.5" stroke-linejoin="round" />
+            <circle cx="118" cy="276" r="9.5" fill="${cfg.skin}" stroke="${outline}" stroke-width="4" />
+            <polygon points="230,210 252,266 232,276 220,242" fill="${cfg.outfitColor}" stroke="${outline}" stroke-width="4.5" stroke-linejoin="round" />
+            <circle cx="242" cy="276" r="9.5" fill="${cfg.skin}" stroke="${outline}" stroke-width="4" />
+          `;
+        } else if (cfg.outfit === 'jacket_pants') {
+          armsAndHandsSvg = `
+            <polygon points="132,210 108,254 128,270 142,238" fill="${cfg.outfitColor}" stroke="${outline}" stroke-width="4.5" stroke-linejoin="round" />
+            <circle cx="119" cy="268" r="9.5" fill="${cfg.skin}" stroke="${outline}" stroke-width="4" />
+            <polygon points="228,210 252,254 232,270 218,238" fill="${cfg.outfitColor}" stroke="${outline}" stroke-width="4.5" stroke-linejoin="round" />
+            <circle cx="241" cy="268" r="9.5" fill="${cfg.skin}" stroke="${outline}" stroke-width="4" />
+          `;
+        } else if (cfg.outfit === 'professor') {
+          armsAndHandsSvg = `
+            <path d="M136 208 L104 246 L126 272 L138 261 L123 246 L142 224 Z" fill="${cfg.outfitColor}" stroke="${outline}" stroke-width="4.5" stroke-linejoin="round" />
+            <circle cx="134" cy="270" r="9.5" fill="${cfg.skin}" stroke="${outline}" stroke-width="4" />
+            <polygon points="226,212 248,266 230,276 216,236" fill="${cfg.outfitColor}" stroke="${outline}" stroke-width="4.5" stroke-linejoin="round" />
+            <circle cx="238" cy="274" r="9.5" fill="${cfg.skin}" stroke="${outline}" stroke-width="4" />
+          `;
+        } else if (cfg.outfit === 'director') {
+          armsAndHandsSvg = `
+            <path d="M138 208 L108 246 L128 270 L140 259 L126 246 L144 224 Z" fill="${cfg.outfitColor}" stroke="${outline}" stroke-width="4.5" stroke-linejoin="round" />
+            <circle cx="136" cy="268" r="9.5" fill="${cfg.skin}" stroke="${outline}" stroke-width="4" />
+            <polygon points="224,212 246,264 228,274 214,236" fill="${cfg.outfitColor}" stroke="${outline}" stroke-width="4.5" stroke-linejoin="round" />
+            <circle cx="236" cy="272" r="9.5" fill="${cfg.skin}" stroke="${outline}" stroke-width="4" />
+          `;
+        }
+      }
+
+      let eyesSvg = '';
+      if (cfg.eyes === 'happy') {
+        eyesSvg = `
+          <path d="M149 150 Q158 139 167 150" fill="none" stroke="${outline}" stroke-width="4.2" stroke-linecap="round" />
+          <path d="M193 150 Q202 139 211 150" fill="none" stroke="${outline}" stroke-width="4.2" stroke-linecap="round" />
+        `;
+      } else if (cfg.eyes === 'determined') {
+        eyesSvg = `
+          <line x1="148" y1="138" x2="166" y2="148" stroke="${outline}" stroke-width="4.2" stroke-linecap="round" />
+          <line x1="212" y1="138" x2="194" y2="148" stroke="${outline}" stroke-width="4.2" stroke-linecap="round" />
+        `;
+      } else if (cfg.eyes === 'calm') {
+        eyesSvg = `
+          <line x1="148" y1="145" x2="166" y2="145" stroke="${outline}" stroke-width="4.2" stroke-linecap="round" />
+          <line x1="194" y1="145" x2="212" y2="145" stroke="${outline}" stroke-width="4.2" stroke-linecap="round" />
+        `;
+      } else if (cfg.eyes === 'glasses') {
+        eyesSvg = `
+          <circle cx="158" cy="145" r="14" fill="rgba(224,247,250,0.6)" stroke="${outline}" stroke-width="4" />
+          <circle cx="202" cy="145" r="14" fill="rgba(224,247,250,0.6)" stroke="${outline}" stroke-width="4" />
+          <line x1="172" y1="145" x2="188" y2="145" stroke="${outline}" stroke-width="4" />
+        `;
+      }
+
+      let frontHair = '';
+      if (cfg.hair === 'cap') {
+        frontHair = `
+          <path d="M126 98 A54 54 0 0 1 234 98 Z" fill="#F59E0B" stroke="${outline}" stroke-width="4.5" stroke-linejoin="round" />
+          <ellipse cx="134" cy="96" rx="36" ry="10" transform="rotate(-8 134 96)" fill="#F59E0B" stroke="${outline}" stroke-width="4.5" />
+        `;
+      } else if (cfg.hair === 'spiky') {
+        frontHair = `<path d="M122 114 L118 84 L142 90 L158 68 L180 86 L202 68 L218 88 L242 82 L238 114 Q180 100 122 114 Z" fill="${cfg.hairColor}" stroke="${outline}" stroke-width="4.5" stroke-linejoin="round" />`;
+      } else if (cfg.hair === 'wavyshort') {
+        frontHair = `<path d="M122 114 Q122 72 180 72 Q238 72 238 114 L234 98 Q180 94 126 98 Z" fill="${cfg.hairColor}" stroke="${outline}" stroke-width="4.5" stroke-linejoin="round" />`;
+      } else if (cfg.hair === 'curly') {
+        frontHair = `
+          <path d="M122 122
+            Q112 106 124 88
+            Q144 72 180 74
+            Q216 72 236 88
+            Q248 106 238 122
+            Q214 114 196 104
+            Q186 98 180 94
+            Q174 98 164 104
+            Q146 114 122 122 Z"
+            fill="${cfg.hairColor}" stroke="${outline}" stroke-width="4.5" stroke-linejoin="round" />
+        `;
+      } else {
+        frontHair = `<path d="M122 118 Q120 74 180 74 Q240 74 238 118 Q205 108 180 96 Q155 108 122 118 Z" fill="${cfg.hairColor}" stroke="${outline}" stroke-width="4.5" stroke-linejoin="round" />`;
+      }
+
+      let itemSvg = '';
+      if (!useActionPose && cfg.item !== 'none') {
+        // Instrumento o herramienta colocada limpiamente al lado derecho del personaje
+        if (cfg.item === 'violin') {
+          itemSvg = `
+            <g transform="translate(274, 290) rotate(14)">
+              <ellipse cx="0" cy="18" rx="15" ry="19" fill="#BF5B2B" stroke="${outline}" stroke-width="3.6" />
+              <ellipse cx="0" cy="-3" rx="11.5" ry="14" fill="#BF5B2B" stroke="${outline}" stroke-width="3.6" />
+              <rect x="-2.5" y="-44" width="5" height="41" fill="#3E2723" />
+              <circle cx="0" cy="-47" r="4" fill="#8D5524" stroke="${outline}" stroke-width="2.4" />
+              <line x1="-1.2" y1="-40" x2="-1.2" y2="26" stroke="#FFD54F" stroke-width="1.2" />
+              <line x1="1.2" y1="-40" x2="1.2" y2="26" stroke="#FFD54F" stroke-width="1.2" />
+              <line x1="16" y1="-38" x2="16" y2="34" stroke="#5D4037" stroke-width="3" stroke-linecap="round" />
+            </g>
+          `;
+        } else if (cfg.item === 'cello') {
+          itemSvg = `
+            <g transform="translate(276, 304)">
+              <line x1="0" y1="48" x2="0" y2="96" stroke="#455A64" stroke-width="4" stroke-linecap="round" />
+              <ellipse cx="0" cy="24" rx="20" ry="25" fill="#A84A20" stroke="${outline}" stroke-width="3.8" />
+              <ellipse cx="0" cy="-6" rx="15" ry="18" fill="#A84A20" stroke="${outline}" stroke-width="3.8" />
+              <rect x="-3.5" y="-102" width="7" height="96" fill="#3E2723" />
+              <circle cx="0" cy="-106" r="5" fill="#8D5524" stroke="${outline}" stroke-width="2.4" />
+              <line x1="-1.8" y1="-96" x2="-1.8" y2="38" stroke="#FFD54F" stroke-width="1.3" />
+              <line x1="1.8" y1="-96" x2="1.8" y2="38" stroke="#FFD54F" stroke-width="1.3" />
+            </g>
+          `;
+        } else if (cfg.item === 'tambor') {
+          itemSvg = `
+            <g transform="translate(274, 344)">
+              <rect x="-26" y="-14" width="52" height="30" rx="4" fill="#E53935" stroke="${outline}" stroke-width="3.8" />
+              <polygon points="-24,14 -14,-10 -3,14 8,-10 19,14 26,-3" fill="none" stroke="#FFF8EB" stroke-width="2.2" />
+              <ellipse cx="0" cy="-14" rx="26" ry="7" fill="#FFF8EB" stroke="${outline}" stroke-width="3.8" />
+              <line x1="-18" y1="-28" x2="8" y2="-14" stroke="#8D5524" stroke-width="3.5" stroke-linecap="round" />
+              <line x1="18" y1="-28" x2="-8" y2="-14" stroke="#8D5524" stroke-width="3.5" stroke-linecap="round" />
+            </g>
+          `;
+        } else if (cfg.item === 'trompeta') {
+          itemSvg = `
+            <g transform="translate(274, 294) rotate(-55)">
+              <rect x="-28" y="-3" width="46" height="6" rx="2" fill="#FFD54F" stroke="${outline}" stroke-width="3.2" />
+              <rect x="-14" y="3" width="24" height="7" rx="3.5" fill="none" stroke="${outline}" stroke-width="2.8" />
+              <polygon points="16,-3.5 32,-14 32,14 16,3.5" fill="#FFD54F" stroke="${outline}" stroke-width="3.2" stroke-linejoin="round" />
+            </g>
+          `;
+        } else if (cfg.item === 'flauta') {
+          itemSvg = `
+            <g transform="translate(274, 294) rotate(-75)">
+              <rect x="-46" y="-4" width="96" height="8" rx="4" fill="#CFD8DC" stroke="${outline}" stroke-width="3.2" />
+              <circle cx="-26" cy="0" r="2" fill="${outline}" />
+              <circle cx="0" cy="0" r="2" fill="#90A4AE" />
+              <circle cx="14" cy="0" r="2" fill="#90A4AE" />
+              <circle cx="28" cy="0" r="2" fill="#90A4AE" />
+            </g>
+          `;
+        } else if (cfg.item === 'piano') {
+          itemSvg = `
+            <g transform="translate(274, 296)">
+              <rect x="-24" y="-18" width="24" height="36" rx="3" fill="#FFFDF7" stroke="${outline}" stroke-width="3.2" />
+              <rect x="0" y="-18" width="24" height="36" rx="3" fill="#FFFDF7" stroke="${outline}" stroke-width="3.2" />
+              <line x1="-18" y1="-8" x2="-6" y2="-8" stroke="${outline}" stroke-width="2" />
+              <line x1="-18" y1="0" x2="-6" y2="0" stroke="${outline}" stroke-width="2" />
+              <line x1="6" y1="-8" x2="18" y2="-8" stroke="${outline}" stroke-width="2" />
+              <line x1="6" y1="0" x2="18" y2="0" stroke="${outline}" stroke-width="2" />
+            </g>
+          `;
+        } else if (cfg.item === 'clipboard') {
+          itemSvg = `
+            <g transform="translate(274, 296) rotate(8)">
+              <rect x="-17" y="-23" width="34" height="46" rx="4" fill="#B5835A" stroke="${outline}" stroke-width="3.5" />
+              <rect x="-11" y="-15" width="22" height="32" fill="#FFFDF7" stroke="${outline}" stroke-width="2" />
+              <line x1="-7" y1="-8" x2="7" y2="-8" stroke="${outline}" stroke-width="2" />
+              <line x1="-7" y1="-1" x2="7" y2="-1" stroke="${outline}" stroke-width="2" />
+              <line x1="-7" y1="6" x2="7" y2="6" stroke="${outline}" stroke-width="2" />
+            </g>
+          `;
+        } else if (cfg.item === 'folder') {
+          itemSvg = `
+            <g transform="translate(274, 296) rotate(-8)">
+              <rect x="-17" y="-23" width="34" height="46" rx="4" fill="#374151" stroke="${outline}" stroke-width="3.5" />
+              <text x="0" y="6" text-anchor="middle" font-size="18" fill="#FDE047">𝄞</text>
+            </g>
+          `;
+        } else if (cfg.item === 'lupa') {
+          itemSvg = `
+            <g transform="translate(274, 292) rotate(-25)">
+              <rect x="-4.5" y="18" width="9" height="28" rx="3" fill="#212121" stroke="${outline}" stroke-width="3" />
+              <circle cx="0" cy="0" r="20" fill="rgba(224,247,250,0.82)" stroke="#212121" stroke-width="6.5" />
+              <path d="M-9 -7 A12 12 0 0 1 3 -11" fill="none" stroke="#FFFFFF" stroke-width="3" stroke-linecap="round" />
+            </g>
+          `;
+        }
+      } else if (cfg.item === 'clipboard') {
+        // Sujeta la carpeta de notas firmemente contra el pecho/costado con el brazo doblado y la mano apoyada en el borde
+        armsAndHandsSvg = `
+          <path d="M136 210 L110 244 L144 260 L150 246 L128 238 L144 222 Z" fill="${cfg.outfitColor}" stroke="${outline}" stroke-width="4.5" stroke-linejoin="round" />
+          <path d="M224 208 L254 246 L232 272 L220 261 L235 246 L216 224 Z" fill="${cfg.outfitColor}" stroke="${outline}" stroke-width="4.5" stroke-linejoin="round" />
+          <circle cx="224" cy="270" r="9.5" fill="${cfg.skin}" stroke="${outline}" stroke-width="4" />
+        `;
+        itemSvg = `
+          <g transform="translate(154, 256) rotate(-8)">
+            <rect x="-17" y="-23" width="34" height="46" rx="4" fill="#B5835A" stroke="${outline}" stroke-width="3.5" />
+            <rect x="-8" y="-26" width="16" height="6" rx="2" fill="#90A4AE" stroke="${outline}" stroke-width="2.5" />
+            <rect x="-11" y="-15" width="22" height="32" fill="#FFFDF7" stroke="${outline}" stroke-width="2" />
+            <line x1="-7" y1="-8" x2="7" y2="-8" stroke="${outline}" stroke-width="2" />
+            <line x1="-7" y1="-1" x2="7" y2="-1" stroke="${outline}" stroke-width="2" />
+            <line x1="-7" y1="6" x2="7" y2="6" stroke="${outline}" stroke-width="2" />
+          </g>
+          <circle cx="144" cy="254" r="9" fill="${cfg.skin}" stroke="${outline}" stroke-width="3.8" />
+        `;
+      } else if (cfg.item === 'folder') {
+        // Sujeta el archivador delante del costado derecho con el brazo doblado y la mano cerrando sobre la tapa
+        armsAndHandsSvg = `
+          <path d="M138 208 L108 246 L128 270 L140 259 L126 246 L144 224 Z" fill="${cfg.outfitColor}" stroke="${outline}" stroke-width="4.5" stroke-linejoin="round" />
+          <circle cx="136" cy="268" r="9.5" fill="${cfg.skin}" stroke="${outline}" stroke-width="4" />
+          <path d="M224 210 L250 244 L216 260 L210 246 L232 238 L216 222 Z" fill="${cfg.outfitColor}" stroke="${outline}" stroke-width="4.5" stroke-linejoin="round" />
+        `;
+        itemSvg = `
+          <g transform="translate(206, 256) rotate(8)">
+            <rect x="-17" y="-23" width="34" height="46" rx="4" fill="#374151" stroke="${outline}" stroke-width="3.5" />
+            <text x="0" y="6" text-anchor="middle" font-size="18" fill="#FDE047">𝄞</text>
+          </g>
+          <circle cx="216" cy="254" r="9" fill="${cfg.skin}" stroke="${outline}" stroke-width="3.8" />
+        `;
+      } else if (cfg.item === 'violin') {
+        // Violín apoyado sobre el hombro derecho (izquierda del espectador) en diagonal natural, mano izquierda en el mástil y mano derecha con el arco
+        armsAndHandsSvg = `
+          <path d="M136 210 L102 224 L112 192 L126 196 L122 208 L142 214 Z" fill="${cfg.outfitColor}" stroke="${outline}" stroke-width="4.5" stroke-linejoin="round" />
+          <path d="M224 210 L254 240 L214 252 L208 238 L234 232 L216 218 Z" fill="${cfg.outfitColor}" stroke="${outline}" stroke-width="4.5" stroke-linejoin="round" />
+        `;
+        itemSvg = `
+          <g transform="translate(154, 212) rotate(-65)">
+            <ellipse cx="0" cy="18" rx="14" ry="18" fill="#BF5B2B" stroke="${outline}" stroke-width="3.6" />
+            <ellipse cx="0" cy="-3" rx="11" ry="13" fill="#BF5B2B" stroke="${outline}" stroke-width="3.6" />
+            <rect x="-2.5" y="-44" width="5" height="41" fill="#3E2723" />
+            <circle cx="0" cy="-47" r="4" fill="#8D5524" stroke="${outline}" stroke-width="2.4" />
+            <line x1="-1.2" y1="-40" x2="-1.2" y2="26" stroke="#FFD54F" stroke-width="1.2" />
+            <line x1="1.2" y1="-40" x2="1.2" y2="26" stroke="#FFD54F" stroke-width="1.2" />
+          </g>
+          <!-- Arco sostenido por la mano derecha pasando sobre las cuerdas -->
+          <line x1="216" y1="246" x2="146" y2="176" stroke="#5D4037" stroke-width="3.8" stroke-linecap="round" />
+          <line x1="213" y1="248" x2="148" y2="180" stroke="#FFF8E7" stroke-width="1.5" />
+          <circle cx="115" cy="192" r="8.5" fill="${cfg.skin}" stroke="${outline}" stroke-width="3.8" />
+          <circle cx="212" cy="244" r="8.5" fill="${cfg.skin}" stroke="${outline}" stroke-width="3.8" />
+        `;
+      } else if (cfg.item === 'cello') {
+        // Violonchelo apoyado en el suelo frente al cuerpo, mano izquierda arriba en el mástil y mano derecha pasando el arco
+        armsAndHandsSvg = `
+          <path d="M136 210 L114 234 L144 252 L150 238 L130 228 L146 218 Z" fill="${cfg.outfitColor}" stroke="${outline}" stroke-width="4.5" stroke-linejoin="round" />
+          <path d="M224 210 L246 204 L214 188 L208 200 L226 208 L216 218 Z" fill="${cfg.outfitColor}" stroke="${outline}" stroke-width="4.5" stroke-linejoin="round" />
+        `;
+        itemSvg = `
+          <g transform="translate(182, 306) rotate(4)">
+            <line x1="0" y1="48" x2="0" y2="96" stroke="#455A64" stroke-width="4" stroke-linecap="round" />
+            <ellipse cx="0" cy="24" rx="22" ry="26" fill="#A84A20" stroke="${outline}" stroke-width="3.8" />
+            <ellipse cx="0" cy="-6" rx="17" ry="19" fill="#A84A20" stroke="${outline}" stroke-width="3.8" />
+            <rect x="-3.5" y="-108" width="7" height="102" fill="#3E2723" />
+            <circle cx="0" cy="-112" r="5" fill="#8D5524" stroke="${outline}" stroke-width="2.4" />
+            <line x1="-1.8" y1="-102" x2="-1.8" y2="38" stroke="#FFD54F" stroke-width="1.3" />
+            <line x1="1.8" y1="-102" x2="1.8" y2="38" stroke="#FFD54F" stroke-width="1.3" />
+          </g>
+          <!-- Arco horizontal pasando por el centro de las cuerdas -->
+          <line x1="142" y1="252" x2="232" y2="246" stroke="#5D4037" stroke-width="3.8" stroke-linecap="round" />
+          <line x1="144" y1="255" x2="230" y2="249" stroke="#FFF8E7" stroke-width="1.5" />
+          <circle cx="194" cy="196" r="8.5" fill="${cfg.skin}" stroke="${outline}" stroke-width="3.8" />
+          <circle cx="146" cy="246" r="8.5" fill="${cfg.skin}" stroke="${outline}" stroke-width="3.8" />
+        `;
+      } else if (cfg.item === 'tambor') {
+        // Tambor frente a la cintura y brazos doblados hacia adelante tocando con baquetas sobre el parche
+        armsAndHandsSvg = `
+          <path d="M136 210 L114 238 L142 252 L148 238 L130 232 L146 218 Z" fill="${cfg.outfitColor}" stroke="${outline}" stroke-width="4.5" stroke-linejoin="round" />
+          <path d="M224 210 L246 238 L218 252 L212 238 L230 232 L214 218 Z" fill="${cfg.outfitColor}" stroke="${outline}" stroke-width="4.5" stroke-linejoin="round" />
+        `;
+        itemSvg = `
+          <g transform="translate(180, 294)">
+            <rect x="-34" y="-18" width="68" height="38" rx="4" fill="#E53935" stroke="${outline}" stroke-width="4" />
+            <polygon points="-32,18 -18,-12 -4,18 10,-12 24,18 34,-4" fill="none" stroke="#FFF8EB" stroke-width="2.5" />
+            <ellipse cx="0" cy="-18" rx="34" ry="9" fill="#FFF8EB" stroke="${outline}" stroke-width="4" />
+          </g>
+          <!-- Baquetas cruzadas golpeando el parche -->
+          <line x1="144" y1="246" x2="174" y2="274" stroke="#8D5524" stroke-width="4.5" stroke-linecap="round" />
+          <circle cx="175" cy="275" r="4" fill="#FFD54F" stroke="${outline}" stroke-width="2" />
+          <line x1="216" y1="246" x2="186" y2="274" stroke="#8D5524" stroke-width="4.5" stroke-linecap="round" />
+          <circle cx="185" cy="275" r="4" fill="#FFD54F" stroke="${outline}" stroke-width="2" />
+          <circle cx="144" cy="246" r="9" fill="${cfg.skin}" stroke="${outline}" stroke-width="4" />
+          <circle cx="216" cy="246" r="9" fill="${cfg.skin}" stroke="${outline}" stroke-width="4" />
+        `;
+      } else if (cfg.item === 'trompeta') {
+        // Trompeta horizontal hacia la derecha a la altura de la boca con ambos brazos doblados sujetando los pistones
+        armsAndHandsSvg = `
+          <path d="M136 210 L122 194 L166 184 L170 198 L142 200 L148 218 Z" fill="${cfg.outfitColor}" stroke="${outline}" stroke-width="4.5" stroke-linejoin="round" />
+          <path d="M224 210 L234 196 L204 184 L200 198 L216 200 L214 218 Z" fill="${cfg.outfitColor}" stroke="${outline}" stroke-width="4.5" stroke-linejoin="round" />
+        `;
+        itemSvg = `
+          <g transform="translate(216, 180) rotate(-6)">
+            <rect x="-34" y="-3" width="56" height="6.5" rx="2" fill="#FFD54F" stroke="${outline}" stroke-width="3.5" />
+            <rect x="-18" y="3.5" width="30" height="8" rx="4" fill="none" stroke="${outline}" stroke-width="3.2" />
+            <line x1="-6" y1="-9" x2="-6" y2="4" stroke="${outline}" stroke-width="3" />
+            <line x1="0" y1="-9" x2="0" y2="4" stroke="${outline}" stroke-width="3" />
+            <line x1="6" y1="-9" x2="6" y2="4" stroke="${outline}" stroke-width="3" />
+            <polygon points="20,-3.5 38,-16 38,16 20,3.5" fill="#FFD54F" stroke="${outline}" stroke-width="3.5" stroke-linejoin="round" />
+          </g>
+          <circle cx="170" cy="190" r="8.5" fill="${cfg.skin}" stroke="${outline}" stroke-width="3.8" />
+          <circle cx="204" cy="189" r="8.5" fill="${cfg.skin}" stroke="${outline}" stroke-width="3.8" />
+        `;
+      } else if (cfg.item === 'flauta') {
+        // Flauta travesera sostenida horizontalmente a la altura de los labios con codos doblados
+        armsAndHandsSvg = `
+          <path d="M136 210 L122 190 L176 182 L178 196 L142 198 L148 218 Z" fill="${cfg.outfitColor}" stroke="${outline}" stroke-width="4.5" stroke-linejoin="round" />
+          <path d="M224 210 L248 192 L226 180 L220 192 L232 196 L214 218 Z" fill="${cfg.outfitColor}" stroke="${outline}" stroke-width="4.5" stroke-linejoin="round" />
+        `;
+        itemSvg = `
+          <g transform="translate(226, 180) rotate(2)">
+            <rect x="-48" y="-4" width="104" height="8" rx="4" fill="#CFD8DC" stroke="${outline}" stroke-width="3.5" />
+            <circle cx="-30" cy="0" r="2.2" fill="${outline}" />
+            <circle cx="-4" cy="0" r="2" fill="#90A4AE" />
+            <circle cx="8" cy="0" r="2" fill="#90A4AE" />
+            <circle cx="22" cy="0" r="2" fill="#90A4AE" />
+            <circle cx="34" cy="0" r="2" fill="#90A4AE" />
+          </g>
+          <circle cx="180" cy="186" r="8.5" fill="${cfg.skin}" stroke="${outline}" stroke-width="3.8" />
+          <circle cx="226" cy="186" r="8.5" fill="${cfg.skin}" stroke="${outline}" stroke-width="3.8" />
+        `;
+      } else if (cfg.item === 'piano') {
+        // Sostiene una partitura de piano abierta con ambas manos frente al torso
+        armsAndHandsSvg = `
+          <path d="M136 210 L118 242 L144 256 L150 242 L134 236 L146 218 Z" fill="${cfg.outfitColor}" stroke="${outline}" stroke-width="4.5" stroke-linejoin="round" />
+          <path d="M224 210 L242 242 L216 256 L210 242 L226 236 L214 218 Z" fill="${cfg.outfitColor}" stroke="${outline}" stroke-width="4.5" stroke-linejoin="round" />
+        `;
+        itemSvg = `
+          <g transform="translate(180, 256)">
+            <rect x="-34" y="-22" width="34" height="44" rx="3" fill="#FFFDF7" stroke="${outline}" stroke-width="3.5" />
+            <rect x="0" y="-22" width="34" height="44" rx="3" fill="#FFFDF7" stroke="${outline}" stroke-width="3.5" />
+            <line x1="-26" y1="-10" x2="-8" y2="-10" stroke="${outline}" stroke-width="2" />
+            <line x1="-26" y1="-2" x2="-8" y2="-2" stroke="${outline}" stroke-width="2" />
+            <line x1="-26" y1="6" x2="-8" y2="6" stroke="${outline}" stroke-width="2" />
+            <line x1="8" y1="-10" x2="26" y2="-10" stroke="${outline}" stroke-width="2" />
+            <line x1="8" y1="-2" x2="26" y2="-2" stroke="${outline}" stroke-width="2" />
+            <line x1="8" y1="6" x2="26" y2="6" stroke="${outline}" stroke-width="2" />
+          </g>
+          <circle cx="144" cy="252" r="9" fill="${cfg.skin}" stroke="${outline}" stroke-width="4" />
+          <circle cx="216" cy="252" r="9" fill="${cfg.skin}" stroke="${outline}" stroke-width="4" />
+        `;
+      } else if (cfg.item === 'lupa') {
+        // Postura de detective: brazo derecho levantado y puño cerrado sujetando el mango de la lupa negra
+        armsAndHandsSvg = `
+          <path d="M136 208 L104 246 L126 272 L138 261 L123 246 L142 224 Z" fill="${cfg.outfitColor}" stroke="${outline}" stroke-width="4.5" stroke-linejoin="round" />
+          <circle cx="134" cy="270" r="9.5" fill="${cfg.skin}" stroke="${outline}" stroke-width="4" />
+          <path d="M224 208 L262 234 L250 202 L236 206 L244 220 L218 218 Z" fill="${cfg.outfitColor}" stroke="${outline}" stroke-width="4.5" stroke-linejoin="round" />
+        `;
+        itemSvg = `
+          <g transform="translate(254, 168) rotate(-14)">
+            <rect x="-4.5" y="18" width="9" height="32" rx="3" fill="#212121" stroke="${outline}" stroke-width="3" />
+            <circle cx="0" cy="0" r="20" fill="rgba(224,247,250,0.82)" stroke="#212121" stroke-width="6.5" />
+            <path d="M-9 -7 A12 12 0 0 1 3 -11" fill="none" stroke="#FFFFFF" stroke-width="3" stroke-linecap="round" />
+          </g>
+          <circle cx="247" cy="204" r="9.5" fill="${cfg.skin}" stroke="${outline}" stroke-width="4" />
+        `;
+      }
+
+      const notesSvg = cfg.notes ? `
+        <text x="74" y="132" font-size="26" font-weight="bold" fill="${outline}">♪</text>
+        <text x="266" y="120" font-size="26" font-weight="bold" fill="${outline}">♫</text>
+      ` : '';
+
+      return `
+        <svg viewBox="60 45 245 380" xmlns="http://www.w3.org/2000/svg" class="w-full h-full overflow-visible">
+          ${backHair}
+          ${legsAndShoesSvg}
+          ${armsAndHandsSvg}
+          ${outfitSvg}
+          <!-- Cuello, orejas y cabeza cuadrada -->
+          <rect x="171" y="184" width="18" height="22" fill="${cfg.skin}" stroke="${outline}" stroke-width="4.5" />
+          <circle cx="124" cy="146" r="11" fill="${cfg.skin}" stroke="${outline}" stroke-width="4.5" />
+          <circle cx="236" cy="146" r="11" fill="${cfg.skin}" stroke="${outline}" stroke-width="4.5" />
+          <rect x="126" y="94" width="108" height="94" rx="10" fill="${cfg.skin}" stroke="${outline}" stroke-width="4.5" />
+          <!-- Expresión y pelo delantero -->
+          ${eyesSvg}
+          ${frontHair}
+          ${itemSvg}
+          ${notesSvg}
+        </svg>
+      `;
+    }
+
+    // =========================================================================
+    // 4. NAVEGACIÓN, NOTIFICACIONES TOAST Y SINTETIZADOR MUSICAL WEB AUDIO
+    // =========================================================================
+    const CUSTOM_DROPDOWNS = {};
+
+    function renderCustomDropdown(inputId, options, onChangeCallback) {
+      const container = document.getElementById(`dropdown-${inputId}`);
+      const hiddenInput = document.getElementById(inputId);
+      if (!container || !hiddenInput) return;
+
+      CUSTOM_DROPDOWNS[inputId] = { options, onChange: onChangeCallback };
+      if (!options.some(o => o.value === hiddenInput.value) && options.length > 0) {
+        hiddenInput.value = options[0].value;
+      }
+      const selectedOpt = options.find(o => o.value === hiddenInput.value) || options[0];
+
+      container.innerHTML = `
+        <button type="button" onclick="toggleCustomDropdown('${inputId}', event)" class="melodigma-dropdown-btn text-sm">
+          <span class="truncate">${selectedOpt ? selectedOpt.label : ''}</span>
+          <svg class="w-4 h-4 flex-shrink-0 text-madera transition-transform duration-150" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round">
+            <polyline points="6 9 12 15 18 9"></polyline>
+          </svg>
+        </button>
+        <div class="melodigma-dropdown-menu hidden">
+          ${options.map(opt => {
+            const isSel = opt.value === hiddenInput.value;
+            return `
+              <button type="button" onclick="selectCustomDropdownOption('${inputId}', '${opt.value.replace(/'/g, "\\'")}', event)" class="melodigma-dropdown-item ${isSel ? 'selected' : ''}">
+                <span>${opt.label}</span>
+                ${isSel ? '<span class="text-xs">✔</span>' : ''}
+              </button>
+            `;
+          }).join('')}
+        </div>
+      `;
+    }
+
+    function toggleCustomDropdown(inputId, event) {
+      if (event) event.stopPropagation();
+      const target = document.getElementById(`dropdown-${inputId}`);
+      if (!target) return;
+      const wasOpen = target.classList.contains('open');
+      closeAllCustomDropdowns();
+      if (!wasOpen) {
+        target.classList.add('open');
+        const menu = target.querySelector('.melodigma-dropdown-menu');
+        const arrow = target.querySelector('svg');
+        if (menu) menu.classList.remove('hidden');
+        if (arrow) arrow.style.transform = 'rotate(180deg)';
+      }
+    }
+
+    function selectCustomDropdownOption(inputId, value, event) {
+      if (event) event.stopPropagation();
+      const hiddenInput = document.getElementById(inputId);
+      const entry = CUSTOM_DROPDOWNS[inputId];
+      if (!hiddenInput || !entry) return;
+      hiddenInput.value = value;
+      renderCustomDropdown(inputId, entry.options, entry.onChange);
+      closeAllCustomDropdowns();
+      if (typeof entry.onChange === 'function') entry.onChange(value);
+    }
+
+    function setCustomDropdownValue(inputId, value) {
+      const hiddenInput = document.getElementById(inputId);
+      const entry = CUSTOM_DROPDOWNS[inputId];
+      if (!hiddenInput) return;
+      hiddenInput.value = value;
+      if (entry) renderCustomDropdown(inputId, entry.options, entry.onChange);
+    }
+
+    function closeAllCustomDropdowns() {
+      document.querySelectorAll('.melodigma-dropdown.open').forEach(dd => {
+        dd.classList.remove('open');
+        const menu = dd.querySelector('.melodigma-dropdown-menu');
+        const arrow = dd.querySelector('svg');
+        if (menu) menu.classList.add('hidden');
+        if (arrow) arrow.style.transform = '';
+      });
+    }
+
+    document.addEventListener('click', closeAllCustomDropdowns);
+
+    function showToast(message, type = 'info') {
+      const container = document.getElementById('toast-container');
+      if (!container) return;
+      const styles = {
+        info: 'bg-[#FFFDF9] border-celeste text-madera',
+        success: 'bg-emerald-50 border-lupa text-emerald-950',
+        warning: 'bg-amber-50 border-dorado text-amber-950'
+      };
+      const el = document.createElement('div');
+      el.className = `pointer-events-auto px-4 py-3 rounded-2xl border-2 shadow-lg text-xs sm:text-sm font-bold animate-pop ${styles[type] || styles.info}`;
+      el.textContent = message;
+      container.appendChild(el);
+      setTimeout(() => {
+        el.style.opacity = '0';
+        el.style.transition = 'opacity 0.3s ease';
+        setTimeout(() => el.remove(), 320);
+      }, 3800);
+    }
+
+    function openSideMenu() {
+      const drawer = document.getElementById('side-menu-drawer');
+      const backdrop = document.getElementById('side-menu-backdrop');
+      const btn = document.getElementById('menu-toggle-btn');
+      if (drawer) drawer.classList.remove('translate-x-full');
+      if (backdrop) backdrop.classList.remove('hidden');
+      if (btn) btn.setAttribute('aria-expanded', 'true');
+    }
+
+    function closeSideMenu() {
+      const drawer = document.getElementById('side-menu-drawer');
+      const backdrop = document.getElementById('side-menu-backdrop');
+      const btn = document.getElementById('menu-toggle-btn');
+      if (drawer) drawer.classList.add('translate-x-full');
+      if (backdrop) backdrop.classList.add('hidden');
+      if (btn) btn.setAttribute('aria-expanded', 'false');
+    }
+
+    function toggleSideMenu() {
+      const drawer = document.getElementById('side-menu-drawer');
+      if (!drawer) return;
+      if (drawer.classList.contains('translate-x-full')) {
+        openSideMenu();
+      } else {
+        closeSideMenu();
+      }
+    }
+
+    function switchSection(sectionId) {
+      ['inicio', 'juego', 'avatar', 'transmedia', 'concurso'].forEach(id => {
+        const sec = document.getElementById(`sec-${id}`);
+        const btn = document.getElementById(`nav-${id}`);
+        if (sec) sec.classList.toggle('hidden', id !== sectionId);
+        if (btn) {
+          if (id === sectionId) {
+            btn.classList.remove('bg-[#FFF3DF]', 'text-madera', 'hover:bg-dorado/60');
+            btn.classList.add('bg-lupa', 'text-white', 'shadow-btn');
+          } else {
+            btn.classList.remove('bg-lupa', 'text-white', 'shadow-btn');
+            btn.classList.add('bg-[#FFF3DF]', 'text-madera', 'hover:bg-dorado/60');
+          }
+        }
+      });
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+    }
+
+    function switchTransmediaTab(tabId) {
+      ['mesa', 'webserie', 'libro', 'podcast', 'pelicula'].forEach(id => {
+        const panel = document.getElementById(`tm-panel-${id}`);
+        const tab = document.getElementById(`tm-tab-${id}`);
+        if (panel) panel.classList.toggle('hidden', id !== tabId);
+        if (tab) {
+          if (id === tabId) {
+            tab.classList.remove('bg-white', 'text-madera', 'hover:bg-dorado/40', 'border', 'border-pergamino');
+            tab.classList.add('bg-madera', 'text-white', 'shadow');
+          } else {
+            tab.classList.remove('bg-madera', 'text-white', 'shadow');
+            tab.classList.add('bg-white', 'text-madera', 'hover:bg-dorado/40', 'border', 'border-pergamino');
+          }
+        }
+      });
+    }
+
+    let audioCtx = null;
+    function playMelody(theme = 'aurora') {
+      try {
+        if (!audioCtx) {
+          audioCtx = new (window.AudioContext || window.webkitAudioContext)();
+        }
+        if (audioCtx.state === 'suspended') audioCtx.resume();
+
+        const melodies = {
+          aurora: [523.25, 659.25, 783.99, 1046.50, 987.77, 783.99],
+          brasil: [392.00, 440.00, 523.25, 587.33, 523.25, 659.25],
+          china: [523.25, 587.33, 659.25, 783.99, 880.00, 783.99],
+          hungria: [440.00, 493.88, 523.25, 659.25, 698.46, 880.00],
+          bolivia: [659.25, 587.33, 523.25, 440.00, 523.25, 587.33],
+          india: [440.00, 466.16, 554.37, 587.33, 659.25, 880.00],
+          victory: [523.25, 659.25, 783.99, 1046.50]
+        };
+        const notes = melodies[theme] || melodies.aurora;
+        const now = audioCtx.currentTime;
+
+        notes.forEach((freq, idx) => {
+          const osc = audioCtx.createOscillator();
+          const gain = audioCtx.createGain();
+          osc.type = theme === 'aurora' ? 'triangle' : 'sine';
+          osc.frequency.setValueAtTime(freq, now + idx * 0.17);
+          gain.gain.setValueAtTime(0.001, now + idx * 0.17);
+          gain.gain.exponentialRampToValueAtTime(0.14, now + idx * 0.17 + 0.03);
+          gain.gain.exponentialRampToValueAtTime(0.001, now + idx * 0.17 + 0.16);
+          osc.connect(gain);
+          gain.connect(audioCtx.destination);
+          osc.start(now + idx * 0.17);
+          osc.stop(now + idx * 0.17 + 0.17);
+        });
+      } catch (e) {
+        // Silencio seguro si el navegador bloquea audio sin interacción previa
+      }
+    }
+
+    function playWebseriesIntro() {
+      const player = document.getElementById('webseries-intro-player');
+      if (player) player.classList.remove('hidden');
+      playMelody('aurora');
+    }
+
+    // =========================================================================
+    // 5. RENDERIZADO DE INICIO (DIRECTORA, 6 SOSPECHOSOS Y 9 ESTANCIAS)
+    // =========================================================================
+    function renderInicioContent() {
+      const director = CHARACTERS.find(c => c.id === 'beatriz');
+      const dirContainer = document.getElementById('director-letter-portrait');
+      if (dirContainer && director) {
+        dirContainer.innerHTML = generateSquareCharacterSVG(director.avatarConfig);
+      }
+
+      const charGrid = document.getElementById('characters-grid');
+      if (charGrid) {
+        charGrid.innerHTML = CHARACTERS.map(ch => `
+          <article class="bg-white rounded-3xl p-5 border-4 border-pergamino shadow-card flex flex-col justify-between space-y-4 hover:-translate-y-1 transition">
+            <div class="space-y-3">
+              <div class="flex items-center justify-between gap-2">
+                <span class="text-xs font-extrabold px-3 py-1 rounded-full ${ch.badgeBg}">${ch.country}</span>
+                <span class="text-xs font-bold text-maderaSuave">${ch.age}</span>
+              </div>
+              <div class="h-44 flex items-center justify-center">
+                <div class="w-32 h-44 flex items-center justify-center drop-shadow-md">
+                  ${generateSquareCharacterSVG(ch.avatarConfig)}
+                </div>
+              </div>
+              <div class="text-center">
+                <h3 class="font-display font-bold text-xl text-madera">${ch.name}</h3>
+                <p class="text-xs font-extrabold text-terracota uppercase tracking-wide mt-0.5">${ch.role}</p>
+              </div>
+              <p class="text-xs font-bold text-center text-maderaSuave bg-crema py-1.5 px-3 rounded-xl border border-pergamino">
+                "${ch.traits}"
+              </p>
+              <p class="text-xs sm:text-sm text-madera/90 leading-relaxed">${ch.desc}</p>
+            </div>
+            <button onclick="editCharacterInStudio('${ch.id}')" class="w-full py-2.5 rounded-2xl bg-[#FFF3DF] hover:bg-dorado text-madera font-display font-bold text-xs border border-pergamino transition">
+              🎨 Personalizar estilo
+            </button>
+          </article>
+        `).join('');
+      }
+
+      const roomsGrid = document.getElementById('rooms-grid');
+      if (roomsGrid) {
+        roomsGrid.innerHTML = ROOMS.map(r => `
+          <div class="bg-white rounded-2xl p-4 border-2 border-pergamino shadow-sm flex items-start gap-3">
+            <div class="w-12 h-12 rounded-2xl flex items-center justify-center text-2xl flex-shrink-0 border border-madera/15" style="background:${r.bg}">
+              ${r.icon}
+            </div>
+            <div>
+              <h4 class="font-display font-bold text-base text-madera">${r.name}</h4>
+              <p class="text-xs text-madera/85 leading-relaxed mt-0.5">${r.desc}</p>
+            </div>
+          </div>
+        `).join('');
+      }
+    }
+
+    function editCharacterInStudio(charId) {
+      switchSection('avatar');
+      applyAvatarPreset(charId);
+    }
+
+    // =========================================================================
+    // 6. MOTOR COMPLETO DEL CLUEDO MUSICAL ONLINE (TABLERO 11x11 + DEDUCCIÓN)
+    // =========================================================================
+    let customProfileDetective = null;
+    let gameState = {
+      active: false,
+      mode: 'aurora',
+      instruments: [],
+      players: [],
+      currentTurnIdx: 0,
+      secretEnvelope: null,
+      stepsRemaining: 0,
+      hasRolled: false,
+      notebookMarks: {},
+      playerHelpCards: [],
+      eliminatedPlayer: false
+    };
+
+    // Mapa 11x11 de la Escuela Armonía (salas en esquinas/bordes, pasillos y casillas de ayuda)
+    const BOARD_LAYOUT = [
+      ['room:cuerda', 'room:cuerda', 'room:cuerda', 'hall', 'room:viento', 'room:viento', 'room:viento', 'hall', 'room:percusion', 'room:percusion', 'room:percusion'],
+      ['room:cuerda', 'room:cuerda', 'room:cuerda', 'hall', 'room:viento', 'room:viento', 'room:viento', 'hall', 'room:percusion', 'room:percusion', 'room:percusion'],
+      ['room:cuerda', 'door:cuerda', 'room:cuerda', 'help', 'room:viento', 'door:viento', 'room:viento', 'help', 'room:percusion', 'door:percusion', 'room:percusion'],
+      ['hall', 'hall', 'hall', 'hall', 'hall', 'hall', 'hall', 'hall', 'hall', 'hall', 'hall'],
+      ['room:piano', 'room:piano', 'room:piano', 'hall', 'center', 'center', 'center', 'hall', 'room:auditorio', 'room:auditorio', 'room:auditorio'],
+      ['room:piano', 'room:piano', 'door:piano', 'hall', 'center', 'center', 'center', 'hall', 'door:auditorio', 'room:auditorio', 'room:auditorio'],
+      ['room:piano', 'room:piano', 'room:piano', 'hall', 'center', 'center', 'center', 'hall', 'room:danza', 'door:danza', 'room:danza'],
+      ['hall', 'hall', 'hall', 'hall', 'hall', 'hall', 'hall', 'hall', 'hall', 'hall', 'hall'],
+      ['room:biblioteca', 'room:biblioteca', 'door:biblioteca', 'help', 'room:despacho', 'door:despacho', 'room:despacho', 'help', 'door:almacen', 'room:almacen', 'room:almacen'],
+      ['room:biblioteca', 'room:biblioteca', 'room:biblioteca', 'hall', 'room:despacho', 'room:despacho', 'room:despacho', 'hall', 'room:almacen', 'room:almacen', 'room:almacen'],
+      ['room:biblioteca', 'room:biblioteca', 'room:biblioteca', 'hall', 'room:despacho', 'room:despacho', 'room:despacho', 'hall', 'room:almacen', 'room:almacen', 'room:almacen']
+    ];
+
+    const START_POSITIONS = [
+      { r: 3, c: 0 },
+      { r: 0, c: 3 },
+      { r: 0, c: 7 },
+      { r: 3, c: 10 }
+    ];
+
+    // Metadatos visuales de cada estancia del tablero
+    const ROOM_TILE_STYLES = {
+      cuerda: { bg: '#FAD2C5', border: '#E59882', label: 'Aula de cuerda', labelPos: '1,1' },
+      viento: { bg: '#C8E6C9', border: '#81C784', label: 'Aula de viento', labelPos: '1,5' },
+      percusion: { bg: '#FFF0B3', border: '#FFD54F', label: 'Aula de percusión', labelPos: '1,9' },
+      piano: { bg: '#E1D5F5', border: '#B39DDB', label: 'Aula de piano', labelPos: '5,1' },
+      auditorio: { bg: '#B2EBF2', border: '#4DD0E1', label: 'Auditorio', labelPos: '4,9' },
+      danza: { bg: '#F8BBD0', border: '#F06292', label: 'Sala de danza', labelPos: '6,9' },
+      biblioteca: { bg: '#BBDEFB', border: '#64B5F6', label: 'Biblioteca musical', labelPos: '9,1' },
+      despacho: { bg: '#FFE0B2', border: '#FFB74D', label: 'Despacho director', labelPos: '9,5' },
+      almacen: { bg: '#D7CCC8', border: '#A1887F', label: 'Almacén', labelPos: '9,9' }
+    };
+
+    function renderGameSetupChoices() {
+      const container = document.getElementById('setup-character-choices');
+      if (!container) return;
+      const list = customProfileDetective ? [customProfileDetective, ...CHARACTERS] : CHARACTERS;
+      container.innerHTML = list.map(ch => `
+        <button onclick="startCluedoGame('${ch.id}')" class="bg-crema hover:bg-amber-50 rounded-2xl p-3 border-2 border-pergamino hover:border-lupa transition text-center flex flex-col items-center justify-between space-y-2 shadow-sm">
+          <div class="w-20 h-28 flex items-center justify-center">
+            ${generateSquareCharacterSVG(ch.avatarConfig)}
+          </div>
+          <div>
+            <p class="font-display font-bold text-sm text-madera leading-tight">${ch.shortName}</p>
+            <p class="text-[10px] font-bold text-maderaSuave">${ch.country}</p>
+          </div>
+          <span class="w-full py-1 rounded-xl bg-lupa text-white font-display font-bold text-xs">Elegir</span>
+        </button>
+      `).join('');
+    }
+
+    function openNewGameModal() {
+      document.getElementById('game-active-area').classList.add('hidden');
+      document.getElementById('game-setup-panel').classList.remove('hidden');
+    }
+
+    function shuffleArray(arr) {
+      const copy = [...arr];
+      for (let i = copy.length - 1; i > 0; i--) {
+        const j = Math.floor(Math.random() * (i + 1));
+        [copy[i], copy[j]] = [copy[j], copy[i]];
+      }
+      return copy;
+    }
+
+    function startCluedoGame(chosenId) {
+      const mode = document.querySelector('input[name="gameMode"]:checked')?.value || 'aurora';
+      const instList = mode === 'aurora' ? INSTRUMENTS_AURORA : INSTRUMENTS_ALL;
+
+      const availableRoster = customProfileDetective ? [customProfileDetective, ...CHARACTERS] : [...CHARACTERS];
+      const humanChar = availableRoster.find(c => c.id === chosenId) || CHARACTERS[0];
+      const aiChars = CHARACTERS.filter(c => c.id !== humanChar.id).slice(0, 3);
+
+      const players = [humanChar, ...aiChars].map((ch, idx) => ({
+        ...ch,
+        isHuman: idx === 0,
+        r: START_POSITIONS[idx].r,
+        c: START_POSITIONS[idx].c,
+        hand: []
+      }));
+
+      // Seleccionar 3 cartas al azar para el Sobre Secreto
+      const secretSuspect = shuffleArray(CHARACTERS)[0];
+      const secretInstrument = shuffleArray(instList)[0];
+      const secretRoom = shuffleArray(ROOMS)[0];
+
+      // Repartir el resto de cartas entre los 4 jugadores
+      const deck = shuffleArray([
+        ...CHARACTERS.filter(c => c.id !== secretSuspect.id).map(c => ({ type: 'suspect', id: c.id, name: c.name, icon: '🕵️' })),
+        ...instList.filter(i => i.id !== secretInstrument.id).map(i => ({ type: 'instrument', id: i.id, name: i.name, icon: i.icon })),
+        ...ROOMS.filter(r => r.id !== secretRoom.id).map(r => ({ type: 'room', id: r.id, name: r.name, icon: r.icon }))
+      ]);
+
+      deck.forEach((card, idx) => {
+        players[idx % players.length].hand.push(card);
+      });
+
+      const marks = {};
+      players[0].hand.forEach(card => {
+        marks[`${card.type}:${card.id}`] = 'X';
+      });
+
+      gameState = {
+        active: true,
+        mode,
+        instruments: instList,
+        players,
+        currentTurnIdx: 0,
+        secretEnvelope: {
+          suspect: secretSuspect,
+          instrument: secretInstrument,
+          room: secretRoom
+        },
+        stepsRemaining: 0,
+        hasRolled: false,
+        notebookMarks: marks,
+        playerHelpCards: [],
+        eliminatedPlayer: false
+      };
+
+      document.getElementById('game-setup-panel').classList.add('hidden');
+      document.getElementById('game-active-area').classList.remove('hidden');
+      document.getElementById('game-log-list').innerHTML = '';
+
+      addGameLog(`✉️ Se han guardado 3 cartas en el Sobre Secreto. ¡Comienza la investigación de ${humanChar.name}!`);
+      renderPlayerHand();
+      renderDetectiveNotebook();
+      populateModalSelects();
+      updateTurnUI();
+      renderBoard();
+      playMelody('aurora');
+    }
+
+    function addGameLog(text) {
+      const log = document.getElementById('game-log-list');
+      if (!log) return;
+      const item = document.createElement('div');
+      item.className = 'px-3 py-1.5 rounded-xl bg-crema border border-pergamino/70 text-madera';
+      item.textContent = text;
+      log.prepend(item);
+    }
+
+    function updateTurnUI() {
+      const p = gameState.players[gameState.currentTurnIdx];
+      const badge = document.getElementById('turn-avatar-badge');
+      badge.style.backgroundColor = p.color;
+      badge.textContent = p.shortName.slice(0, 2).toUpperCase();
+      document.getElementById('turn-player-name').textContent = p.isHuman ? `${p.name} (Tú)` : `${p.name} (Detective rival)`;
+
+      const btnRoll = document.getElementById('btn-roll-dice');
+      const btnEnd = document.getElementById('btn-end-turn');
+      const stepsBadge = document.getElementById('steps-remaining-badge');
+
+      if (p.isHuman) {
+        if (!gameState.hasRolled) {
+          btnRoll.classList.remove('hidden');
+          btnEnd.classList.add('hidden');
+          stepsBadge.classList.add('hidden');
+          document.getElementById('instruction-text').textContent = 'Pulsa "Tirar Dados" para desplazarte por la Escuela Armonía.';
+        } else {
+          btnRoll.classList.add('hidden');
+          btnEnd.classList.remove('hidden');
+          stepsBadge.classList.remove('hidden');
+          stepsBadge.textContent = `${gameState.stepsRemaining} pasos`;
+          document.getElementById('instruction-text').textContent = gameState.stepsRemaining > 0
+            ? 'Haz clic en una casilla verde iluminada para moverte.'
+            : 'Movimiento completado. Puedes formular acusación o pasar turno.';
+        }
+      } else {
+        btnRoll.classList.add('hidden');
+        btnEnd.classList.add('hidden');
+        stepsBadge.classList.add('hidden');
+        document.getElementById('instruction-text').textContent = `${p.shortName} está investigando los pasillos...`;
+      }
+    }
+
+    function rollDice() {
+      const p = gameState.players[gameState.currentTurnIdx];
+      if (!p || !p.isHuman || gameState.hasRolled) return;
+
+      const d1 = Math.floor(Math.random() * 6) + 1;
+      const d2 = Math.floor(Math.random() * 6) + 1;
+      const total = d1 + d2;
+      document.getElementById('dice-values').textContent = `${d1} + ${d2} = ${total}`;
+
+      gameState.hasRolled = true;
+      gameState.stepsRemaining = total;
+      addGameLog(`🎲 ${p.shortName} saca un ${total} (${d1} y ${d2}) en los dados.`);
+      updateTurnUI();
+      renderBoard();
+    }
+
+    function getCellType(r, c) {
+      const raw = BOARD_LAYOUT[r][c];
+      if (raw.startsWith('room:')) return { kind: 'room', roomId: raw.split(':')[1] };
+      if (raw.startsWith('door:')) return { kind: 'door', roomId: raw.split(':')[1] };
+      if (raw === 'help') return { kind: 'help' };
+      if (raw === 'center') return { kind: 'center' };
+      return { kind: 'hall' };
+    }
+
+    function getReachableCells(startR, startC, maxSteps) {
+      const reachable = new Set();
+      if (maxSteps <= 0) return reachable;
+
+      const queue = [{ r: startR, c: startC, dist: 0 }];
+      const visited = new Set([`${startR},${startC}`]);
+
+      while (queue.length > 0) {
+        const { r, c, dist } = queue.shift();
+        if (dist > 0) reachable.add(`${r},${c}`);
+        if (dist >= maxSteps) continue;
+
+        const dirs = [[-1, 0], [1, 0], [0, -1], [0, 1]];
+        for (const [dr, dc] of dirs) {
+          const nr = r + dr;
+          const nc = c + dc;
+          if (nr < 0 || nr >= 11 || nc < 0 || nc >= 11) continue;
+          const key = `${nr},${nc}`;
+          if (visited.has(key)) continue;
+
+          const cell = getCellType(nr, nc);
+          if (cell.kind === 'hall' || cell.kind === 'help' || cell.kind === 'door') {
+            visited.add(key);
+            queue.push({ r: nr, c: nc, dist: dist + 1 });
+          }
+        }
+      }
+      return reachable;
+    }
+
+    function renderBoard() {
+      const grid = document.getElementById('cluedo-board-grid');
+      if (!grid || !gameState.active) return;
+
+      const activePlayer = gameState.players[gameState.currentTurnIdx];
+      const reachable = (activePlayer.isHuman && gameState.hasRolled && gameState.stepsRemaining > 0)
+        ? getReachableCells(activePlayer.r, activePlayer.c, gameState.stepsRemaining)
+        : new Set();
+
+      let cellsHtml = '';
+      for (let r = 0; r < 11; r++) {
+        for (let c = 0; c < 11; c++) {
+          const cell = getCellType(r, c);
+          const isReachable = reachable.has(`${r},${c}`);
+          const playersHere = gameState.players.filter(pl => pl.r === r && pl.c === c);
+
+          let cellStyle = 'bg-[#FBF1DF] border border-[#DFC9A6]';
+          let innerContent = '';
+          let titleAttr = 'Pasillo de la Escuela Armonía';
+
+          if (cell.kind === 'room') {
+            const meta = ROOM_TILE_STYLES[cell.roomId] || { bg: '#EAD7B7', border: '#C9B18C', label: '' };
+            cellStyle = '';
+            const isLabelCell = meta.labelPos === `${r},${c}`;
+            innerContent = isLabelCell
+              ? `<span class="px-1.5 py-0.5 rounded-md bg-[#FFFDF9]/95 border border-madera/25 font-display font-bold text-[8px] sm:text-[10px] leading-tight text-madera text-center whitespace-nowrap shadow-xs z-10">${meta.label}</span>`
+              : '';
+            titleAttr = meta.label;
+          } else if (cell.kind === 'center') {
+            cellStyle = 'bg-[#FCE6BE] border border-[#E5BE5E]';
+            if (r === 5 && c === 5) {
+              innerContent = `<span class="px-1.5 py-0.5 rounded-md bg-[#FFFDF9]/95 border border-doradoOscuro font-display font-bold text-[8px] sm:text-[10px] leading-tight text-madera text-center whitespace-nowrap shadow-xs z-10">Escuela Armonía</span>`;
+            }
+            titleAttr = 'Patio Central · Escuela Armonía';
+          } else if (cell.kind === 'door') {
+            const room = ROOMS.find(rm => rm.id === cell.roomId);
+            cellStyle = 'bg-[#7C4A21] border-2 border-[#FFD54F] shadow-inner';
+            innerContent = `<span class="w-2.5 h-1 rounded-full bg-[#FFD54F] block"></span>`;
+            titleAttr = `Puerta de entrada: ${room ? room.name : ''}`;
+          } else if (cell.kind === 'help') {
+            cellStyle = 'bg-gradient-to-br from-amber-200 to-amber-400 border-2 border-amber-700 text-madera shadow-xs';
+            innerContent = `<span class="font-display font-extrabold text-[11px] sm:text-xs text-amber-950">?</span>`;
+            titleAttr = 'Casilla de Pista Musical (Carta de Ayuda)';
+          }
+
+          if (isReachable) {
+            cellStyle += ' ring-2 ring-lupa !bg-emerald-200 cursor-pointer hover:scale-105 z-20 transition';
+          }
+
+          const roomInlineStyle = cell.kind === 'room'
+            ? `background-color:${ROOM_TILE_STYLES[cell.roomId].bg}; border: 1px solid ${ROOM_TILE_STYLES[cell.roomId].border};`
+            : '';
+
+          const tokensHtml = playersHere.map(pl =>
+            `<span class="w-4 h-4 sm:w-5 sm:h-5 rounded-full border-2 border-white shadow-md text-[8px] font-extrabold text-white flex items-center justify-center" style="background:${pl.color}" title="${pl.name}">${pl.shortName[0]}</span>`
+          ).join('');
+
+          cellsHtml += `
+            <div onclick="handleBoardCellClick(${r}, ${c})" title="${titleAttr}" style="${roomInlineStyle}" class="aspect-square flex items-center justify-center relative overflow-visible ${cellStyle}">
+              ${tokensHtml ? `<div class="flex flex-wrap items-center justify-center gap-0.5 z-30">${tokensHtml}</div>` : innerContent}
+            </div>
+          `;
+        }
+      }
+
+      grid.innerHTML = cellsHtml;
+    }
+
+    function handleBoardCellClick(r, c) {
+      const p = gameState.players[gameState.currentTurnIdx];
+      if (!p || !p.isHuman || !gameState.hasRolled || gameState.stepsRemaining <= 0) return;
+
+      const reachable = getReachableCells(p.r, p.c, gameState.stepsRemaining);
+      if (!reachable.has(`${r},${c}`)) {
+        showToast('🚶 Casilla fuera de alcance en este turno. Elige una casilla iluminada en verde.', 'warning');
+        return;
+      }
+
+      const dist = Math.abs(p.r - r) + Math.abs(p.c - c);
+      p.r = r;
+      p.c = c;
+      gameState.stepsRemaining = Math.max(0, gameState.stepsRemaining - Math.max(1, dist));
+
+      const cell = getCellType(r, c);
+      renderBoard();
+      updateTurnUI();
+
+      if (cell.kind === 'help') {
+        drawHelpCard();
+      } else if (cell.kind === 'door') {
+        gameState.stepsRemaining = 0;
+        updateTurnUI();
+        renderBoard();
+        openHypothesisModal(cell.roomId);
+      }
+    }
+
+    function drawHelpCard() {
+      const card = HELP_CARDS_DECK[Math.floor(Math.random() * HELP_CARDS_DECK.length)];
+      addGameLog(`❓ ¡Carta de Ayuda! ${card.title}: ${card.desc}`);
+      showToast(`✨ ${card.title}: ${card.desc}`, 'success');
+
+      if (card.effect === 'bonus2') {
+        gameState.stepsRemaining += 2;
+        updateTurnUI();
+        renderBoard();
+      } else if (card.effect === 'teleport') {
+        // Teletransportar a la puerta del Auditorio
+        gameState.players[0].r = 5;
+        gameState.players[0].c = 8;
+        gameState.stepsRemaining = 0;
+        renderBoard();
+        updateTurnUI();
+        openHypothesisModal('auditorio');
+      } else {
+        // Descubrir una carta inocente aleatoria
+        const candidates = [
+          ...CHARACTERS.filter(c => c.id !== gameState.secretEnvelope.suspect.id).map(c => ({ key: `suspect:${c.id}`, name: c.name })),
+          ...gameState.instruments.filter(i => i.id !== gameState.secretEnvelope.instrument.id).map(i => ({ key: `instrument:${i.id}`, name: i.name })),
+          ...ROOMS.filter(r => r.id !== gameState.secretEnvelope.room.id).map(r => ({ key: `room:${r.id}`, name: r.name }))
+        ].filter(item => gameState.notebookMarks[item.key] !== 'X');
+
+        if (candidates.length > 0) {
+          const revealed = candidates[Math.floor(Math.random() * candidates.length)];
+          gameState.notebookMarks[revealed.key] = 'X';
+          renderDetectiveNotebook();
+          addGameLog(`🔎 Pista de ayuda: "${revealed.name}" queda descartado (❌) en tu Hoja de Detective.`);
+        }
+      }
+    }
+
+    let currentHypothesisRoomId = 'cuerda';
+    function openHypothesisModal(roomId) {
+      currentHypothesisRoomId = roomId;
+      const room = ROOMS.find(r => r.id === roomId);
+      document.getElementById('hyp-room-name').textContent = room ? room.name : 'Estancia';
+      document.getElementById('hypothesis-modal').classList.remove('hidden');
+    }
+
+    function closeHypothesisModal() {
+      document.getElementById('hypothesis-modal').classList.add('hidden');
+    }
+
+    function submitHypothesis() {
+      const suspectId = document.getElementById('hyp-suspect-select').value;
+      const instrumentId = document.getElementById('hyp-instrument-select').value;
+      const suspect = CHARACTERS.find(c => c.id === suspectId);
+      const instrument = gameState.instruments.find(i => i.id === instrumentId);
+      const room = ROOMS.find(r => r.id === currentHypothesisRoomId);
+
+      closeHypothesisModal();
+      addGameLog(`🗣️ Hipótesis: "¿Fue ${suspect.name} con ${instrument.name} en ${room.name}?"`);
+
+      // Comprobar en sentido horario si algún detective rival tiene alguna de las 3 cartas
+      let refutingPlayer = null;
+      let refutedCard = null;
+
+      for (let i = 1; i < gameState.players.length; i++) {
+        const rival = gameState.players[i];
+        const matching = rival.hand.filter(card =>
+          (card.type === 'suspect' && card.id === suspectId) ||
+          (card.type === 'instrument' && card.id === instrumentId) ||
+          (card.type === 'room' && card.id === currentHypothesisRoomId)
+        );
+        if (matching.length > 0) {
+          refutingPlayer = rival;
+          refutedCard = matching[0];
+          break;
+        }
+      }
+
+      if (refutingPlayer && refutedCard) {
+        gameState.notebookMarks[`${refutedCard.type}:${refutedCard.id}`] = 'X';
+        renderDetectiveNotebook();
+        addGameLog(`🤫 ${refutingPlayer.shortName} te enseña en secreto la carta: "${refutedCard.name}" (❌ descartada).`);
+        showToast(`🤫 ${refutingPlayer.shortName} refuta tu hipótesis enseñándote: ${refutedCard.name}`, 'info');
+      } else {
+        addGameLog(`❗ ¡Nadie pudo refutar tu hipótesis! Esa combinación es muy sospechosa...`);
+        showToast('❗ ¡Ningún detective tiene esas cartas! Revisa tu hoja.', 'warning');
+      }
+    }
+
+    function endPlayerTurn() {
+      gameState.hasRolled = false;
+      gameState.stepsRemaining = 0;
+
+      // Simular turnos rápidos de los 3 detectives rivales
+      for (let i = 1; i < gameState.players.length; i++) {
+        const rival = gameState.players[i];
+        const roll = Math.floor(Math.random() * 8) + 3;
+        const dirs = [[-1, 0], [1, 0], [0, -1], [0, 1]];
+        for (let step = 0; step < roll; step++) {
+          const [dr, dc] = dirs[Math.floor(Math.random() * dirs.length)];
+          const nr = rival.r + dr;
+          const nc = rival.c + dc;
+          if (nr >= 0 && nr < 11 && nc >= 0 && nc < 11) {
+            const cell = getCellType(nr, nc);
+            if (cell.kind === 'hall' || cell.kind === 'help' || cell.kind === 'door') {
+              rival.r = nr;
+              rival.c = nc;
+            }
+          }
+        }
+      }
+
+      addGameLog('🔄 Los demás detectives han recorrido la Escuela Armonía. ¡Vuelve a ser tu turno!');
+      gameState.currentTurnIdx = 0;
+      updateTurnUI();
+      renderBoard();
+    }
+
+    function renderPlayerHand() {
+      const container = document.getElementById('player-hand-cards');
+      if (!container || !gameState.players[0]) return;
+      container.innerHTML = gameState.players[0].hand.map(card => `
+        <div class="bg-crema rounded-xl p-2.5 border-2 border-pergamino text-center space-y-1">
+          <div class="text-xl">${card.icon}</div>
+          <p class="font-display font-bold text-xs text-madera leading-tight">${card.name}</p>
+        </div>
+      `).join('');
+    }
+
+    function cycleNotebookMark(key) {
+      const current = gameState.notebookMarks[key] || '';
+      const next = current === '' ? 'X' : (current === 'X' ? 'STAR' : '');
+      gameState.notebookMarks[key] = next;
+      renderDetectiveNotebook();
+    }
+
+    function renderDetectiveNotebook() {
+      const container = document.getElementById('detective-notebook');
+      if (!container) return;
+
+      const renderGroup = (title, type, items) => `
+        <div class="space-y-1">
+          <p class="font-display font-bold text-xs uppercase tracking-wider text-maderaSuave">${title}</p>
+          <div class="divide-y divide-pergamino/60 bg-white/80 rounded-xl border border-pergamino overflow-hidden">
+            ${items.map(it => {
+              const key = `${type}:${it.id}`;
+              const state = gameState.notebookMarks[key] || '';
+              const badge = state === 'X'
+                ? '<span class="text-rose-600 font-extrabold">❌ Descartado</span>'
+                : (state === 'STAR'
+                  ? '<span class="text-amber-600 font-extrabold">⭐ Sospechoso</span>'
+                  : '<span class="text-maderaSuave/70">⬜ Dudoso</span>');
+              const rowClass = state === 'X' ? 'line-through opacity-60 bg-rose-50/40' : (state === 'STAR' ? 'bg-amber-50' : '');
+              return `
+                <button onclick="cycleNotebookMark('${key}')" class="w-full px-3 py-1.5 flex items-center justify-between text-left hover:bg-crema transition ${rowClass}">
+                  <span class="font-bold text-madera">${it.name}</span>
+                  <span class="text-[11px]">${badge}</span>
+                </button>
+              `;
+            }).join('')}
+          </div>
+        </div>
+      `;
+
+      container.innerHTML =
+        renderGroup('🕵️ Sospechosos', 'suspect', CHARACTERS) +
+        renderGroup('🎻 Instrumentos', 'instrument', gameState.instruments) +
+        renderGroup('🏫 Estancias', 'room', ROOMS);
+    }
+
+    function populateModalSelects() {
+      const suspectOpts = CHARACTERS.map(c => `<option value="${c.id}">${c.name}</option>`).join('');
+      const instOpts = gameState.instruments.map(i => `<option value="${i.id}">${i.icon} ${i.name}</option>`).join('');
+      const roomOpts = ROOMS.map(r => `<option value="${r.id}">${r.icon} ${r.name}</option>`).join('');
+
+      document.getElementById('hyp-suspect-select').innerHTML = suspectOpts;
+      document.getElementById('hyp-instrument-select').innerHTML = instOpts;
+      document.getElementById('acc-suspect-select').innerHTML = suspectOpts;
+      document.getElementById('acc-instrument-select').innerHTML = instOpts;
+      document.getElementById('acc-room-select').innerHTML = roomOpts;
+      refreshAllCustomDropdowns();
+    }
+
+    function upgradeToCustomDropdown(selectEl) {
+      if (!selectEl) return;
+      let wrapper = selectEl.previousElementSibling;
+      if (!wrapper || !wrapper.classList.contains('melodigma-dropdown')) {
+        wrapper = document.createElement('div');
+        wrapper.className = 'melodigma-dropdown';
+        selectEl.parentNode.insertBefore(wrapper, selectEl);
+        selectEl.classList.add('hidden');
+      }
+
+      const options = Array.from(selectEl.options);
+      const selectedOpt = options[selectEl.selectedIndex] || options[0];
+
+      wrapper.innerHTML = `
+        <button type="button" class="melodigma-dropdown-btn" aria-haspopup="listbox" aria-expanded="false">
+          <span class="truncate">${selectedOpt ? selectedOpt.textContent : ''}</span>
+          <svg class="melodigma-dropdown-arrow w-4 h-4 text-madera" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round">
+            <polyline points="6 9 12 15 18 9"></polyline>
+          </svg>
+        </button>
+        <div class="melodigma-dropdown-menu" role="listbox">
+          ${options.map((opt, idx) => `
+            <button type="button" data-idx="${idx}" class="melodigma-dropdown-item ${idx === selectEl.selectedIndex ? 'selected' : ''}">
+              <span>${opt.textContent}</span>
+              ${idx === selectEl.selectedIndex ? '<span class="text-xs font-extrabold text-lupa">✔</span>' : ''}
+            </button>
+          `).join('')}
+        </div>
+      `;
+
+      const triggerBtn = wrapper.querySelector('.melodigma-dropdown-btn');
+      triggerBtn.addEventListener('click', (e) => {
+        e.stopPropagation();
+        const wasOpen = wrapper.classList.contains('open');
+        document.querySelectorAll('.melodigma-dropdown.open').forEach(el => {
+          el.classList.remove('open');
+          el.querySelector('.melodigma-dropdown-btn')?.setAttribute('aria-expanded', 'false');
+        });
+        if (!wasOpen) {
+          wrapper.classList.add('open');
+          triggerBtn.setAttribute('aria-expanded', 'true');
+        }
+      });
+
+      wrapper.querySelectorAll('.melodigma-dropdown-item').forEach(itemBtn => {
+        itemBtn.addEventListener('click', (e) => {
+          e.stopPropagation();
+          const idx = parseInt(itemBtn.getAttribute('data-idx'), 10);
+          selectEl.selectedIndex = idx;
+          selectEl.dispatchEvent(new Event('change'));
+          upgradeToCustomDropdown(selectEl);
+        });
+      });
+    }
+
+    function refreshAllCustomDropdowns() {
+      document.querySelectorAll('select.melodigma-select').forEach(sel => upgradeToCustomDropdown(sel));
+    }
+
+    document.addEventListener('click', () => {
+      document.querySelectorAll('.melodigma-dropdown.open').forEach(el => {
+        el.classList.remove('open');
+        el.querySelector('.melodigma-dropdown-btn')?.setAttribute('aria-expanded', 'false');
+      });
+    });
+
+    function openAccusationModal() {
+      if (!gameState.active) {
+        showToast('🎲 Inicia primero una partida para realizar una acusación.', 'warning');
+        return;
+      }
+      document.getElementById('accusation-modal').classList.remove('hidden');
+    }
+
+    function closeAccusationModal() {
+      document.getElementById('accusation-modal').classList.add('hidden');
+    }
+
+    function submitFinalAccusation() {
+      const sId = document.getElementById('acc-suspect-select').value;
+      const iId = document.getElementById('acc-instrument-select').value;
+      const rId = document.getElementById('acc-room-select').value;
+
+      closeAccusationModal();
+
+      const env = gameState.secretEnvelope;
+      const isWin = (sId === env.suspect.id && iId === env.instrument.id && rId === env.room.id);
+
+      document.getElementById('outcome-emoji').textContent = isWin ? '🏆🎻🎉' : '🕵️‍♂️🔍😅';
+      document.getElementById('outcome-title').textContent = isWin
+        ? '¡Enhorabuena! Has resuelto el misterio'
+        : '¡Casi lo logras! El Sobre Secreto decía otra cosa';
+      document.getElementById('outcome-message').textContent = isWin
+        ? 'Tus deducciones como detective de la Escuela Armonía han sido impecables. ¡Has recuperado el instrumento desaparecido!'
+        : 'Las tres cartas del Sobre Secreto no coincidían con tu acusación final. ¡Inténtalo de nuevo en una nueva investigación!';
+
+      document.getElementById('outcome-secret-cards').innerHTML = `
+        <div class="bg-white p-2.5 rounded-xl border border-pergamino">🕵️<br/>${env.suspect.name}</div>
+        <div class="bg-white p-2.5 rounded-xl border border-pergamino">${env.instrument.icon}<br/>${env.instrument.name}</div>
+        <div class="bg-white p-2.5 rounded-xl border border-pergamino">${env.room.icon}<br/>${env.room.name}</div>
+      `;
+
+      document.getElementById('outcome-modal').classList.remove('hidden');
+      playMelody(isWin ? 'victory' : 'hungria');
+    }
+
+    function closeOutcomeModal() {
+      document.getElementById('outcome-modal').classList.add('hidden');
+      openNewGameModal();
+    }
+
+    // =========================================================================
+    // 7. GENERADOR DE AVATARES INTERACTIVO Y CONCURSO FANDOM COMPLETO
+    // =========================================================================
+    let currentAvatarCfg = { ...CHARACTERS[0].avatarConfig };
+    let uploadedDrawingDataUrl = null;
+
+    const SKIN_PALETTE = ['#F5D2B8', '#F3C9AC', '#D79E74', '#A46A44', '#8D5B3C', '#8C5430', '#5C3822'];
+    const HAIR_PALETTE = ['#231F20', '#4A3525', '#5D3A24', '#D6A456', '#C62828', '#757575', '#ECEFF1'];
+    const OUTFIT_PALETTE = ['#2E7D32', '#F6C343', '#7E57C2', '#B72B2B', '#254E8A', '#9E2A5B', '#00838F'];
+    const HAIR_STYLE_OPTIONS = [
+      { value: 'curly', label: '💇‍♀️ Melena suelta larga (Estilo Luana)' },
+      { value: 'cap', label: '🧢 Gorra hacia atrás (Estilo Li Wei)' },
+      { value: 'ponytail', label: '🎀 Coleta alta con coletero (Estilo Emese)' },
+      { value: 'spiky', label: '⚡ Pelo alborotado en puntas (Estilo Diego)' },
+      { value: 'wavyshort', label: '🌊 Pelo corto ondulado (Estilo Arjun)' },
+      { value: 'bun', label: '👑 Moño alto elegante (Estilo Beatriz)' }
+    ];
+    const EYE_STYLE_OPTIONS = [
+      { value: 'happy', label: '😊 Sonrisa alegre (‿ ‿)' },
+      { value: 'determined', label: '🧐 Mirada investigadora (╲ ╱)' },
+      { value: 'calm', label: '😌 Concentración serena (— —)' },
+      { value: 'glasses', label: '👓 Gafas redondas de músico (O-O)' }
+    ];
+    const OUTFIT_STYLE_OPTIONS = [
+      { value: 'sweater_pants', label: '🎵 Sudadera con nota musical + Pantalón' },
+      { value: 'uniform_skirt', label: '👔 Jersey con cuello + Falda plisada' },
+      { value: 'oversized_cargo', label: '🧥 Sudadera ancha + Pantalón cargo' },
+      { value: 'jacket_pants', label: '🧥 Chaqueta abierta + Pantalón recto' },
+      { value: 'professor', label: '🎩 Traje de profesor con corbata' },
+      { value: 'director', label: '📜 Conjunto de Directora con falda larga' }
+    ];
+    const CONTEST_INSTRUMENT_OPTIONS = [
+      { value: 'Violín', label: '🎻 Violín' },
+      { value: 'Percusión / Tambor', label: '🥁 Percusión / Tambor' },
+      { value: 'Piano', label: '🎹 Piano' },
+      { value: 'Violonchelo', label: '🎻 Violonchelo' },
+      { value: 'Trompeta', label: '🎺 Trompeta' },
+      { value: 'Flauta Travesera', label: '🪈 Flauta Travesera' },
+      { value: 'Guitarra', label: '🎸 Guitarra' },
+      { value: 'Arpa o Xilófono', label: '🎶 Arpa / Xilófono' }
+    ];
+    const ITEM_OPTIONS = [
+      { id: 'none', label: '✨ Ninguno' },
+      { id: 'violin', label: '🎻 Violín Aurora' },
+      { id: 'tambor', label: '🥁 Tambor' },
+      { id: 'cello', label: '🎻 Violonchelo' },
+      { id: 'piano', label: '🎼 Partitura' },
+      { id: 'trompeta', label: '🎺 Trompeta' },
+      { id: 'flauta', label: '🪈 Flauta' },
+      { id: 'clipboard', label: '📋 Carpeta Notas' },
+      { id: 'folder', label: '📁 Archivador' },
+      { id: 'lupa', label: '🔍 Lupa' }
+    ];
+
+    function renderItemSelectorButtons() {
+      const container = document.getElementById('ctrl-item');
+      if (!container) return;
+      container.innerHTML = ITEM_OPTIONS.map(it => {
+        const isSelected = currentAvatarCfg.item === it.id;
+        const btnClass = isSelected
+          ? 'p-2 rounded-xl bg-emerald-50 border-2 border-lupa ring-2 ring-lupa/30 font-extrabold text-xs text-lupaOscuro shadow-sm scale-[1.02] transition'
+          : 'p-2 rounded-xl bg-white border-2 border-pergamino hover:border-lupa font-bold text-xs text-madera transition';
+        return `<button type="button" onclick="setAvatarProp('item', '${it.id}')" class="${btnClass}">${it.label}</button>`;
+      }).join('');
+    }
+
+    function initAvatarStudio() {
+      document.getElementById('ctrl-skin').innerHTML = SKIN_PALETTE.map(hex =>
+        `<button onclick="setAvatarProp('skin', '${hex}')" class="w-8 h-8 rounded-full border-2 border-madera/40 shadow-sm hover:scale-110 transition" style="background:${hex}"></button>`
+      ).join('');
+
+      document.getElementById('ctrl-haircolor').innerHTML = HAIR_PALETTE.map(hex =>
+        `<button onclick="setAvatarProp('hairColor', '${hex}')" class="w-8 h-8 rounded-full border-2 border-madera/40 shadow-sm hover:scale-110 transition" style="background:${hex}"></button>`
+      ).join('') + `
+        <label title="Elegir cualquier color de pelo en la rueda" class="relative w-9 h-9 rounded-full border-2 border-madera shadow-sm cursor-pointer overflow-hidden flex items-center justify-center bg-gradient-to-tr from-amber-300 via-rose-400 to-indigo-500 hover:scale-110 transition">
+          <span class="text-xs font-extrabold text-white drop-shadow">🎨</span>
+          <input type="color" id="hair-color-wheel" value="${currentAvatarCfg.hairColor}" oninput="setAvatarProp('hairColor', this.value)" class="opacity-0 absolute inset-0 w-full h-full cursor-pointer" />
+        </label>
+      `;
+
+      document.getElementById('ctrl-outfitcolor').innerHTML = OUTFIT_PALETTE.map(hex =>
+        `<button onclick="setAvatarProp('outfitColor', '${hex}'); document.getElementById('outfit-color-wheel').value='${hex}';" class="w-8 h-8 rounded-full border-2 border-madera/40 shadow-sm hover:scale-110 transition" style="background:${hex}"></button>`
+      ).join('') + `
+        <label title="Elegir cualquier color de ropa en la rueda" class="relative w-9 h-9 rounded-full border-2 border-madera shadow-sm cursor-pointer overflow-hidden flex items-center justify-center bg-gradient-to-tr from-amber-300 via-rose-400 to-indigo-500 hover:scale-110 transition">
+          <span class="text-xs font-extrabold text-white drop-shadow">🎨</span>
+          <input type="color" id="outfit-color-wheel" value="${currentAvatarCfg.outfitColor}" oninput="setAvatarProp('outfitColor', this.value)" class="opacity-0 absolute inset-0 w-full h-full cursor-pointer" />
+        </label>
+      `;
+
+      renderItemSelectorButtons();
+
+      renderCustomDropdown('ctrl-hair', HAIR_STYLE_OPTIONS, updateAvatarFromControls);
+      renderCustomDropdown('ctrl-eyes', EYE_STYLE_OPTIONS, updateAvatarFromControls);
+      renderCustomDropdown('ctrl-outfit', OUTFIT_STYLE_OPTIONS, updateAvatarFromControls);
+      renderCustomDropdown('comp-char-instrument', CONTEST_INSTRUMENT_OPTIONS);
+
+      renderAvatarPreview();
+      renderInitialGallery();
+      refreshAllCustomDropdowns();
+    }
+
+    function setAvatarProp(prop, val) {
+      currentAvatarCfg[prop] = val;
+      if (prop === 'item') {
+        if (val !== 'none') {
+          currentAvatarCfg.notes = true;
+          const notesToggle = document.getElementById('ctrl-notes');
+          if (notesToggle) notesToggle.checked = true;
+        }
+        renderItemSelectorButtons();
+      }
+      renderAvatarPreview();
+    }
+
+    function toggleInstrumentPose(isChecked) {
+      currentAvatarCfg.notes = Boolean(isChecked);
+      renderAvatarPreview();
+    }
+
+    function applyAvatarPreset(charId) {
+      const found = CHARACTERS.find(c => c.id === charId);
+      if (!found) return;
+      currentAvatarCfg = { ...found.avatarConfig };
+      document.getElementById('avatar-name-input').value = found.name;
+      document.getElementById('ctrl-hair').value = currentAvatarCfg.hair;
+      document.getElementById('ctrl-eyes').value = currentAvatarCfg.eyes;
+      document.getElementById('ctrl-outfit').value = currentAvatarCfg.outfit;
+      document.getElementById('ctrl-notes').checked = Boolean(currentAvatarCfg.notes);
+      const hairWheel = document.getElementById('hair-color-wheel');
+      const outfitWheel = document.getElementById('outfit-color-wheel');
+      if (hairWheel) hairWheel.value = currentAvatarCfg.hairColor;
+      if (outfitWheel) outfitWheel.value = currentAvatarCfg.outfitColor;
+      renderItemSelectorButtons();
+      refreshAllCustomDropdowns();
+      renderAvatarPreview();
+    }
+
+    function updateAvatarFromControls() {
+      currentAvatarCfg.hair = document.getElementById('ctrl-hair').value;
+      currentAvatarCfg.eyes = document.getElementById('ctrl-eyes').value;
+      currentAvatarCfg.outfit = document.getElementById('ctrl-outfit').value;
+      currentAvatarCfg.notes = document.getElementById('ctrl-notes').checked;
+      renderAvatarPreview();
+    }
+
+    function renderAvatarPreview() {
+      const container = document.getElementById('avatar-preview-svg');
+      if (container) {
+        container.innerHTML = generateSquareCharacterSVG(currentAvatarCfg);
+      }
+    }
+
+    function applyCustomAvatarAsProfile() {
+      const customName = (document.getElementById('avatar-name-input').value || '').trim() || 'Detective Armonía';
+      customProfileDetective = {
+        id: 'custom_player',
+        name: customName,
+        shortName: customName.split(' ')[0],
+        age: 'Detective',
+        country: 'Investigador Fandom ⭐',
+        role: 'Detective Personalizado',
+        traits: 'Creativo, astuto y observador',
+        desc: 'Tu detective creado a medida en Expedientes Armonía.',
+        color: currentAvatarCfg.outfitColor || '#4CAF50',
+        badgeBg: 'bg-green-100 text-green-900',
+        avatarConfig: { ...currentAvatarCfg }
+      };
+      renderGameSetupChoices();
+      showToast(`🕵️‍♀️ ¡Perfil guardado! "${customName}" ya está disponible para jugar en el Cluedo Online.`, 'success');
+    }
+
+    // Galería del Concurso de Dibujos Hechos a Mano
+    const GALLERY_ENTRIES = [
+      {
+        charName: 'Kenji Takahashi',
+        kidInfo: 'Mateo L. · 9 años · Madrid, España',
+        instrument: '🥁 Taiko Japonés',
+        story: 'Toca el tambor taiko en el Aula de Percusión y descubre pistas siguiendo el pulso del metrónomo.',
+        svgFallback: generateSquareCharacterSVG({
+          skin: '#F5D2B8',
+          hair: 'spiky',
+          hairColor: '#231F20',
+          eyes: 'determined',
+          outfit: 'sweater_pants',
+          outfitColor: '#00838F',
+          item: 'tambor',
+          notes: true
+        })
+      },
+      {
+        charName: 'Amélie Laurent',
+        kidInfo: 'Clara V. · 11 años · París, Francia',
+        instrument: '🪈 Flauta Travesera',
+        story: 'Siempre lleva su lupa y su flauta para investigar los pasillos secretos de la Biblioteca Musical.',
+        svgFallback: generateSquareCharacterSVG({
+          skin: '#F3C9AC',
+          hair: 'ponytail',
+          hairColor: '#D6A456',
+          eyes: 'glasses',
+          outfit: 'uniform_skirt',
+          outfitColor: '#9E2A5B',
+          item: 'flauta',
+          notes: true
+        })
+      }
+    ];
+
+    function previewUploadedDrawing(event) {
+      const file = event.target.files && event.target.files[0];
+      if (!file) return;
+      const reader = new FileReader();
+      reader.onload = (e) => {
+        uploadedDrawingDataUrl = e.target.result;
+        const box = document.getElementById('comp-drawing-preview-box');
+        const img = document.getElementById('comp-drawing-preview-img');
+        if (img) img.src = uploadedDrawingDataUrl;
+        if (box) box.classList.remove('hidden');
+      };
+      reader.readAsDataURL(file);
+    }
+
+    function submitDrawingContest(event) {
+      event.preventDefault();
+      const kidName = document.getElementById('comp-kid-name').value.trim();
+      const kidAge = document.getElementById('comp-kid-age').value.trim();
+      const kidOrigin = document.getElementById('comp-kid-origin').value.trim();
+      const charName = document.getElementById('comp-char-name').value.trim();
+      const instrument = document.getElementById('comp-char-instrument').value;
+      const story = document.getElementById('comp-char-story').value.trim();
+
+      GALLERY_ENTRIES.unshift({
+        charName,
+        kidInfo: `${kidName} · ${kidAge} años · ${kidOrigin}`,
+        instrument: `🎵 ${instrument}`,
+        story,
+        imageUrl: uploadedDrawingDataUrl
+      });
+
+      renderInitialGallery();
+      event.target.reset();
+      uploadedDrawingDataUrl = null;
+      const box = document.getElementById('comp-drawing-preview-box');
+      if (box) box.classList.add('hidden');
+      showToast(`🌟 ¡Candidatura enviada! "${charName}" ya aparece en la galería oficial del concurso.`, 'success');
+    }
+
+    function renderInitialGallery() {
+      const grid = document.getElementById('avatar-gallery-grid');
+      if (!grid) return;
+      grid.innerHTML = GALLERY_ENTRIES.map(entry => `
+        <div class="bg-white rounded-2xl p-4 border-2 border-pergamino shadow-sm flex flex-col justify-between space-y-2.5">
+          <div class="h-36 flex items-center justify-center bg-crema rounded-xl p-2 border border-pergamino/60 overflow-hidden">
+            ${entry.imageUrl
+              ? `<img src="${entry.imageUrl}" alt="${entry.charName}" class="max-h-full max-w-full object-contain rounded-lg" />`
+              : `<div class="w-24 h-32 flex items-center justify-center">${entry.svgFallback}</div>`
+            }
+          </div>
+          <div class="space-y-1">
+            <span class="inline-block text-[10px] font-extrabold bg-amber-100 text-amber-900 px-2.5 py-0.5 rounded-full">${entry.instrument}</span>
+            <h5 class="font-display font-bold text-base text-madera leading-tight">${entry.charName}</h5>
+            <p class="text-[11px] font-bold text-lupaOscuro">Autor/a: ${entry.kidInfo}</p>
+            <p class="text-xs text-madera/85 leading-relaxed">${entry.story}</p>
+          </div>
+        </div>
+      `).join('');
+    }
+
+    // =========================================================================
+    // 8. INICIALIZACIÓN AL CARGAR LA PÁGINA
+    // =========================================================================
+    window.onload = function () {
+      ['header-logo-melodigma', 'hero-logo-melodigma', 'footer-logo-melodigma'].forEach(id => {
+        const el = document.getElementById(id);
+        if (el) el.innerHTML = SVG_LOGO_MELODIGMA;
+      });
+      ['header-logo-estel', 'hero-logo-estel', 'footer-logo-estel'].forEach(id => {
+        const el = document.getElementById(id);
+        if (el) el.innerHTML = SVG_LOGO_ESTEL;
+      });
+
+      renderInicioContent();
+      renderGameSetupChoices();
+      initAvatarStudio();
+    };
+  </script>
+</body>
+</html>
