@@ -1,0 +1,1740 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Tienda Oficial Melodigma · Merchandising Escuela Armonía | Estel</title>
+
+  <!-- Tailwind CSS -->
+  <script src="https://cdn.tailwindcss.com"></script>
+
+  <!-- Tipografías del Universo Melodigma -->
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Fredoka:wght@400;500;600;700&family=Nunito:wght@400;600;700;800&family=Playfair+Display:ital,wght@0,700;1,600&display=swap" rel="stylesheet" />
+
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          colors: {
+            crema: '#E5E8F2',
+            cremaCard: '#F7F8FC',
+            pergamino: '#9AA3C2',
+            madera: '#1E2242',
+            maderaSuave: '#48507A',
+            lupa: '#4CAF50',
+            lupaOscuro: '#388E3C',
+            dorado: '#FFD54F',
+            doradoOscuro: '#FBC02D',
+            celeste: '#4DD0E1',
+            coral: '#F48FB1',
+            terracota: '#5C54A4'
+          },
+          fontFamily: {
+            display: ['Fredoka', 'cursive', 'sans-serif'],
+            body: ['Nunito', 'sans-serif'],
+            serif: ['Playfair Display', 'serif']
+          },
+          boxShadow: {
+            card: '0 10px 24px -4px rgba(24, 28, 58, 0.16)',
+            btn: '0 4px 0px rgba(24, 28, 58, 0.30)'
+          }
+        }
+      }
+    };
+  </script>
+
+  <style>
+    body {
+      background-color: #D7DCEB;
+      background-image:
+        radial-gradient(circle at 12% 18%, rgba(76, 86, 158, 0.16) 0px, transparent 170px),
+        radial-gradient(circle at 88% 12%, rgba(99, 102, 241, 0.14) 0px, transparent 190px),
+        radial-gradient(circle at 82% 85%, rgba(77, 208, 225, 0.14) 0px, transparent 180px),
+        radial-gradient(circle at 18% 82%, rgba(76, 175, 80, 0.10) 0px, transparent 160px);
+      color: #1E2242;
+      font-family: 'Nunito', sans-serif;
+    }
+
+    h1, h2, h3, h4, .font-display {
+      font-family: 'Fredoka', cursive, sans-serif;
+    }
+
+    .storybook-plaque {
+      background: linear-gradient(180deg, #2B315E 0%, #1E2242 100%);
+      border: 3px solid #7E88B8;
+      box-shadow: 0 8px 20px rgba(20, 24, 52, 0.25);
+    }
+
+    .letter-paper {
+      background: linear-gradient(180deg, #F4F6FB 0%, #E8ECF6 100%);
+      border: 4px solid #9AA3C2;
+      box-shadow: 0 10px 24px -4px rgba(24, 28, 58, 0.16);
+    }
+
+    @keyframes floatNote {
+      0%, 100% { transform: translateY(0px) rotate(-3deg); }
+      50% { transform: translateY(-7px) rotate(3deg); }
+    }
+    .animate-float {
+      animation: floatNote 3.5s ease-in-out infinite;
+    }
+
+    @keyframes popIn {
+      0% { transform: scale(0.95); opacity: 0; }
+      100% { transform: scale(1); opacity: 1; }
+    }
+    .animate-pop {
+      animation: popIn 0.26s cubic-bezier(0.175, 0.885, 0.32, 1.275) forwards;
+    }
+
+    /* Logos flotantes con halo luminoso estilo original */
+    .logo-neon-melodigma {
+      filter:
+        drop-shadow(0 0 1.5px #FFFFFF)
+        drop-shadow(0 0 6px rgba(105, 240, 174, 0.65))
+        drop-shadow(0 3px 6px rgba(10, 14, 34, 0.7));
+      transition: transform 0.2s ease, filter 0.2s ease;
+    }
+    .logo-neon-melodigma:hover {
+      filter:
+        drop-shadow(0 0 2px #FFFFFF)
+        drop-shadow(0 0 11px rgba(105, 240, 174, 0.9))
+        drop-shadow(0 4px 10px rgba(10, 14, 34, 0.8));
+    }
+    .logo-neon-estel {
+      filter:
+        drop-shadow(0 0 1.5px #FFFFFF)
+        drop-shadow(0 0 6px rgba(77, 208, 225, 0.6))
+        drop-shadow(0 3px 6px rgba(10, 14, 34, 0.7));
+      transition: transform 0.2s ease, filter 0.2s ease;
+    }
+    .logo-neon-estel:hover {
+      filter:
+        drop-shadow(0 0 2px #FFFFFF)
+        drop-shadow(0 0 11px rgba(255, 213, 79, 0.85))
+        drop-shadow(0 4px 10px rgba(10, 14, 34, 0.8));
+    }
+
+    /* Desplegable personalizado Melodigma */
+    .melodigma-dropdown {
+      position: relative;
+      width: 100%;
+    }
+    .melodigma-dropdown-btn {
+      width: 100%;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 0.5rem;
+      background-color: #F7F8FC;
+      border: 2.5px solid #9AA3C2;
+      border-radius: 1rem;
+      color: #1E2242;
+      font-family: 'Fredoka', cursive, sans-serif;
+      font-weight: 600;
+      font-size: 0.875rem;
+      padding: 0.55rem 0.95rem;
+      min-height: 2.65rem;
+      box-shadow: 0 3px 0 rgba(30, 34, 66, 0.16);
+      cursor: pointer;
+      text-align: left;
+      transition: all 0.18s ease;
+    }
+    .melodigma-dropdown-btn:hover {
+      border-color: #FBC02D;
+      background-color: #EEF1FA;
+      transform: translateY(-1px);
+    }
+    .melodigma-dropdown.open .melodigma-dropdown-btn {
+      border-color: #4CAF50;
+      background-color: #FFFFFF;
+      box-shadow: 0 0 0 3px rgba(76, 175, 80, 0.22), 0 3px 0 rgba(76, 175, 80, 0.3);
+    }
+    .melodigma-dropdown-arrow {
+      flex-shrink: 0;
+      transition: transform 0.2s ease;
+    }
+    .melodigma-dropdown.open .melodigma-dropdown-arrow {
+      transform: rotate(180deg);
+    }
+    .melodigma-dropdown-menu {
+      position: absolute;
+      top: calc(100% + 6px);
+      left: 0;
+      right: 0;
+      z-index: 60;
+      background-color: #F7F8FC;
+      border: 2.5px solid #9AA3C2;
+      border-radius: 1.1rem;
+      padding: 0.35rem;
+      box-shadow: 0 12px 28px -4px rgba(24, 28, 58, 0.24), 0 4px 0 #9AA3C2;
+      max-height: 240px;
+      overflow-y: auto;
+      display: none;
+      animation: popIn 0.18s cubic-bezier(0.175, 0.885, 0.32, 1.275) forwards;
+    }
+    .melodigma-dropdown.open .melodigma-dropdown-menu {
+      display: block;
+    }
+    .melodigma-dropdown-item {
+      width: 100%;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 0.5rem;
+      padding: 0.5rem 0.75rem;
+      border-radius: 0.75rem;
+      font-family: 'Nunito', sans-serif;
+      font-weight: 700;
+      font-size: 0.85rem;
+      color: #1E2242;
+      text-align: left;
+      cursor: pointer;
+      transition: background-color 0.14s ease, transform 0.12s ease;
+    }
+    .melodigma-dropdown-item:hover {
+      background-color: #E3E7F5;
+      transform: translateX(2px);
+    }
+    .melodigma-dropdown-item.selected {
+      background-color: #E8F5E9;
+      color: #2E7D32;
+      font-weight: 800;
+    }
+
+    ::-webkit-scrollbar { width: 8px; height: 8px; }
+    ::-webkit-scrollbar-track { background: #D7DCEB; }
+    ::-webkit-scrollbar-thumb { background: #8D97BA; border-radius: 9999px; }
+  </style>
+</head>
+<body class="min-h-screen flex flex-col overflow-x-hidden selection:bg-dorado selection:text-madera">
+
+  <!-- NOTIFICACIONES FLOTANTES (TOAST) -->
+  <div id="toast-container" class="fixed bottom-5 right-5 z-[70] flex flex-col gap-2 max-w-sm pointer-events-none"></div>
+
+  <!-- BARRA PROMOCIONAL SUPERIOR -->
+  <div class="bg-[#141730] text-indigo-100 text-center text-xs font-bold py-1.5 px-3 border-b border-[#343C70]">
+    🚚 Envío GRATIS a partir de <span class="text-dorado">50 €</span> · Usa el código <span class="bg-[#2E3566] text-dorado px-2 py-0.5 rounded-md border border-dorado/40">ARMONIA10</span> para -10% en tu pedido
+  </div>
+
+  <!-- CABECERA PRINCIPAL (AZUL VIOLÁCEO PROFUNDO) -->
+  <header class="sticky top-0 z-40 bg-[#1E2242]/95 backdrop-blur-md border-b-4 border-[#4A5388] shadow-md text-white">
+    <div class="max-w-7xl mx-auto px-3 sm:px-6 py-2.5 flex items-center justify-between gap-3">
+
+      <!-- Logos Flotantes Transparentes: Melodigma y Estel -->
+      <div class="flex items-center gap-3 sm:gap-5">
+        <button onclick="switchSection('tienda')" class="flex items-center group focus:outline-none text-left bg-transparent p-0" title="Ir a la Tienda de Melodigma">
+          <div id="header-logo-melodigma" class="w-32 sm:w-40 h-11 sm:h-12 flex items-center justify-center logo-neon-melodigma group-hover:scale-105"></div>
+        </button>
+
+        <div class="hidden md:flex items-center gap-2.5 pl-4 border-l-2 border-[#4A5388]">
+          <span class="text-[11px] font-bold uppercase tracking-wider text-indigo-200">Tienda Oficial</span>
+          <div id="header-logo-estel" class="w-20 h-11 flex items-center justify-center logo-neon-estel hover:scale-105"></div>
+        </div>
+      </div>
+
+      <!-- Botones de Acción: Favoritos, Carrito y Menú Lateral -->
+      <div class="flex items-center gap-2 sm:gap-2.5">
+        <button onclick="switchSection('favoritos')" title="Mis Favoritos"
+          class="relative px-3 py-2.5 rounded-2xl bg-[#2E3566] hover:bg-coral hover:text-madera text-white border-2 border-[#7E88B8] font-display font-bold text-sm shadow-btn transition flex items-center gap-1.5">
+          <span>❤️</span>
+          <span class="hidden sm:inline">Favoritos</span>
+          <span id="header-wishlist-count" class="px-1.5 py-0.5 rounded-full bg-rose-500 text-white text-[11px] font-extrabold leading-none">0</span>
+        </button>
+
+        <button onclick="openCartDrawer()" title="Abrir Carrito"
+          class="relative px-3 sm:px-4 py-2.5 rounded-2xl bg-lupa hover:bg-lupaOscuro text-white border-2 border-emerald-200/60 font-display font-bold text-sm sm:text-base shadow-btn transition flex items-center gap-1.5">
+          <span>🛒</span>
+          <span class="hidden sm:inline">Carrito</span>
+          <span id="header-cart-count" class="px-2 py-0.5 rounded-full bg-[#1E2242] text-dorado text-xs font-extrabold leading-none">0</span>
+        </button>
+
+        <button onclick="toggleSideMenu()" id="menu-toggle-btn" aria-label="Abrir menú de navegación" aria-expanded="false"
+          class="px-3.5 sm:px-4 py-2.5 rounded-2xl bg-[#2E3566] hover:bg-dorado text-white hover:text-madera border-2 border-[#7E88B8] font-display font-bold text-sm sm:text-base shadow-btn transition flex items-center gap-2">
+          <svg class="w-5 h-5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.8" stroke-linecap="round" stroke-linejoin="round">
+            <line x1="3" y1="6" x2="21" y2="6"></line>
+            <line x1="3" y1="12" x2="21" y2="12"></line>
+            <line x1="3" y1="18" x2="21" y2="18"></line>
+          </svg>
+          <span class="hidden xs:inline">Menú</span>
+        </button>
+      </div>
+    </div>
+  </header>
+
+  <!-- FONDO OSCURO COMPARTIDO PARA DRAWERS -->
+  <div id="drawer-backdrop" onclick="closeAllDrawers()" class="hidden fixed inset-0 z-50 bg-[#101329]/65 backdrop-blur-xs transition-opacity"></div>
+
+  <!-- MENÚ LATERAL DESLIZABLE (MISMA ESTÉTICA QUE LA WEB PRINCIPAL) -->
+  <aside id="side-menu-drawer" aria-label="Menú lateral de la tienda"
+    class="fixed top-0 right-0 z-50 h-full w-72 sm:w-80 bg-[#1E2242] border-l-4 border-[#4A5388] shadow-2xl transform translate-x-full transition-transform duration-300 ease-out flex flex-col justify-between p-5 text-white">
+    <div class="space-y-6 overflow-y-auto">
+      <div class="flex items-center justify-between border-b-2 border-[#4A5388] pb-3">
+        <div class="flex items-center gap-2">
+          <span class="text-xl">🛍️</span>
+          <span class="font-display font-bold text-lg text-white">Tienda Armonía</span>
+        </div>
+        <button onclick="closeAllDrawers()" aria-label="Cerrar menú"
+          class="w-9 h-9 rounded-xl bg-[#2E3566] hover:bg-dorado hover:text-madera border border-[#7E88B8] flex items-center justify-center font-bold text-white transition">
+          ✕
+        </button>
+      </div>
+
+      <nav class="flex flex-col gap-2.5">
+        <button onclick="switchSection('tienda'); closeAllDrawers();" id="nav-tienda"
+          class="nav-btn w-full px-4 py-3 rounded-2xl font-display font-semibold text-base transition flex items-center gap-3 bg-lupa text-white shadow-btn text-left">
+          <span>🛍️</span> <span>Catálogo Completo</span>
+        </button>
+        <button onclick="switchSection('colecciones'); closeAllDrawers();" id="nav-colecciones"
+          class="nav-btn w-full px-4 py-3 rounded-2xl font-display font-semibold text-base transition flex items-center gap-3 bg-[#FFF3DF] text-madera hover:bg-dorado/70 text-left">
+          <span>✨</span> <span>Colecciones y Packs</span>
+        </button>
+        <button onclick="switchSection('favoritos'); closeAllDrawers();" id="nav-favoritos"
+          class="nav-btn w-full px-4 py-3 rounded-2xl font-display font-semibold text-base transition flex items-center justify-between bg-[#FFF3DF] text-madera hover:bg-dorado/70 text-left">
+          <span class="flex items-center gap-3"><span>❤️</span> <span>Mis Favoritos</span></span>
+          <span id="menu-wishlist-badge" class="px-2 py-0.5 rounded-full bg-rose-500 text-white text-xs font-extrabold">0</span>
+        </button>
+        <button onclick="switchSection('info'); closeAllDrawers();" id="nav-info"
+          class="nav-btn w-full px-4 py-3 rounded-2xl font-display font-semibold text-base transition flex items-center gap-3 bg-[#FFF3DF] text-madera hover:bg-dorado/70 text-left">
+          <span>📦</span> <span>Envíos, Tallas y FAQ</span>
+        </button>
+      </nav>
+
+      <!-- Accesos rápidos por categoría -->
+      <div class="pt-3 border-t-2 border-[#4A5388] space-y-2">
+        <p class="text-[11px] font-extrabold uppercase tracking-wider text-indigo-200 px-1">Atajos de Categoría</p>
+        <div class="grid grid-cols-2 gap-2">
+          <button onclick="quickFilterCategory('ropa')" class="px-3 py-2 rounded-xl bg-[#292F59] hover:bg-dorado hover:text-madera text-xs font-bold transition text-left">👕 Ropa</button>
+          <button onclick="quickFilterCategory('juegos')" class="px-3 py-2 rounded-xl bg-[#292F59] hover:bg-dorado hover:text-madera text-xs font-bold transition text-left">🎲 Juegos</button>
+          <button onclick="quickFilterCategory('accesorios')" class="px-3 py-2 rounded-xl bg-[#292F59] hover:bg-dorado hover:text-madera text-xs font-bold transition text-left">🎒 Accesorios</button>
+          <button onclick="quickFilterCategory('laminas')" class="px-3 py-2 rounded-xl bg-[#292F59] hover:bg-dorado hover:text-madera text-xs font-bold transition text-left">🖼️ Láminas</button>
+        </div>
+      </div>
+
+      <!-- Enlace de vuelta a la web principal (placeholder) -->
+      <div class="pt-2">
+        <a href="index.html" class="w-full px-4 py-2.5 rounded-2xl bg-[#292F59] hover:bg-celeste hover:text-madera border border-[#4A5388] font-display font-bold text-xs flex items-center justify-center gap-2 transition">
+          <span>🏫</span> Volver a la Web Principal
+        </a>
+      </div>
+    </div>
+
+    <div class="bg-[#292F59] rounded-2xl p-3.5 border-2 border-[#4A5388] text-center space-y-1 mt-4">
+      <p class="font-display font-bold text-xs text-dorado">Melodigma Shop · Productora Estel</p>
+      <p class="text-[11px] text-indigo-200 font-semibold">Merchandising de la Escuela Armonía</p>
+    </div>
+  </aside>
+
+  <!-- PANEL LATERAL DEL CARRITO -->
+  <aside id="cart-drawer" aria-label="Carrito de compra"
+    class="fixed top-0 right-0 z-50 h-full w-80 sm:w-[400px] bg-[#1E2242] border-l-4 border-[#4A5388] shadow-2xl transform translate-x-full transition-transform duration-300 ease-out flex flex-col text-white">
+    <div class="p-5 border-b-2 border-[#4A5388] flex items-center justify-between">
+      <div class="flex items-center gap-2">
+        <span class="text-2xl">🛒</span>
+        <h2 class="font-display font-bold text-xl text-white">Tu Carrito</h2>
+      </div>
+      <button onclick="closeAllDrawers()" aria-label="Cerrar carrito"
+        class="w-9 h-9 rounded-xl bg-[#2E3566] hover:bg-dorado hover:text-madera border border-[#7E88B8] flex items-center justify-center font-bold transition">
+        ✕
+      </button>
+    </div>
+
+    <!-- Barra de progreso para envío gratis -->
+    <div class="px-5 py-3 bg-[#262C54] border-b border-[#4A5388] space-y-1.5">
+      <div class="flex items-center justify-between text-xs font-bold">
+        <span id="shipping-progress-text" class="text-indigo-100">Te faltan 50,00 € para envío gratis</span>
+        <span>🚚</span>
+      </div>
+      <div class="w-full h-2.5 bg-[#141730] rounded-full overflow-hidden border border-[#4A5388]">
+        <div id="shipping-progress-bar" class="h-full bg-gradient-to-r from-celeste to-lupa transition-all duration-300" style="width: 0%"></div>
+      </div>
+    </div>
+
+    <!-- Lista de artículos -->
+    <div id="cart-items-list" class="flex-grow overflow-y-auto p-4 space-y-3"></div>
+
+    <!-- Código promocional y totales -->
+    <div class="p-5 border-t-2 border-[#4A5388] bg-[#191D3A] space-y-3">
+      <div class="flex gap-2">
+        <input id="promo-input" type="text" placeholder="Código (ej. ARMONIA10)"
+          class="flex-grow px-3 py-2 rounded-xl bg-[#292F59] border border-[#4A5388] text-xs font-bold text-white placeholder-indigo-300 focus:outline-none focus:border-dorado uppercase" />
+        <button onclick="applyPromoCode()" class="px-3.5 py-2 rounded-xl bg-dorado hover:bg-amber-400 text-madera font-display font-bold text-xs transition">
+          Aplicar
+        </button>
+      </div>
+
+      <div class="space-y-1 text-xs font-semibold text-indigo-200">
+        <div class="flex justify-between">
+          <span>Subtotal</span>
+          <span id="cart-subtotal">0,00 €</span>
+        </div>
+        <div id="cart-discount-row" class="hidden flex justify-between text-emerald-300 font-bold">
+          <span id="cart-discount-label">Descuento</span>
+          <span id="cart-discount-val">-0,00 €</span>
+        </div>
+        <div class="flex justify-between">
+          <span>Envío estándar</span>
+          <span id="cart-shipping">4,95 €</span>
+        </div>
+        <div class="flex justify-between font-display font-bold text-lg text-white pt-2 border-t border-[#4A5388]">
+          <span>Total</span>
+          <span id="cart-total" class="text-dorado">0,00 €</span>
+        </div>
+      </div>
+
+      <button onclick="openCheckoutModal()" class="w-full py-3 rounded-2xl bg-lupa hover:bg-lupaOscuro text-white font-display font-bold text-base shadow-btn transition">
+        Tramitar Pedido →
+      </button>
+    </div>
+  </aside>
+
+  <!-- CONTENIDO PRINCIPAL -->
+  <main class="flex-grow max-w-7xl w-full mx-auto px-3 sm:px-6 py-6 sm:py-8 space-y-10">
+
+    <!-- ===================================================================== -->
+    <!-- SECCIÓN 1: TIENDA / CATÁLOGO COMPLETO                                 -->
+    <!-- ===================================================================== -->
+    <section id="sec-tienda" class="space-y-8 animate-pop">
+
+      <!-- HERO DE LA TIENDA -->
+      <div class="relative rounded-3xl bg-gradient-to-br from-[#EDEFF7] via-[#DFE4F2] to-[#CFD6EA] border-4 border-pergamino p-6 sm:p-10 shadow-card overflow-hidden">
+        <span class="hidden sm:block absolute top-5 left-8 text-3xl text-indigo-900/25 animate-float">♪</span>
+        <span class="hidden sm:block absolute top-8 right-12 text-4xl text-celeste/60 animate-float" style="animation-delay: 0.8s">♫</span>
+        <span class="hidden sm:block absolute bottom-6 left-1/2 text-3xl text-lupa/40 animate-float" style="animation-delay: 1.4s">♩</span>
+
+        <div class="grid grid-cols-1 lg:grid-cols-12 gap-8 items-center relative z-10">
+          <!-- Placa y Texto -->
+          <div class="lg:col-span-7 space-y-5 flex flex-col items-center lg:items-start text-center lg:text-left">
+            <div class="inline-flex items-center gap-2 bg-[#1E2242] text-white border-2 border-dorado px-4 py-1.5 rounded-full shadow-sm">
+              <span>✨</span>
+              <span class="font-display font-bold text-xs sm:text-sm text-dorado uppercase tracking-wide">
+                Colección Oficial · Temporada 1
+              </span>
+            </div>
+
+            <div class="storybook-plaque rounded-3xl px-6 py-5 w-full max-w-xl">
+              <h1 class="text-3xl sm:text-5xl font-bold text-white leading-tight text-center">
+                TIENDA OFICIAL
+                <span class="block text-lg sm:text-xl font-serif italic text-dorado my-1">— de la —</span>
+                ESCUELA ARMONÍA
+              </h1>
+            </div>
+
+            <p class="text-base sm:text-lg text-madera/90 leading-relaxed font-semibold max-w-2xl">
+              Lorem ipsum dolor sit amet, consectetur adipiscing elit. Llévate el misterio musical a casa con sudaderas bordadas, el juego de mesa edición coleccionista, bolsas tote y accesorios inspirados en los <strong class="text-terracota">6 sospechosos</strong>.
+            </p>
+
+            <div class="flex flex-wrap justify-center lg:justify-start gap-3">
+              <a href="#catalogo-bloque" class="px-6 py-3.5 rounded-2xl bg-lupa hover:bg-lupaOscuro text-white font-display font-bold text-base sm:text-lg shadow-btn transition transform hover:-translate-y-0.5 flex items-center gap-2">
+                <span>🛍️</span> Explorar Catálogo
+              </a>
+              <button onclick="switchSection('colecciones')" class="px-6 py-3.5 rounded-2xl bg-dorado hover:bg-amber-400 text-madera font-display font-bold text-base sm:text-lg shadow-btn transition transform hover:-translate-y-0.5 flex items-center gap-2">
+                <span>🎁</span> Ver Packs Ahorro
+              </button>
+              <button onclick="switchSection('info')" class="px-4 py-3.5 rounded-2xl bg-white hover:bg-celeste/20 text-madera border-2 border-celeste font-display font-semibold text-sm sm:text-base transition flex items-center gap-2">
+                <span>📏</span> Guía de Tallas
+              </button>
+            </div>
+          </div>
+
+          <!-- Producto Destacado en Hero -->
+          <div class="lg:col-span-5">
+            <div class="bg-cremaCard rounded-3xl border-4 border-pergamino p-5 sm:p-6 shadow-card text-center space-y-3 relative">
+              <span class="absolute -top-3.5 right-5 bg-rose-500 text-white font-display font-bold text-xs px-3 py-1 rounded-full shadow">
+                🔥 Ed. Limitada
+              </span>
+              <div class="h-44 rounded-2xl bg-gradient-to-br from-[#FFF3DF] to-[#E5E8F2] border-2 border-dashed border-pergamino flex flex-col items-center justify-center gap-1">
+                <span class="text-7xl drop-shadow">🎲</span>
+                <span class="text-[11px] font-extrabold uppercase text-maderaSuave">Caja Deluxe · 7 a 12 años</span>
+              </div>
+              <div>
+                <h2 class="font-display font-bold text-2xl text-madera">Juego de Mesa Melodigma Deluxe</h2>
+                <p class="text-xs sm:text-sm text-maderaSuave font-semibold mt-1">
+                  Tablero ilustrado, 6 fichas cabeza cuadrada, Sobre Secreto y pin metálico exclusivo.
+                </p>
+              </div>
+              <div class="flex items-center justify-center gap-3 pt-1">
+                <div class="text-left">
+                  <span class="text-xs line-through text-maderaSuave font-bold block">45,00 €</span>
+                  <span class="font-display font-bold text-2xl text-lupaOscuro">36,99 €</span>
+                </div>
+                <button onclick="openProductModal(1)" class="px-4 py-2.5 rounded-2xl bg-crema hover:bg-dorado/60 border-2 border-pergamino text-madera font-display font-bold text-sm transition">
+                  Ver ficha
+                </button>
+                <button onclick="quickAddProduct(1)" class="px-4 py-2.5 rounded-2xl bg-lupa hover:bg-lupaOscuro text-white font-display font-bold text-sm shadow-btn transition">
+                  + Añadir
+                </button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- BARRA DE FILTROS, DESPLEGABLES MELODIGMA Y BUSCADOR -->
+      <div id="catalogo-bloque" class="bg-white rounded-3xl p-4 sm:p-6 border-4 border-pergamino shadow-card space-y-4">
+        <div class="flex flex-wrap items-center justify-between gap-3 border-b-2 border-crema pb-4">
+          <div class="flex flex-wrap gap-2" id="category-pills">
+            <button onclick="setCategory('todos')" data-cat="todos" class="cat-pill px-4 py-2 rounded-2xl font-display font-bold text-xs sm:text-sm bg-madera text-white shadow transition">✨ Todos</button>
+            <button onclick="setCategory('ropa')" data-cat="ropa" class="cat-pill px-4 py-2 rounded-2xl font-display font-bold text-xs sm:text-sm bg-cremaCard text-madera border-2 border-pergamino hover:border-dorado transition">👕 Ropa</button>
+            <button onclick="setCategory('juegos')" data-cat="juegos" class="cat-pill px-4 py-2 rounded-2xl font-display font-bold text-xs sm:text-sm bg-cremaCard text-madera border-2 border-pergamino hover:border-dorado transition">🎲 Juegos y Libros</button>
+            <button onclick="setCategory('accesorios')" data-cat="accesorios" class="cat-pill px-4 py-2 rounded-2xl font-display font-bold text-xs sm:text-sm bg-cremaCard text-madera border-2 border-pergamino hover:border-dorado transition">🎒 Accesorios</button>
+            <button onclick="setCategory('laminas')" data-cat="laminas" class="cat-pill px-4 py-2 rounded-2xl font-display font-bold text-xs sm:text-sm bg-cremaCard text-madera border-2 border-pergamino hover:border-dorado transition">🖼️ Láminas</button>
+            <button onclick="setCategory('coleccionables')" data-cat="coleccionables" class="cat-pill px-4 py-2 rounded-2xl font-display font-bold text-xs sm:text-sm bg-cremaCard text-madera border-2 border-pergamino hover:border-dorado transition">🧸 Coleccionables</button>
+          </div>
+          <span id="results-counter" class="text-xs font-extrabold text-maderaSuave bg-crema px-3 py-1.5 rounded-full border border-pergamino">
+            Mostrando 10 productos
+          </span>
+        </div>
+
+        <div class="grid grid-cols-1 md:grid-cols-12 gap-3 items-center">
+          <!-- Buscador -->
+          <div class="md:col-span-5">
+            <input id="shop-search" type="text" oninput="renderProductGrid()" placeholder="🔍 Buscar sudaderas, pines, violín, lorem ipsum..."
+              class="w-full px-4 py-2.5 rounded-2xl border-2 border-pergamino bg-cremaCard font-bold text-sm text-madera focus:outline-none focus:border-lupa" />
+          </div>
+
+          <!-- Desplegable personalizado: Colección / Personaje -->
+          <div class="md:col-span-4">
+            <div id="dropdown-filter-collection" class="melodigma-dropdown"></div>
+            <input type="hidden" id="filter-collection" value="todas" />
+          </div>
+
+          <!-- Desplegable personalizado: Ordenar por -->
+          <div class="md:col-span-3">
+            <div id="dropdown-filter-sort" class="melodigma-dropdown"></div>
+            <input type="hidden" id="filter-sort" value="featured" />
+          </div>
+        </div>
+      </div>
+
+      <!-- CUADRÍCULA DE PRODUCTOS -->
+      <div id="product-grid" class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6"></div>
+
+      <!-- BLOQUE NEWSLETTER ESTILO CARTA -->
+      <div class="letter-paper rounded-3xl p-6 sm:p-8 flex flex-col md:flex-row items-center justify-between gap-6">
+        <div class="space-y-1.5 text-center md:text-left">
+          <span class="text-xs font-extrabold uppercase tracking-wider text-lupaOscuro bg-green-100 px-3 py-1 rounded-full">Club de Detectives</span>
+          <h3 class="font-display font-bold text-2xl sm:text-3xl text-madera">Consigue un 15% en tu primer pedido secreto</h3>
+          <p class="text-sm text-maderaSuave font-semibold max-w-xl">
+            Lorem ipsum dolor sit amet, consectetur adipiscing elit. Recibe avisos de reposiciones, nuevas cápsulas de personajes y episodios de la webserie.
+          </p>
+        </div>
+        <form onsubmit="subscribeNewsletter(event)" class="flex flex-col sm:flex-row gap-2.5 w-full md:w-auto">
+          <input id="newsletter-email" type="email" required placeholder="tuemail@ejemplo.com"
+            class="px-4 py-3 rounded-2xl border-2 border-pergamino bg-white text-sm font-bold text-madera focus:outline-none focus:border-lupa min-w-[230px]" />
+          <button type="submit" class="px-5 py-3 rounded-2xl bg-madera hover:bg-terracota text-white font-display font-bold text-sm shadow-btn transition whitespace-nowrap">
+            ✉️ Suscribirme
+          </button>
+        </form>
+      </div>
+    </section>
+
+    <!-- ===================================================================== -->
+    <!-- SECCIÓN 2: COLECCIONES POR PERSONAJE Y PACKS AHORRO                   -->
+    <!-- ===================================================================== -->
+    <section id="sec-colecciones" class="hidden space-y-8 animate-pop">
+      <div class="bg-white rounded-3xl p-6 sm:p-8 border-4 border-pergamino shadow-card space-y-6">
+        <div class="border-b-2 border-pergamino pb-4">
+          <span class="text-xs font-extrabold uppercase tracking-wider text-terracota bg-amber-100 px-3 py-1 rounded-full">Cápsulas Temáticas</span>
+          <h2 class="text-2xl sm:text-3xl font-bold text-madera mt-1">Explora por Colección de la Escuela Armonía</h2>
+          <p class="text-sm text-maderaSuave font-semibold">
+            Haz clic en cualquier colección para filtrar el catálogo automáticamente con sus prendas y accesorios.
+          </p>
+        </div>
+
+        <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-5">
+          <button onclick="jumpToCollection('aurora')" class="bg-cremaCard hover:bg-amber-50 rounded-3xl p-5 border-3 border-pergamino hover:border-dorado text-left space-y-2 transition shadow-sm">
+            <div class="flex items-center justify-between">
+              <span class="text-3xl">🎻</span>
+              <span class="text-xs font-extrabold bg-amber-100 text-amber-900 px-2.5 py-1 rounded-full">Línea Principal</span>
+            </div>
+            <h3 class="font-display font-bold text-xl text-madera">Leyenda de "La Aurora"</h3>
+            <p class="text-xs text-maderaSuave font-semibold">Lorem ipsum dolor sit amet, ediciones doradas del juego de mesa, pines y láminas.</p>
+          </button>
+
+          <button onclick="jumpToCollection('luana')" class="bg-cremaCard hover:bg-green-50 rounded-3xl p-5 border-3 border-pergamino hover:border-lupa text-left space-y-2 transition shadow-sm">
+            <div class="flex items-center justify-between">
+              <span class="text-3xl">🥁</span>
+              <span class="text-xs font-extrabold bg-green-100 text-green-900 px-2.5 py-1 rounded-full">🇧🇷 Luana</span>
+            </div>
+            <h3 class="font-display font-bold text-xl text-madera">Ritmo de Percusión</h3>
+            <p class="text-xs text-maderaSuave font-semibold">Sudaderas verdes con nota musical, parches bordados y mochilas urbanas.</p>
+          </button>
+
+          <button onclick="jumpToCollection('emese')" class="bg-cremaCard hover:bg-purple-50 rounded-3xl p-5 border-3 border-pergamino hover:border-terracota text-left space-y-2 transition shadow-sm">
+            <div class="flex items-center justify-between">
+              <span class="text-3xl">🔍</span>
+              <span class="text-xs font-extrabold bg-purple-100 text-purple-900 px-2.5 py-1 rounded-full">🇭🇺 Emese</span>
+            </div>
+            <h3 class="font-display font-bold text-xl text-madera">Club de Enigmas</h3>
+            <p class="text-xs text-maderaSuave font-semibold">Libretas de detective, bolsas tote violetas y estuches escolares.</p>
+          </button>
+        </div>
+      </div>
+
+      <!-- Packs Ahorro -->
+      <div class="bg-white rounded-3xl p-6 sm:p-8 border-4 border-pergamino shadow-card space-y-5">
+        <div>
+          <span class="text-xs font-extrabold uppercase tracking-wider text-lupaOscuro bg-green-100 px-3 py-1 rounded-full">Ahorra hasta un 25%</span>
+          <h2 class="text-2xl sm:text-3xl font-bold text-madera mt-1">Packs Oficiales para Regalar</h2>
+        </div>
+
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+          <div class="bg-crema rounded-3xl p-6 border-2 border-pergamino flex flex-col justify-between space-y-4">
+            <div class="space-y-2">
+              <div class="flex items-center justify-between">
+                <span class="text-4xl">🎁</span>
+                <span class="px-3 py-1 rounded-full bg-rose-500 text-white font-display font-bold text-xs">AHORRA 18 €</span>
+              </div>
+              <h3 class="font-display font-bold text-2xl text-madera">Pack Detective Principiante</h3>
+              <p class="text-sm text-madera/85 font-semibold">
+                Incluye el Juego de Mesa Deluxe + Bolsa Tote Escuela Armonía + Set de 4 Pines Esmaltados + Pegatinas Lorem Ipsum.
+              </p>
+            </div>
+            <div class="flex items-center justify-between pt-3 border-t border-pergamino">
+              <div>
+                <span class="text-xs line-through text-maderaSuave font-bold block">72,99 €</span>
+                <span class="font-display font-bold text-2xl text-lupaOscuro">54,99 €</span>
+              </div>
+              <button onclick="quickAddProduct(9)" class="px-5 py-2.5 rounded-2xl bg-lupa hover:bg-lupaOscuro text-white font-display font-bold text-sm shadow-btn transition">
+                + Añadir Pack
+              </button>
+            </div>
+          </div>
+
+          <div class="bg-crema rounded-3xl p-6 border-2 border-pergamino flex flex-col justify-between space-y-4">
+            <div class="space-y-2">
+              <div class="flex items-center justify-between">
+                <span class="text-4xl">🧥</span>
+                <span class="px-3 py-1 rounded-full bg-dorado text-madera font-display font-bold text-xs">EDICIÓN FAN</span>
+              </div>
+              <h3 class="font-display font-bold text-2xl text-madera">Pack Coleccionista Transmedia</h3>
+              <p class="text-sm text-madera/85 font-semibold">
+                Sudadera Nota Musical + Atlas Sonoro con QR + Lámina A3 Firmada + Peluche Mascota Lupa.
+              </p>
+            </div>
+            <div class="flex items-center justify-between pt-3 border-t border-pergamino">
+              <div>
+                <span class="text-xs line-through text-maderaSuave font-bold block">105,00 €</span>
+                <span class="font-display font-bold text-2xl text-lupaOscuro">79,99 €</span>
+              </div>
+              <button onclick="quickAddProduct(10)" class="px-5 py-2.5 rounded-2xl bg-dorado hover:bg-amber-400 text-madera font-display font-bold text-sm shadow-btn transition">
+                + Añadir Pack
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ===================================================================== -->
+    <!-- SECCIÓN 3: MIS FAVORITOS (WISHLIST)                                   -->
+    <!-- ===================================================================== -->
+    <section id="sec-favoritos" class="hidden space-y-6 animate-pop">
+      <div class="bg-white rounded-3xl p-6 sm:p-8 border-4 border-pergamino shadow-card space-y-6">
+        <div class="flex flex-wrap items-center justify-between gap-3 border-b-2 border-pergamino pb-4">
+          <div>
+            <span class="text-xs font-extrabold uppercase tracking-wider text-rose-700 bg-rose-100 px-3 py-1 rounded-full">Lista de Deseos</span>
+            <h2 class="text-2xl sm:text-3xl font-bold text-madera mt-1">Tus Artículos Favoritos</h2>
+          </div>
+          <button onclick="switchSection('tienda')" class="px-4 py-2 rounded-2xl bg-crema hover:bg-dorado text-madera font-display font-bold text-sm border border-pergamino transition">
+            ← Seguir explorando
+          </button>
+        </div>
+
+        <div id="wishlist-grid" class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6"></div>
+      </div>
+    </section>
+
+    <!-- ===================================================================== -->
+    <!-- SECCIÓN 4: ENVÍOS, GUÍA DE TALLAS Y PREGUNTAS FRECUENTES              -->
+    <!-- ===================================================================== -->
+    <section id="sec-info" class="hidden space-y-8 animate-pop">
+      <!-- Tarjetas de ventajas -->
+      <div class="grid grid-cols-1 sm:grid-cols-3 gap-4">
+        <div class="bg-white rounded-3xl p-5 border-4 border-pergamino shadow-card text-center space-y-1.5">
+          <div class="text-4xl">🚚</div>
+          <h3 class="font-display font-bold text-lg text-madera">Envíos en 24-72h</h3>
+          <p class="text-xs text-maderaSuave font-semibold">Península y Baleares por 4,95 €. ¡Gratis a partir de 50 €!</p>
+        </div>
+        <div class="bg-white rounded-3xl p-5 border-4 border-pergamino shadow-card text-center space-y-1.5">
+          <div class="text-4xl">🌱</div>
+          <h3 class="font-display font-bold text-lg text-madera">Algodón Sostenible</h3>
+          <p class="text-xs text-maderaSuave font-semibold">Lorem ipsum dolor sit amet, prendas suaves y tintas al agua.</p>
+        </div>
+        <div class="bg-white rounded-3xl p-5 border-4 border-pergamino shadow-card text-center space-y-1.5">
+          <div class="text-4xl">🔄</div>
+          <h3 class="font-display font-bold text-lg text-madera">Cambios Fáciles</h3>
+          <p class="text-xs text-maderaSuave font-semibold">30 días naturales para cambios de talla o devoluciones.</p>
+        </div>
+      </div>
+
+      <!-- Guía de Tallas (Estilo Letter Paper) -->
+      <div class="letter-paper rounded-3xl p-6 sm:p-8 space-y-4">
+        <h2 class="font-display font-bold text-2xl text-madera flex items-center gap-2">
+          <span>📏</span> Guía de Tallas (Sudaderas y Camisetas)
+        </h2>
+        <p class="text-sm text-maderaSuave font-semibold">
+          Medidas orientativas en centímetros. Lorem ipsum dolor sit amet, si dudas entre dos tallas te recomendamos elegir la superior para un corte más holgado.
+        </p>
+        <div class="overflow-x-auto">
+          <table class="w-full text-sm text-left bg-white rounded-2xl overflow-hidden border-2 border-pergamino">
+            <thead class="bg-madera text-white font-display">
+              <tr>
+                <th class="px-4 py-3">Talla</th>
+                <th class="px-4 py-3">Edad aprox.</th>
+                <th class="px-4 py-3">Ancho pecho (cm)</th>
+                <th class="px-4 py-3">Largo total (cm)</th>
+              </tr>
+            </thead>
+            <tbody class="divide-y divide-crema font-bold text-madera">
+              <tr><td class="px-4 py-2.5">XS (Infantil)</td><td class="px-4 py-2.5">7 - 8 años</td><td class="px-4 py-2.5">42 cm</td><td class="px-4 py-2.5">54 cm</td></tr>
+              <tr class="bg-cremaCard"><td class="px-4 py-2.5">S (Juvenil)</td><td class="px-4 py-2.5">9 - 11 años</td><td class="px-4 py-2.5">46 cm</td><td class="px-4 py-2.5">60 cm</td></tr>
+              <tr><td class="px-4 py-2.5">M (Adulto / Holgada)</td><td class="px-4 py-2.5">12+ años</td><td class="px-4 py-2.5">52 cm</td><td class="px-4 py-2.5">68 cm</td></tr>
+              <tr class="bg-cremaCard"><td class="px-4 py-2.5">L</td><td class="px-4 py-2.5">Adulto</td><td class="px-4 py-2.5">56 cm</td><td class="px-4 py-2.5">72 cm</td></tr>
+              <tr><td class="px-4 py-2.5">XL</td><td class="px-4 py-2.5">Adulto</td><td class="px-4 py-2.5">60 cm</td><td class="px-4 py-2.5">75 cm</td></tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+
+      <!-- FAQ Acordeón -->
+      <div class="bg-white rounded-3xl p-6 sm:p-8 border-4 border-pergamino shadow-card space-y-4">
+        <h2 class="font-display font-bold text-2xl text-madera flex items-center gap-2">
+          <span>❓</span> Preguntas Frecuentes
+        </h2>
+        <div class="space-y-3" id="faq-accordion">
+          <details class="group bg-cremaCard rounded-2xl border-2 border-pergamino p-4 open:border-lupa">
+            <summary class="font-display font-bold text-base text-madera cursor-pointer list-none flex items-center justify-between">
+              <span>¿Cuánto tarda en llegar mi pedido?</span>
+              <span class="text-lupaOscuro group-open:rotate-180 transition">▼</span>
+            </summary>
+            <p class="text-sm text-maderaSuave font-semibold mt-2">
+              Lorem ipsum dolor sit amet, consectetur adipiscing elit. Preparamos cada caja en 24h y el envío estándar tarda entre 2 y 3 días laborables.
+            </p>
+          </details>
+
+          <details class="group bg-cremaCard rounded-2xl border-2 border-pergamino p-4 open:border-lupa">
+            <summary class="font-display font-bold text-base text-madera cursor-pointer list-none flex items-center justify-between">
+              <span>¿Qué códigos de descuento funcionan en esta plantilla?</span>
+              <span class="text-lupaOscuro group-open:rotate-180 transition">▼</span>
+            </summary>
+            <p class="text-sm text-maderaSuave font-semibold mt-2">
+              Puedes probar <strong class="text-madera">ARMONIA10</strong> para un 10% de descuento o <strong class="text-madera">ESTEL20</strong> para un 20% directamente dentro del carrito lateral.
+            </p>
+          </details>
+
+          <details class="group bg-cremaCard rounded-2xl border-2 border-pergamino p-4 open:border-lupa">
+            <summary class="font-display font-bold text-base text-madera cursor-pointer list-none flex items-center justify-between">
+              <span>¿Puedo envolver mi pedido para regalo?</span>
+              <span class="text-lupaOscuro group-open:rotate-180 transition">▼</span>
+            </summary>
+            <p class="text-sm text-maderaSuave font-semibold mt-2">
+              Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris. Todos los packs incluyen papel de seda ilustrado y tarjeta de la Directora Beatriz.
+            </p>
+          </details>
+        </div>
+      </div>
+    </section>
+
+  </main>
+
+  <!-- MODAL DE DETALLE / VISTA RÁPIDA DE PRODUCTO -->
+  <div id="product-modal" class="hidden fixed inset-0 z-[60] bg-black/65 backdrop-blur-sm flex items-center justify-center p-4">
+    <div class="bg-[#FFFDF9] rounded-3xl max-w-2xl w-full p-5 sm:p-7 border-4 border-dorado shadow-2xl animate-pop max-h-[92vh] overflow-y-auto relative">
+      <button onclick="closeProductModal()" aria-label="Cerrar ficha"
+        class="absolute top-4 right-4 w-9 h-9 rounded-xl bg-crema hover:bg-dorado text-madera font-bold border border-pergamino flex items-center justify-center transition">
+        ✕
+      </button>
+
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-6 items-center">
+        <!-- Preview visual -->
+        <div id="modal-prod-visual" class="h-64 md:h-72 rounded-3xl border-4 border-pergamino flex flex-col items-center justify-center gap-2 p-4 transition-colors">
+          <span id="modal-prod-emoji" class="text-8xl drop-shadow"></span>
+          <span id="modal-prod-variant-label" class="text-xs font-extrabold px-3 py-1 rounded-full bg-white/90 text-madera border border-pergamino"></span>
+        </div>
+
+        <!-- Información y selectores -->
+        <div class="space-y-4">
+          <div class="space-y-1">
+            <div class="flex items-center gap-2">
+              <span id="modal-prod-badge" class="text-[11px] font-extrabold px-2.5 py-0.5 rounded-full"></span>
+              <span id="modal-prod-rating" class="text-xs font-bold text-amber-600"></span>
+            </div>
+            <h3 id="modal-prod-name" class="font-display font-bold text-2xl text-madera leading-tight"></h3>
+            <div class="flex items-baseline gap-2">
+              <span id="modal-prod-price" class="font-display font-bold text-2xl text-lupaOscuro"></span>
+              <span id="modal-prod-oldprice" class="text-sm line-through text-maderaSuave font-bold hidden"></span>
+            </div>
+          </div>
+
+          <p id="modal-prod-desc" class="text-xs sm:text-sm text-madera/85 font-semibold leading-relaxed"></p>
+
+          <!-- Selector de Color / Edición -->
+          <div class="space-y-1.5">
+            <label class="text-xs font-extrabold uppercase text-maderaSuave block">Color / Edición</label>
+            <div id="modal-color-swatches" class="flex flex-wrap gap-2"></div>
+          </div>
+
+          <!-- Selector de Talla -->
+          <div class="space-y-1.5">
+            <label class="text-xs font-extrabold uppercase text-maderaSuave block">Talla</label>
+            <div id="modal-size-buttons" class="flex flex-wrap gap-2"></div>
+          </div>
+
+          <!-- Cantidad y Añadir -->
+          <div class="flex items-center gap-3 pt-2">
+            <div class="flex items-center bg-crema rounded-2xl border-2 border-pergamino px-1">
+              <button onclick="changeModalQty(-1)" class="w-8 h-9 font-bold text-lg text-madera hover:text-lupaOscuro">−</button>
+              <span id="modal-qty-display" class="w-7 text-center font-display font-bold text-base text-madera">1</span>
+              <button onclick="changeModalQty(1)" class="w-8 h-9 font-bold text-lg text-madera hover:text-lupaOscuro">+</button>
+            </div>
+
+            <button onclick="addModalProductToCart()" class="flex-grow py-3 px-4 rounded-2xl bg-lupa hover:bg-lupaOscuro text-white font-display font-bold text-sm sm:text-base shadow-btn transition">
+              🛒 Añadir al Carrito
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- MODAL DE CHECKOUT SIMULADO -->
+  <div id="checkout-modal" class="hidden fixed inset-0 z-[65] bg-black/70 backdrop-blur-sm flex items-center justify-center p-4">
+    <div class="bg-[#FFFDF9] rounded-3xl max-w-lg w-full p-6 border-4 border-lupa shadow-2xl animate-pop max-h-[92vh] overflow-y-auto space-y-4">
+      <div class="flex items-center justify-between border-b-2 border-pergamino pb-3">
+        <h3 class="font-display font-bold text-xl text-madera flex items-center gap-2">
+          <span>💳</span> Finalizar Pedido (Demo)
+        </h3>
+        <button onclick="closeCheckoutModal()" class="text-maderaSuave hover:text-madera font-bold text-lg">✕</button>
+      </div>
+
+      <!-- Formulario -->
+      <form id="checkout-form" onsubmit="submitOrder(event)" class="space-y-3">
+        <div class="grid grid-cols-1 sm:grid-cols-2 gap-3">
+          <div>
+            <label class="block text-xs font-extrabold uppercase text-maderaSuave mb-1">Nombre completo *</label>
+            <input type="text" required placeholder="Ej. Lucía Pérez" class="w-full px-3.5 py-2 rounded-xl border-2 border-pergamino bg-cremaCard text-sm font-bold text-madera focus:outline-none focus:border-lupa" />
+          </div>
+          <div>
+            <label class="block text-xs font-extrabold uppercase text-maderaSuave mb-1">Email *</label>
+            <input type="email" required placeholder="lucia@ejemplo.com" class="w-full px-3.5 py-2 rounded-xl border-2 border-pergamino bg-cremaCard text-sm font-bold text-madera focus:outline-none focus:border-lupa" />
+          </div>
+        </div>
+
+        <div>
+          <label class="block text-xs font-extrabold uppercase text-maderaSuave mb-1">Dirección de envío *</label>
+          <input type="text" required placeholder="Calle Armonía 14, 2ºB" class="w-full px-3.5 py-2 rounded-xl border-2 border-pergamino bg-cremaCard text-sm font-bold text-madera focus:outline-none focus:border-lupa" />
+        </div>
+
+        <div class="grid grid-cols-2 gap-3">
+          <div>
+            <label class="block text-xs font-extrabold uppercase text-maderaSuave mb-1">Ciudad *</label>
+            <input type="text" required placeholder="Salamanca" class="w-full px-3.5 py-2 rounded-xl border-2 border-pergamino bg-cremaCard text-sm font-bold text-madera focus:outline-none focus:border-lupa" />
+          </div>
+          <div>
+            <label class="block text-xs font-extrabold uppercase text-maderaSuave mb-1">Código Postal *</label>
+            <input type="text" required placeholder="37001" class="w-full px-3.5 py-2 rounded-xl border-2 border-pergamino bg-cremaCard text-sm font-bold text-madera focus:outline-none focus:border-lupa" />
+          </div>
+        </div>
+
+        <!-- Método de pago simulado -->
+        <div class="space-y-1.5 pt-1">
+          <label class="block text-xs font-extrabold uppercase text-maderaSuave">Método de pago (Simulado)</label>
+          <div class="grid grid-cols-3 gap-2 text-xs font-bold">
+            <label class="flex items-center justify-center gap-1.5 p-2.5 rounded-xl border-2 border-lupa bg-emerald-50 cursor-pointer">
+              <input type="radio" name="paymethod" value="card" checked class="accent-lupa" /> 💳 Tarjeta
+            </label>
+            <label class="flex items-center justify-center gap-1.5 p-2.5 rounded-xl border-2 border-pergamino bg-cremaCard cursor-pointer">
+              <input type="radio" name="paymethod" value="bizum" class="accent-lupa" /> 📱 Bizum
+            </label>
+            <label class="flex items-center justify-center gap-1.5 p-2.5 rounded-xl border-2 border-pergamino bg-cremaCard cursor-pointer">
+              <input type="radio" name="paymethod" value="paypal" class="accent-lupa" /> 🅿️ PayPal
+            </label>
+          </div>
+        </div>
+
+        <div class="bg-crema rounded-2xl p-3.5 border border-pergamino flex items-center justify-between">
+          <span class="font-display font-bold text-sm text-madera">Total a pagar:</span>
+          <span id="checkout-total-display" class="font-display font-bold text-xl text-lupaOscuro">0,00 €</span>
+        </div>
+
+        <button type="submit" class="w-full py-3 rounded-2xl bg-lupa hover:bg-lupaOscuro text-white font-display font-bold text-base shadow-btn transition">
+          ✅ Confirmar Pedido de Prueba
+        </button>
+      </form>
+
+      <!-- Estado de confirmación -->
+      <div id="checkout-success-box" class="hidden text-center py-4 space-y-4">
+        <div class="text-6xl">🎉📦🎻</div>
+        <h4 class="font-display font-bold text-2xl text-madera">¡Pedido Confirmado!</h4>
+        <p class="text-sm text-maderaSuave font-semibold">
+          Tu pedido ficticio <strong id="fake-order-id" class="text-terracota">#MLD-2026-0000</strong> se ha registrado correctamente. Lorem ipsum dolor sit amet.
+        </p>
+        <button onclick="closeCheckoutModal()" class="px-6 py-3 rounded-2xl bg-madera hover:bg-terracota text-white font-display font-bold text-sm shadow-btn">
+          Volver a la Tienda
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <!-- PIE DE PÁGINA EN AZUL VIOLÁCEO PROFUNDO -->
+  <footer class="bg-[#1E2242] border-t-4 border-[#4A5388] mt-12 py-7 text-white">
+    <div class="max-w-7xl mx-auto px-4 flex flex-col sm:flex-row items-center justify-between gap-4">
+      <div class="flex items-center gap-4">
+        <div id="footer-logo-melodigma" class="w-36 h-12 logo-neon-melodigma"></div>
+        <div id="footer-logo-estel" class="w-20 h-12 logo-neon-estel"></div>
+      </div>
+      <div class="text-center sm:text-right text-xs text-indigo-200 space-y-1">
+        <p class="font-bold text-white">Tienda Oficial · "Melodigma: El Misterio de la Escuela Armonía"</p>
+        <p>Producido por <strong class="text-dorado">Estel</strong> · Plantilla de Merchandising Transmedia · Lorem ipsum dolor sit amet.</p>
+      </div>
+    </div>
+  </footer>
+
+  <!-- ===================================================================== -->
+  <!-- JAVASCRIPT DE LA TIENDA: LOGOS SVG, CATÁLOGO, MODAL, CARRITO Y MENÚ   -->
+  <!-- ===================================================================== -->
+  <script>
+    // 1. LOGOS VECTORIALES ORIGINALES (MELODIGMA Y ESTEL)
+    const SVG_LOGO_MELODIGMA = `
+      <svg viewBox="0 0 280 95" xmlns="http://www.w3.org/2000/svg" class="w-full h-full overflow-visible">
+        <defs>
+          <filter id="glow-melodigma" x="-15%" y="-15%" width="130%" height="130%">
+            <feMorphology in="SourceAlpha" operator="dilate" radius="2.2" result="dilated" />
+            <feFlood flood-color="#FFFFFF" flood-opacity="0.95" result="whiteBorder" />
+            <feComposite in="whiteBorder" in2="dilated" operator="in" result="stickerOutline" />
+            <feMerge>
+              <feMergeNode in="stickerOutline" />
+              <feMergeNode in="SourceGraphic" />
+            </feMerge>
+          </filter>
+        </defs>
+        <g filter="url(#glow-melodigma)">
+          <g stroke="#1E2242" stroke-width="1.4" fill="none" opacity="0.95">
+            <path d="M42 42 Q85 65 125 32 T215 48" />
+            <path d="M44 47 Q87 70 127 37 T217 53" />
+            <path d="M46 52 Q89 75 129 42 T219 58" />
+            <path d="M48 57 Q91 80 131 47 T221 63" />
+          </g>
+          <g fill="#1E2242">
+            <ellipse cx="68" cy="59" rx="4.5" ry="3.2" transform="rotate(-15 68 59)" />
+            <rect x="71.5" y="42" width="1.8" height="17" />
+            <ellipse cx="94" cy="49" rx="4.5" ry="3.2" transform="rotate(-15 94 49)" />
+            <rect x="97.5" y="33" width="1.8" height="16" />
+            <polygon points="97.5,33 111,30 111,34 97.5,37" />
+            <ellipse cx="107" cy="46" rx="4.5" ry="3.2" transform="rotate(-15 107 46)" />
+            <rect x="110.5" y="30" width="1.8" height="16" />
+            <ellipse cx="152" cy="36" rx="5.5" ry="3.8" transform="rotate(-15 152 36)" />
+            <rect x="156.5" y="16" width="2" height="20" />
+            <ellipse cx="176" cy="42" rx="5.5" ry="3.8" transform="rotate(-15 176 42)" />
+            <rect x="180.5" y="21" width="2" height="21" />
+            <polygon points="180.5,21 206,27 206,32 180.5,26" />
+            <ellipse cx="201" cy="47" rx="5.5" ry="3.8" transform="rotate(-15 201 47)" />
+            <rect x="205.5" y="27" width="2" height="20" />
+          </g>
+          <g transform="translate(8, 6)">
+            <rect x="14" y="54" width="13" height="28" rx="5" transform="rotate(42 20 68)" fill="#4CAF50" />
+            <circle cx="52" cy="36" r="28" fill="none" stroke="#4CAF50" stroke-width="7.5" />
+            <path d="M35 23 A20 20 0 0 1 48 16" fill="none" stroke="#69F0AE" stroke-width="4.5" stroke-linecap="round" />
+            <circle cx="55" cy="16" r="2.3" fill="#69F0AE" />
+          </g>
+          <text x="92" y="84" font-family="'Fredoka', cursive, sans-serif" font-weight="700" font-size="27" fill="#4CAF50" letter-spacing="-0.5">Melodigma</text>
+        </g>
+      </svg>
+    `;
+
+    const SVG_LOGO_ESTEL = `
+      <svg viewBox="0 0 180 105" xmlns="http://www.w3.org/2000/svg" class="w-full h-full overflow-visible">
+        <defs>
+          <filter id="glow-estel" x="-15%" y="-15%" width="130%" height="130%">
+            <feMorphology in="SourceAlpha" operator="dilate" radius="2.2" result="dilated" />
+            <feFlood flood-color="#FFFFFF" flood-opacity="0.95" result="whiteBorder" />
+            <feComposite in="whiteBorder" in2="dilated" operator="in" result="stickerOutline" />
+            <feMerge>
+              <feMergeNode in="stickerOutline" />
+              <feMergeNode in="SourceGraphic" />
+            </feMerge>
+          </filter>
+        </defs>
+        <g filter="url(#glow-estel)">
+          <rect x="64" y="34" width="76" height="62" rx="4" fill="#4DD0E1" />
+          <polygon points="48,12 60,41 91,43 67,63 75,93 48,76 21,93 29,63 5,43 36,41" fill="#FFD54F" />
+          <text x="72" y="28" font-family="'Fredoka', cursive, sans-serif" font-weight="700" font-size="25" fill="#66BB6A" letter-spacing="1.5">Estel</text>
+        </g>
+      </svg>
+    `;
+
+    // 2. CATÁLOGO DE PRODUCTOS (LOREM IPSUM + TEMÁTICA MELODIGMA)
+    const PRODUCTS = [
+      {
+        id: 1,
+        name: 'Juego de Mesa Melodigma Deluxe',
+        category: 'juegos',
+        collection: 'aurora',
+        price: 36.99,
+        oldPrice: 45.00,
+        rating: '★ 4.9 (128)',
+        badge: 'Top Ventas',
+        badgeClass: 'bg-green-100 text-green-900',
+        emoji: '🎲',
+        bg: '#FFF3DF',
+        sizes: ['Edición Caja'],
+        colors: [
+          { name: 'Ed. Clásica', hex: '#1E2242', bg: '#FFF3DF' },
+          { name: 'Ed. Dorada', hex: '#FBC02D', bg: '#FFF8E1' }
+        ],
+        desc: 'Lorem ipsum dolor sit amet, incluye tablero de las 9 estancias, 6 figuras de colores, Sobre Secreto y 12 cartas de ayuda.'
+      },
+      {
+        id: 2,
+        name: 'Sudadera Nota Musical "Luana"',
+        category: 'ropa',
+        collection: 'luana',
+        price: 42.50,
+        oldPrice: null,
+        rating: '★ 4.8 (64)',
+        badge: 'Nuevo',
+        badgeClass: 'bg-amber-100 text-amber-900',
+        emoji: '🧥',
+        bg: '#E8F5E9',
+        sizes: ['XS', 'S', 'M', 'L', 'XL'],
+        colors: [
+          { name: 'Verde Luana', hex: '#2E7D32', bg: '#E8F5E9' },
+          { name: 'Azul Armonía', hex: '#1E2242', bg: '#E5E8F2' },
+          { name: 'Mostaza Li Wei', hex: '#F6C343', bg: '#FFF8E1' }
+        ],
+        desc: 'Consectetur adipiscing elit, algodón orgánico afelpado con corchea bordada en el pecho y capucha amplia.'
+      },
+      {
+        id: 3,
+        name: 'Camiseta Detective Escuela Armonía',
+        category: 'ropa',
+        collection: 'aurora',
+        price: 22.99,
+        oldPrice: 26.00,
+        rating: '★ 4.7 (51)',
+        badge: '-12%',
+        badgeClass: 'bg-rose-100 text-rose-900',
+        emoji: '👕',
+        bg: '#E3F2FD',
+        sizes: ['XS', 'S', 'M', 'L', 'XL'],
+        colors: [
+          { name: 'Azul Pizarra', hex: '#254E8A', bg: '#E3F2FD' },
+          { name: 'Violeta Emese', hex: '#7E57C2', bg: '#F3E5F5' },
+          { name: 'Rojo Diego', hex: '#B72B2B', bg: '#FFEBEE' }
+        ],
+        desc: 'Sed do eiusmod tempor incididunt ut labore. Estampado frontal del violín La Aurora y lupa luminosa.'
+      },
+      {
+        id: 4,
+        name: 'Libro Interactivo: Atlas Sonoro + QR',
+        category: 'juegos',
+        collection: 'aurora',
+        price: 19.95,
+        oldPrice: null,
+        rating: '★ 5.0 (89)',
+        badge: 'Con Audio QR',
+        badgeClass: 'bg-cyan-100 text-cyan-900',
+        emoji: '📖',
+        bg: '#E0F7FA',
+        sizes: ['Tapa Dura'],
+        colors: [{ name: 'Tapa Dura Ilustrada', hex: '#4DD0E1', bg: '#E0F7FA' }],
+        desc: 'Ut enim ad minim veniam, 120 páginas ilustradas a todo color con códigos QR para escuchar música de 6 países.'
+      },
+      {
+        id: 5,
+        name: 'Bolsa Tote "Club de Enigmas"',
+        category: 'accesorios',
+        collection: 'emese',
+        price: 15.50,
+        oldPrice: null,
+        rating: '★ 4.8 (43)',
+        badge: 'Eco',
+        badgeClass: 'bg-purple-100 text-purple-900',
+        emoji: '👜',
+        bg: '#F3E5F5',
+        sizes: ['Talla Única'],
+        colors: [
+          { name: 'Lila Emese', hex: '#7E57C2', bg: '#F3E5F5' },
+          { name: 'Crema Pergamino', hex: '#D7CCC8', bg: '#F5EFE6' }
+        ],
+        desc: 'Duis aute irure dolor in reprehenderit. Lona gruesa de 320g ideal para partituras, carpetas y el juego de mesa.'
+      },
+      {
+        id: 6,
+        name: 'Set de 4 Pines Esmaltados Melodigma',
+        category: 'accesorios',
+        collection: 'aurora',
+        price: 12.90,
+        oldPrice: null,
+        rating: '★ 4.9 (77)',
+        badge: 'Ed. Limitada',
+        badgeClass: 'bg-pink-100 text-pink-900',
+        emoji: '📌',
+        bg: '#FCE4EC',
+        sizes: ['Pack 4 uds.'],
+        colors: [{ name: 'Esmalte Brillo', hex: '#EC4899', bg: '#FCE4EC' }],
+        desc: 'Excepteur sint occaecat cupidatat non proident. Incluye lupa verde, violín La Aurora, clave de sol y estrella Estel.'
+      },
+      {
+        id: 7,
+        name: 'Lámina Ilustrada A3: Fachada Armonía',
+        category: 'laminas',
+        collection: 'aurora',
+        price: 16.00,
+        oldPrice: null,
+        rating: '★ 4.8 (32)',
+        badge: 'Numerada',
+        badgeClass: 'bg-indigo-100 text-indigo-900',
+        emoji: '🖼️',
+        bg: '#EDE7F6',
+        sizes: ['A4', 'A3'],
+        colors: [{ name: 'Papel Mate 300g', hex: '#5C54A4', bg: '#EDE7F6' }],
+        desc: 'Quis nostrud exercitation ullamco laboris. Impresión giclée de alta definición lista para enmarcar.'
+      },
+      {
+        id: 8,
+        name: 'Peluche Lupa Musical Chibi',
+        category: 'coleccionables',
+        collection: 'luana',
+        price: 24.99,
+        oldPrice: 29.99,
+        rating: '★ 4.9 (41)',
+        badge: 'Repuesto',
+        badgeClass: 'bg-green-100 text-green-900',
+        emoji: '🧸',
+        bg: '#E8F5E9',
+        sizes: ['25 cm'],
+        colors: [
+          { name: 'Verde Clásico', hex: '#4CAF50', bg: '#E8F5E9' },
+          { name: 'Dorado Especial', hex: '#FFD54F', bg: '#FFF8E1' }
+        ],
+        desc: 'Lorem ipsum dolor sit amet, peluche súper suave con costuras bordadas y etiqueta oficial de Productora Estel.'
+      },
+      {
+        id: 9,
+        name: 'Pack Detective Principiante',
+        category: 'coleccionables',
+        collection: 'emese',
+        price: 54.99,
+        oldPrice: 72.99,
+        rating: '★ 5.0 (29)',
+        badge: 'Pack -25%',
+        badgeClass: 'bg-amber-100 text-amber-900',
+        emoji: '🎁',
+        bg: '#FFF8E1',
+        sizes: ['Pack Completo'],
+        colors: [{ name: 'Caja Regalo', hex: '#FBC02D', bg: '#FFF8E1' }],
+        desc: 'Juego de Mesa Deluxe + Bolsa Tote + Set de 4 Pines + Hoja de pegatinas sorpresa. Sed do eiusmod tempor.'
+      },
+      {
+        id: 10,
+        name: 'Pack Coleccionista Transmedia',
+        category: 'coleccionables',
+        collection: 'aurora',
+        price: 79.99,
+        oldPrice: 105.00,
+        rating: '★ 5.0 (19)',
+        badge: 'Mega Pack',
+        badgeClass: 'bg-rose-100 text-rose-900',
+        emoji: '🎻',
+        bg: '#FFE0B2',
+        sizes: ['S', 'M', 'L'],
+        colors: [{ name: 'Edición Estel', hex: '#9E2A5B', bg: '#FFE0B2' }],
+        desc: 'Sudadera Nota Musical + Atlas Sonoro QR + Lámina A3 + Peluche Lupa. El cofre definitivo de la Escuela Armonía.'
+      }
+    ];
+
+    const CATEGORY_NAMES = {
+      ropa: 'Ropa',
+      juegos: 'Juegos y Libros',
+      accesorios: 'Accesorios',
+      laminas: 'Láminas',
+      coleccionables: 'Coleccionables'
+    };
+
+    const PROMO_CODES = {
+      ARMONIA10: { percent: 10, label: 'Cupón ARMONIA10 (-10%)' },
+      ESTEL20: { percent: 20, label: 'Cupón ESTEL20 (-20%)' }
+    };
+
+    // 3. ESTADO GLOBAL DE LA TIENDA
+    let state = {
+      activeCategory: 'todos',
+      activeCollection: 'todas',
+      activeSort: 'featured',
+      cart: [],
+      wishlist: [],
+      promoCode: null,
+      modalProductId: null,
+      modalSelectedSize: '',
+      modalSelectedColorIdx: 0,
+      modalQty: 1
+    };
+
+    const formatEuro = (val) => `${val.toFixed(2).replace('.', ',')} €`;
+
+    // 4. TOASTS Y NAVEGACIÓN ENTRE SECCIONES
+    function showToast(message, type = 'info') {
+      const container = document.getElementById('toast-container');
+      const styles = {
+        info: 'bg-[#FFFDF9] border-celeste text-madera',
+        success: 'bg-emerald-50 border-lupa text-emerald-950',
+        warning: 'bg-amber-50 border-dorado text-amber-950'
+      };
+      const el = document.createElement('div');
+      el.className = `pointer-events-auto px-4 py-3 rounded-2xl border-2 shadow-lg text-xs sm:text-sm font-bold animate-pop ${styles[type] || styles.info}`;
+      el.textContent = message;
+      container.appendChild(el);
+      setTimeout(() => {
+        el.style.opacity = '0';
+        el.style.transition = 'opacity 0.25s ease';
+        setTimeout(() => el.remove(), 260);
+      }, 3200);
+    }
+
+    function switchSection(sectionId) {
+      ['tienda', 'colecciones', 'favoritos', 'info'].forEach(id => {
+        const sec = document.getElementById(`sec-${id}`);
+        const btn = document.getElementById(`nav-${id}`);
+        if (sec) sec.classList.toggle('hidden', id !== sectionId);
+        if (btn) {
+          if (id === sectionId) {
+            btn.classList.remove('bg-[#FFF3DF]', 'text-madera', 'hover:bg-dorado/70');
+            btn.classList.add('bg-lupa', 'text-white', 'shadow-btn');
+          } else {
+            btn.classList.remove('bg-lupa', 'text-white', 'shadow-btn');
+            btn.classList.add('bg-[#FFF3DF]', 'text-madera', 'hover:bg-dorado/70');
+          }
+        }
+      });
+      if (sectionId === 'favoritos') renderWishlistGrid();
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+    }
+
+    // 5. DRAWERS (MENÚ LATERAL Y CARRITO)
+    function closeAllDrawers() {
+      document.getElementById('side-menu-drawer').classList.add('translate-x-full');
+      document.getElementById('cart-drawer').classList.add('translate-x-full');
+      document.getElementById('drawer-backdrop').classList.add('hidden');
+      document.getElementById('menu-toggle-btn').setAttribute('aria-expanded', 'false');
+    }
+
+    function toggleSideMenu() {
+      const menu = document.getElementById('side-menu-drawer');
+      const isClosed = menu.classList.contains('translate-x-full');
+      closeAllDrawers();
+      if (isClosed) {
+        menu.classList.remove('translate-x-full');
+        document.getElementById('drawer-backdrop').classList.remove('hidden');
+        document.getElementById('menu-toggle-btn').setAttribute('aria-expanded', 'true');
+      }
+    }
+
+    function openCartDrawer() {
+      closeAllDrawers();
+      document.getElementById('cart-drawer').classList.remove('translate-x-full');
+      document.getElementById('drawer-backdrop').classList.remove('hidden');
+    }
+
+    // 6. DESPLEGABLES PERSONALIZADOS MELODIGMA
+    const DROPDOWN_REGISTRY = {};
+
+    function initCustomDropdown(inputId, options, onChange) {
+      DROPDOWN_REGISTRY[inputId] = { options, onChange };
+      renderCustomDropdown(inputId);
+    }
+
+    function renderCustomDropdown(inputId) {
+      const container = document.getElementById(`dropdown-${inputId}`);
+      const hidden = document.getElementById(inputId);
+      const entry = DROPDOWN_REGISTRY[inputId];
+      if (!container || !hidden || !entry) return;
+
+      const selected = entry.options.find(o => o.value === hidden.value) || entry.options[0];
+      container.innerHTML = `
+        <button type="button" onclick="toggleDropdown('${inputId}', event)" class="melodigma-dropdown-btn">
+          <span class="truncate">${selected.label}</span>
+          <svg class="melodigma-dropdown-arrow w-4 h-4 text-madera" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round">
+            <polyline points="6 9 12 15 18 9"></polyline>
+          </svg>
+        </button>
+        <div class="melodigma-dropdown-menu">
+          ${entry.options.map(opt => {
+            const isSel = opt.value === hidden.value;
+            return `
+              <button type="button" onclick="selectDropdownOption('${inputId}', '${opt.value}', event)" class="melodigma-dropdown-item ${isSel ? 'selected' : ''}">
+                <span>${opt.label}</span>
+                ${isSel ? '<span class="text-xs font-extrabold text-lupa">✔</span>' : ''}
+              </button>
+            `;
+          }).join('')}
+        </div>
+      `;
+    }
+
+    function toggleDropdown(inputId, event) {
+      if (event) event.stopPropagation();
+      const target = document.getElementById(`dropdown-${inputId}`);
+      const wasOpen = target.classList.contains('open');
+      document.querySelectorAll('.melodigma-dropdown.open').forEach(el => el.classList.remove('open'));
+      if (!wasOpen) target.classList.add('open');
+    }
+
+    function selectDropdownOption(inputId, value, event) {
+      if (event) event.stopPropagation();
+      const hidden = document.getElementById(inputId);
+      const entry = DROPDOWN_REGISTRY[inputId];
+      hidden.value = value;
+      renderCustomDropdown(inputId);
+      document.querySelectorAll('.melodigma-dropdown.open').forEach(el => el.classList.remove('open'));
+      if (entry && typeof entry.onChange === 'function') entry.onChange(value);
+    }
+
+    document.addEventListener('click', () => {
+      document.querySelectorAll('.melodigma-dropdown.open').forEach(el => el.classList.remove('open'));
+    });
+
+    // 7. FILTROS Y RENDERIZADO DEL CATÁLOGO
+    function setCategory(cat) {
+      state.activeCategory = cat;
+      document.querySelectorAll('.cat-pill').forEach(btn => {
+        const active = btn.dataset.cat === cat;
+        btn.className = active
+          ? 'cat-pill px-4 py-2 rounded-2xl font-display font-bold text-xs sm:text-sm bg-madera text-white shadow transition'
+          : 'cat-pill px-4 py-2 rounded-2xl font-display font-bold text-xs sm:text-sm bg-cremaCard text-madera border-2 border-pergamino hover:border-dorado transition';
+      });
+      renderProductGrid();
+    }
+
+    function quickFilterCategory(cat) {
+      switchSection('tienda');
+      closeAllDrawers();
+      setCategory(cat);
+      document.getElementById('catalogo-bloque').scrollIntoView({ behavior: 'smooth' });
+    }
+
+    function jumpToCollection(col) {
+      state.activeCollection = col;
+      document.getElementById('filter-collection').value = col;
+      renderCustomDropdown('filter-collection');
+      setCategory('todos');
+      switchSection('tienda');
+      setTimeout(() => document.getElementById('catalogo-bloque').scrollIntoView({ behavior: 'smooth' }), 80);
+    }
+
+    function buildProductCardHTML(p) {
+      const isFav = state.wishlist.includes(p.id);
+      return `
+        <article class="bg-white rounded-3xl p-5 border-4 border-pergamino shadow-card flex flex-col justify-between space-y-4 hover:-translate-y-1 transition relative">
+          <div class="space-y-3">
+            <div class="flex items-center justify-between gap-2">
+              <span class="text-xs font-extrabold px-3 py-1 rounded-full ${p.badgeClass}">${p.badge}</span>
+              <button onclick="toggleWishlist(${p.id})" title="${isFav ? 'Quitar de favoritos' : 'Añadir a favoritos'}"
+                class="w-9 h-9 rounded-xl border-2 ${isFav ? 'bg-rose-50 border-rose-300 text-rose-500' : 'bg-cremaCard border-pergamino text-maderaSuave hover:border-rose-300'} flex items-center justify-center text-base transition">
+                ${isFav ? '❤️' : '🤍'}
+              </button>
+            </div>
+
+            <!-- Haz clic en la imagen para abrir la vista rápida; reemplaza el emoji por <img> cuando subas tus fotos -->
+            <button onclick="openProductModal(${p.id})" class="w-full h-44 rounded-2xl border-2 border-pergamino/60 flex flex-col items-center justify-center gap-1 group overflow-hidden transition" style="background:${p.bg}">
+              <span class="text-6xl group-hover:scale-110 transition-transform">${p.emoji}</span>
+              <span class="text-[11px] font-bold text-madera/70 bg-white/80 px-2.5 py-0.5 rounded-full">👁️ Vista rápida</span>
+            </button>
+
+            <div class="space-y-1">
+              <div class="flex items-center justify-between text-[11px] font-bold text-maderaSuave">
+                <span class="uppercase tracking-wide">${CATEGORY_NAMES[p.category] || p.category}</span>
+                <span class="text-amber-600">${p.rating}</span>
+              </div>
+              <h3 class="font-display font-bold text-xl text-madera leading-snug">${p.name}</h3>
+              <p class="text-xs text-madera/85 leading-relaxed">${p.desc}</p>
+            </div>
+          </div>
+
+          <div class="pt-3 border-t-2 border-crema flex items-center justify-between gap-2">
+            <div>
+              ${p.oldPrice ? `<span class="text-xs line-through text-maderaSuave font-bold block leading-none">${formatEuro(p.oldPrice)}</span>` : ''}
+              <span class="font-display font-bold text-2xl text-madera">${formatEuro(p.price)}</span>
+            </div>
+            <div class="flex gap-1.5">
+              <button onclick="openProductModal(${p.id})" class="px-3 py-2 rounded-xl bg-crema hover:bg-dorado text-madera font-display font-bold text-xs border border-pergamino transition">
+                Opciones
+              </button>
+              <button onclick="quickAddProduct(${p.id})" class="px-3.5 py-2 rounded-xl bg-lupa hover:bg-lupaOscuro text-white font-display font-bold text-xs shadow-btn transition">
+                + Añadir
+              </button>
+            </div>
+          </div>
+        </article>
+      `;
+    }
+
+    function renderProductGrid() {
+      const grid = document.getElementById('product-grid');
+      const query = (document.getElementById('shop-search').value || '').trim().toLowerCase();
+
+      let list = PRODUCTS.filter(p => {
+        const okCat = state.activeCategory === 'todos' || p.category === state.activeCategory;
+        const okCol = state.activeCollection === 'todas' || p.collection === state.activeCollection;
+        const okSearch = !query || p.name.toLowerCase().includes(query) || p.desc.toLowerCase().includes(query);
+        return okCat && okCol && okSearch;
+      });
+
+      if (state.activeSort === 'price_asc') list.sort((a, b) => a.price - b.price);
+      if (state.activeSort === 'price_desc') list.sort((a, b) => b.price - a.price);
+      if (state.activeSort === 'discount') list.sort((a, b) => (b.oldPrice ? 1 : 0) - (a.oldPrice ? 1 : 0));
+
+      document.getElementById('results-counter').textContent = `Mostrando ${list.length} producto${list.length === 1 ? '' : 's'}`;
+
+      if (list.length === 0) {
+        grid.innerHTML = `
+          <div class="col-span-full bg-white rounded-3xl p-10 border-4 border-pergamino text-center space-y-3">
+            <div class="text-5xl">🔍</div>
+            <h3 class="font-display font-bold text-2xl text-madera">No hemos encontrado pistas de ese producto</h3>
+            <p class="text-sm text-maderaSuave font-semibold">Prueba a cambiar de categoría o limpiar el buscador.</p>
+            <button onclick="resetFilters()" class="px-5 py-2.5 rounded-2xl bg-dorado hover:bg-amber-400 text-madera font-display font-bold text-sm shadow-btn">
+              Restablecer filtros
+            </button>
+          </div>
+        `;
+        return;
+      }
+
+      grid.innerHTML = list.map(buildProductCardHTML).join('');
+    }
+
+    function resetFilters() {
+      document.getElementById('shop-search').value = '';
+      state.activeCollection = 'todas';
+      document.getElementById('filter-collection').value = 'todas';
+      renderCustomDropdown('filter-collection');
+      setCategory('todos');
+    }
+
+    // 8. FAVORITOS (WISHLIST)
+    function toggleWishlist(prodId) {
+      const idx = state.wishlist.indexOf(prodId);
+      const prod = PRODUCTS.find(p => p.id === prodId);
+      if (idx === -1) {
+        state.wishlist.push(prodId);
+        showToast(`❤️ "${prod.name}" guardado en tus favoritos.`, 'success');
+      } else {
+        state.wishlist.splice(idx, 1);
+        showToast(`💔 "${prod.name}" eliminado de favoritos.`, 'info');
+      }
+      updateWishlistBadges();
+      renderProductGrid();
+      if (!document.getElementById('sec-favoritos').classList.contains('hidden')) {
+        renderWishlistGrid();
+      }
+    }
+
+    function updateWishlistBadges() {
+      const count = state.wishlist.length;
+      document.getElementById('header-wishlist-count').textContent = count;
+      document.getElementById('menu-wishlist-badge').textContent = count;
+    }
+
+    function renderWishlistGrid() {
+      const grid = document.getElementById('wishlist-grid');
+      const items = PRODUCTS.filter(p => state.wishlist.includes(p.id));
+      if (items.length === 0) {
+        grid.innerHTML = `
+          <div class="col-span-full bg-cremaCard rounded-3xl p-10 border-2 border-dashed border-pergamino text-center space-y-3">
+            <div class="text-5xl">🤍</div>
+            <h3 class="font-display font-bold text-xl text-madera">Aún no tienes artículos favoritos</h3>
+            <p class="text-sm text-maderaSuave font-semibold">Pulsa el corazón en cualquier producto del catálogo para guardarlo aquí.</p>
+            <button onclick="switchSection('tienda')" class="px-5 py-2.5 rounded-2xl bg-lupa hover:bg-lupaOscuro text-white font-display font-bold text-sm shadow-btn">
+              Ir al Catálogo
+            </button>
+          </div>
+        `;
+        return;
+      }
+      grid.innerHTML = items.map(buildProductCardHTML).join('');
+    }
+
+    // 9. MODAL DE VISTA RÁPIDA DE PRODUCTO
+    function openProductModal(prodId) {
+      const p = PRODUCTS.find(item => item.id === prodId);
+      if (!p) return;
+
+      state.modalProductId = prodId;
+      state.modalSelectedSize = p.sizes[0];
+      state.modalSelectedColorIdx = 0;
+      state.modalQty = 1;
+
+      document.getElementById('modal-prod-emoji').textContent = p.emoji;
+      document.getElementById('modal-prod-badge').textContent = p.badge;
+      document.getElementById('modal-prod-badge').className = `text-[11px] font-extrabold px-2.5 py-0.5 rounded-full ${p.badgeClass}`;
+      document.getElementById('modal-prod-rating').textContent = p.rating;
+      document.getElementById('modal-prod-name').textContent = p.name;
+      document.getElementById('modal-prod-price').textContent = formatEuro(p.price);
+
+      const oldPriceEl = document.getElementById('modal-prod-oldprice');
+      if (p.oldPrice) {
+        oldPriceEl.textContent = formatEuro(p.oldPrice);
+        oldPriceEl.classList.remove('hidden');
+      } else {
+        oldPriceEl.classList.add('hidden');
+      }
+
+      document.getElementById('modal-prod-desc').textContent = p.desc;
+      document.getElementById('modal-qty-display').textContent = '1';
+
+      renderModalOptions(p);
+      document.getElementById('product-modal').classList.remove('hidden');
+    }
+
+    function renderModalOptions(p) {
+      const currentColor = p.colors[state.modalSelectedColorIdx] || p.colors[0];
+      document.getElementById('modal-prod-visual').style.backgroundColor = currentColor.bg;
+      document.getElementById('modal-prod-variant-label').textContent = currentColor.name;
+
+      document.getElementById('modal-color-swatches').innerHTML = p.colors.map((c, idx) => {
+        const sel = idx === state.modalSelectedColorIdx;
+        return `
+          <button type="button" onclick="selectModalColor(${idx})" title="${c.name}"
+            class="px-3 py-1.5 rounded-xl border-2 text-xs font-bold flex items-center gap-1.5 transition ${sel ? 'border-lupa bg-emerald-50 text-lupaOscuro ring-2 ring-lupa/30' : 'border-pergamino bg-white text-madera'}">
+            <span class="w-3.5 h-3.5 rounded-full border border-madera/40 inline-block" style="background:${c.hex}"></span>
+            <span>${c.name}</span>
+          </button>
+        `;
+      }).join('');
+
+      document.getElementById('modal-size-buttons').innerHTML = p.sizes.map(sz => {
+        const sel = sz === state.modalSelectedSize;
+        return `
+          <button type="button" onclick="selectModalSize('${sz}')"
+            class="px-3.5 py-1.5 rounded-xl border-2 font-display font-bold text-xs transition ${sel ? 'bg-madera text-white border-madera' : 'bg-white text-madera border-pergamino hover:border-dorado'}">
+            ${sz}
+          </button>
+        `;
+      }).join('');
+    }
+
+    function selectModalColor(idx) {
+      state.modalSelectedColorIdx = idx;
+      const p = PRODUCTS.find(item => item.id === state.modalProductId);
+      if (p) renderModalOptions(p);
+    }
+
+    function selectModalSize(size) {
+      state.modalSelectedSize = size;
+      const p = PRODUCTS.find(item => item.id === state.modalProductId);
+      if (p) renderModalOptions(p);
+    }
+
+    function changeModalQty(delta) {
+      state.modalQty = Math.max(1, Math.min(10, state.modalQty + delta));
+      document.getElementById('modal-qty-display').textContent = state.modalQty;
+    }
+
+    function closeProductModal() {
+      document.getElementById('product-modal').classList.add('hidden');
+    }
+
+    // 10. LÓGICA DEL CARRITO, CUPONES Y CHECKOUT
+    function quickAddProduct(prodId) {
+      const p = PRODUCTS.find(item => item.id === prodId);
+      if (!p) return;
+      addItemToCart(p, p.sizes[0], p.colors[0].name, 1);
+    }
+
+    function addModalProductToCart() {
+      const p = PRODUCTS.find(item => item.id === state.modalProductId);
+      if (!p) return;
+      const variantName = (p.colors[state.modalSelectedColorIdx] || p.colors[0]).name;
+      addItemToCart(p, state.modalSelectedSize, variantName, state.modalQty);
+      closeProductModal();
+      openCartDrawer();
+    }
+
+    function addItemToCart(product, size, variant, qty) {
+      const key = `${product.id}|${size}|${variant}`;
+      const existing = state.cart.find(item => item.key === key);
+      if (existing) {
+        existing.qty += qty;
+      } else {
+        state.cart.push({
+          key,
+          id: product.id,
+          name: product.name,
+          price: product.price,
+          emoji: product.emoji,
+          size,
+          variant,
+          qty
+        });
+      }
+      renderCart();
+      showToast(`🛒 "${product.name}" añadido al carrito.`, 'success');
+    }
+
+    function updateCartItemQty(key, delta) {
+      const item = state.cart.find(i => i.key === key);
+      if (!item) return;
+      item.qty += delta;
+      if (item.qty <= 0) {
+        state.cart = state.cart.filter(i => i.key !== key);
+      }
+      renderCart();
+    }
+
+    function applyPromoCode() {
+      const input = document.getElementById('promo-input');
+      const code = (input.value || '').trim().toUpperCase();
+      if (PROMO_CODES[code]) {
+        state.promoCode = code;
+        renderCart();
+        showToast(`✨ ¡Código ${code} aplicado!`, 'success');
+      } else {
+        showToast('⚠️ Código no válido. Prueba ARMONIA10 o ESTEL20.', 'warning');
+      }
+    }
+
+    function computeTotals() {
+      const subtotal = state.cart.reduce((sum, i) => sum + i.price * i.qty, 0);
+      const promo = state.promoCode ? PROMO_CODES[state.promoCode] : null;
+      const discount = promo ? subtotal * (promo.percent / 100) : 0;
+      const afterDiscount = Math.max(0, subtotal - discount);
+      const shipping = afterDiscount === 0 || afterDiscount >= 50 ? 0 : 4.95;
+      return { subtotal, discount, promo, shipping, total: afterDiscount + shipping, afterDiscount };
+    }
+
+    function renderCart() {
+      const listEl = document.getElementById('cart-items-list');
+      const totalItems = state.cart.reduce((sum, i) => sum + i.qty, 0);
+      document.getElementById('header-cart-count').textContent = totalItems;
+
+      const { subtotal, discount, promo, shipping, total, afterDiscount } = computeTotals();
+
+      // Barra de envío gratis (50 €)
+      const remaining = Math.max(0, 50 - afterDiscount);
+      const pct = Math.min(100, (afterDiscount / 50) * 100);
+      document.getElementById('shipping-progress-bar').style.width = `${pct}%`;
+      document.getElementById('shipping-progress-text').textContent = remaining === 0 && afterDiscount > 0
+        ? '🎉 ¡Has desbloqueado el ENVÍO GRATIS!'
+        : `Te faltan ${formatEuro(remaining)} para envío gratis`;
+
+      document.getElementById('cart-subtotal').textContent = formatEuro(subtotal);
+      const discRow = document.getElementById('cart-discount-row');
+      if (promo && discount > 0) {
+        discRow.classList.remove('hidden');
+        document.getElementById('cart-discount-label').textContent = promo.label;
+        document.getElementById('cart-discount-val').textContent = `-${formatEuro(discount)}`;
+      } else {
+        discRow.classList.add('hidden');
+      }
+      document.getElementById('cart-shipping').textContent = shipping === 0 ? 'GRATIS' : formatEuro(shipping);
+      document.getElementById('cart-total').textContent = formatEuro(total);
+
+      if (state.cart.length === 0) {
+        listEl.innerHTML = `
+          <div class="text-center py-14 text-indigo-200 space-y-2">
+            <div class="text-5xl">🛍️</div>
+            <p class="font-display font-bold text-lg text-white">Tu carrito está vacío</p>
+            <p class="text-xs">Explora el catálogo y añade tus artículos favoritos.</p>
+          </div>
+        `;
+        return;
+      }
+
+      listEl.innerHTML = state.cart.map(item => `
+        <div class="bg-[#292F59] rounded-2xl p-3 border-2 border-[#4A5388] flex items-center justify-between gap-3">
+          <div class="flex items-center gap-3 min-w-0">
+            <div class="w-12 h-12 rounded-xl bg-cremaCard flex items-center justify-center text-2xl flex-shrink-0">${item.emoji}</div>
+            <div class="min-w-0">
+              <p class="font-display font-bold text-sm text-white truncate">${item.name}</p>
+              <p class="text-[11px] text-indigo-200 font-semibold">${item.variant} · ${item.size}</p>
+              <p class="text-xs text-dorado font-extrabold mt-0.5">${formatEuro(item.price * item.qty)}</p>
+            </div>
+          </div>
+          <div class="flex items-center gap-1 flex-shrink-0">
+            <button onclick="updateCartItemQty('${item.key.replace(/'/g, "\\'")}', -1)" class="w-7 h-7 rounded-lg bg-[#1E2242] hover:bg-rose-500 font-bold text-sm transition">−</button>
+            <span class="w-5 text-center font-bold text-xs">${item.qty}</span>
+            <button onclick="updateCartItemQty('${item.key.replace(/'/g, "\\'")}', 1)" class="w-7 h-7 rounded-lg bg-[#1E2242] hover:bg-lupa font-bold text-sm transition">+</button>
+          </div>
+        </div>
+      `).join('');
+    }
+
+    function openCheckoutModal() {
+      if (state.cart.length === 0) {
+        showToast('🛒 Añade al menos un producto antes de tramitar el pedido.', 'warning');
+        return;
+      }
+      closeAllDrawers();
+      const { total } = computeTotals();
+      document.getElementById('checkout-total-display').textContent = formatEuro(total);
+      document.getElementById('checkout-form').classList.remove('hidden');
+      document.getElementById('checkout-success-box').classList.add('hidden');
+      document.getElementById('checkout-modal').classList.remove('hidden');
+    }
+
+    function closeCheckoutModal() {
+      document.getElementById('checkout-modal').classList.add('hidden');
+    }
+
+    function submitOrder(event) {
+      event.preventDefault();
+      const randomNum = Math.floor(1000 + Math.random() * 9000);
+      document.getElementById('fake-order-id').textContent = `#MLD-2026-${randomNum}`;
+      document.getElementById('checkout-form').classList.add('hidden');
+      document.getElementById('checkout-success-box').classList.remove('hidden');
+      event.target.reset();
+      state.cart = [];
+      state.promoCode = null;
+      document.getElementById('promo-input').value = '';
+      renderCart();
+      showToast('🎉 ¡Pedido de demostración completado!', 'success');
+    }
+
+    function subscribeNewsletter(event) {
+      event.preventDefault();
+      document.getElementById('newsletter-email').value = '';
+      showToast('✉️ ¡Suscripción confirmada! Usa el código ARMONIA10 en tu carrito.', 'success');
+    }
+
+    // 11. INICIALIZACIÓN
+    window.onload = function () {
+      ['header-logo-melodigma', 'footer-logo-melodigma'].forEach(id => {
+        const el = document.getElementById(id);
+        if (el) el.innerHTML = SVG_LOGO_MELODIGMA;
+      });
+      ['header-logo-estel', 'footer-logo-estel'].forEach(id => {
+        const el = document.getElementById(id);
+        if (el) el.innerHTML = SVG_LOGO_ESTEL;
+      });
+
+      initCustomDropdown('filter-collection', [
+        { value: 'todas', label: '✨ Todas las colecciones' },
+        { value: 'aurora', label: '🎻 Leyenda "La Aurora"' },
+        { value: 'luana', label: '🇧🇷 Cápsula Luana' },
+        { value: 'emese', label: '🇭🇺 Club de Enigmas (Emese)' }
+      ], (val) => {
+        state.activeCollection = val;
+        renderProductGrid();
+      });
+
+      initCustomDropdown('filter-sort', [
+        { value: 'featured', label: '⭐ Orden: Destacados' },
+        { value: 'price_asc', label: '💶 Precio: menor a mayor' },
+        { value: 'price_desc', label: '💶 Precio: mayor a menor' },
+        { value: 'discount', label: '🏷️ Ofertas primero' }
+      ], (val) => {
+        state.activeSort = val;
+        renderProductGrid();
+      });
+
+      renderProductGrid();
+      renderCart();
+      updateWishlistBadges();
+    };
+  </script>
+</body>
+</html>
